@@ -7,13 +7,12 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 	$_EXTKEY,
 	'Quicksearch',
 	array(
-		'Realty' => 'list, show',
-		
+		'Search' => 'quick',
 	),
 	// non-cacheable actions
 	array(
-		'Realty' => '',
-		
+		// non-cacheable because of (probably) dynamic countries/regions
+		'Search' => 'quick',
 	)
 );
 
@@ -21,13 +20,12 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 	$_EXTKEY,
 	'Detailsearch',
 	array(
-		'Realty' => 'list, show',
-		
+		'Search' => 'detail',
 	),
 	// non-cacheable actions
 	array(
-		'Realty' => '',
-		
+		// non-cacheable becase of (probably) dynamic countries/regions
+		'Search' => 'detail',
 	)
 );
 
@@ -35,13 +33,10 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 	$_EXTKEY,
 	'Directlinks',
 	array(
-		'Realty' => 'list, show',
-		
+		'Search' => 'direct',
 	),
 	// non-cacheable actions
 	array(
-		'Realty' => '',
-		
 	)
 );
 
@@ -49,13 +44,12 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 	$_EXTKEY,
 	'List',
 	array(
-		'Realty' => 'list, show',
-		
+		'Search' => 'list',
 	),
 	// non-cacheable actions
 	array(
-		'Realty' => '',
-		
+		// a search result is always non-cached!
+		'Search' => 'list',
 	)
 );
 
@@ -63,13 +57,10 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 	$_EXTKEY,
 	'Detail',
 	array(
-		'Realty' => 'list, show',
-		
+		'Realty' => 'show',
 	),
 	// non-cacheable actions
 	array(
-		'Realty' => '',
-		
 	)
 );
 

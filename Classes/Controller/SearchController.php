@@ -31,34 +31,33 @@
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class Tx_Justimmo_Controller_RealtyController extends Tx_Extbase_MVC_Controller_ActionController {
+class Tx_Justimmo_Controller_SearchController extends Tx_Extbase_MVC_Controller_ActionController {
 
 	/**
-	 * realtyRepository
+	 * reflects the quick search
 	 *
-	 * @var Tx_Justimmo_Domain_Repository_RealtyRepository
 	 */
-	protected $realtyRepository;
-
-	/**
-	 * injectRealtyRepository
-	 *
-	 * @param Tx_Justimmo_Domain_Repository_RealtyRepository $realtyRepository
-	 * @return void
-	 */
-	public function injectRealtyRepository(Tx_Justimmo_Domain_Repository_RealtyRepository $realtyRepository) {
-		$this->realtyRepository = $realtyRepository;
+	public function quickAction() {
 	}
 
+	/**
+	 * reflects the detail search
+	 *
+	 */
+	public function detailAction() {
+	}
 
 	/**
-	 * action show
+	 * reflects the direct links search
 	 *
-	 * @param $realty
-	 * @return void
 	 */
-	public function showAction(Tx_Justimmo_Domain_Model_Realty $realty) {
-		$this->view->assign('realty', $realty);
+	public function directAction() {
+	}
+
+	/**
+	 * reflects the search results list
+	 *
+	 */
+	public function listAction() {
 	}
 }
-?>
