@@ -1,0 +1,30 @@
+plugin.tx_justimmo {
+	view {
+		templateRootPath = {$plugin.tx_justimmo.view.templateRootPath}
+		partialRootPath = {$plugin.tx_justimmo.view.partialRootPath}
+		layoutRootPath = {$plugin.tx_justimmo.view.layoutRootPath}
+	}
+	persistence {
+		storagePid = {$plugin.tx_justimmo.persistence.storagePid}
+	}
+}
+
+plugin.tx_justimmo._CSS_DEFAULT_STYLE (
+	input.f3-form-error {
+		background-color:#FF9F9F;
+		border: 1px #FF0000 solid;
+	}
+
+	.tx-justimmo table {
+		border-collapse:separate;
+		border-spacing:10px;
+	}
+
+	.tx-justimmo table th {
+		font-weight:bold;
+	}
+
+	.tx-justimmo table td {
+		vertical-align:top;
+	}
+)
