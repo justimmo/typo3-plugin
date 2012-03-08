@@ -34,6 +34,13 @@
 class Tx_Justimmo_Controller_SearchController extends Tx_Extbase_MVC_Controller_ActionController {
 
 	/**
+	 * reflects the realty number search
+	 *
+	 */
+	public function realtynumberAction() {
+	}
+
+	/**
 	 * reflects the quick search
 	 *
 	 */

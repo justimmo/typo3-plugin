@@ -5,32 +5,38 @@ if (!defined('TYPO3_MODE')) {
 
 Tx_Extbase_Utility_Extension::registerPlugin(
 	$_EXTKEY,
-	'Quicksearch',
-	'LLL:EXT:justimmo/Resources/Private/Language/locallang.xml:quicksearch'
+	'RealtynumberSearch',
+	'LLL:EXT:justimmo/Resources/Private/Language/locallang.xml:realtynumber_search'
 );
 
 Tx_Extbase_Utility_Extension::registerPlugin(
 	$_EXTKEY,
-	'Detailsearch',
-	'LLL:EXT:justimmo/Resources/Private/Language/locallang.xml:detailsearch'
+	'QuickSearch',
+	'LLL:EXT:justimmo/Resources/Private/Language/locallang.xml:quick_search'
 );
 
 Tx_Extbase_Utility_Extension::registerPlugin(
 	$_EXTKEY,
-	'Directlinks',
-	'LLL:EXT:justimmo/Resources/Private/Language/locallang.xml:directlinks'
+	'DetailSearch',
+	'LLL:EXT:justimmo/Resources/Private/Language/locallang.xml:detail_search'
 );
 
 Tx_Extbase_Utility_Extension::registerPlugin(
 	$_EXTKEY,
-	'List',
-	'LLL:EXT:justimmo/Resources/Private/Language/locallang.xml:list'
+	'DirectLinks',
+	'LLL:EXT:justimmo/Resources/Private/Language/locallang.xml:direct_links'
 );
 
 Tx_Extbase_Utility_Extension::registerPlugin(
 	$_EXTKEY,
-	'Detail',
-	'LLL:EXT:justimmo/Resources/Private/Language/locallang.xml:detail'
+	'SearchResults',
+	'LLL:EXT:justimmo/Resources/Private/Language/locallang.xml:search_results'
+);
+
+Tx_Extbase_Utility_Extension::registerPlugin(
+	$_EXTKEY,
+	'RealtyDetail',
+	'LLL:EXT:justimmo/Resources/Private/Language/locallang.xml:realty_detail'
 );
 
 t3lib_extMgm::addStaticFile($_EXTKEY, 'Configuration/TypoScript', 'justimmo.at Real estate plugin');

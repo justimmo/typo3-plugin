@@ -5,7 +5,18 @@ if (!defined('TYPO3_MODE')) {
 
 Tx_Extbase_Utility_Extension::configurePlugin(
 	$_EXTKEY,
-	'Quicksearch',
+	'RealtynumberSearch',
+	array(
+		'Search' => 'realtynumber'
+	),
+	// non-cacheable actions
+	array(
+	)
+);
+
+Tx_Extbase_Utility_Extension::configurePlugin(
+	$_EXTKEY,
+	'QuickSearch',
 	array(
 		'Search' => 'quick',
 	),
@@ -18,7 +29,7 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 
 Tx_Extbase_Utility_Extension::configurePlugin(
 	$_EXTKEY,
-	'Detailsearch',
+	'DetailSearch',
 	array(
 		'Search' => 'detail',
 	),
@@ -31,7 +42,7 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 
 Tx_Extbase_Utility_Extension::configurePlugin(
 	$_EXTKEY,
-	'Directlinks',
+	'DirectLinks',
 	array(
 		'Search' => 'direct',
 	),
@@ -42,7 +53,7 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 
 Tx_Extbase_Utility_Extension::configurePlugin(
 	$_EXTKEY,
-	'List',
+	'SearchResults',
 	array(
 		'Search' => 'list',
 	),
@@ -55,7 +66,7 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 
 Tx_Extbase_Utility_Extension::configurePlugin(
 	$_EXTKEY,
-	'Detail',
+	'RealtyDetail',
 	array(
 		'Realty' => 'show',
 	),

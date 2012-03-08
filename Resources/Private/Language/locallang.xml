@@ -7,19 +7,21 @@
 	<data type="array">
 		<languageKey index="default" type="array">
 			<label index="tx_justimmo_domain_model_realty">reflects a realty object</label>
-			<label index="quicksearch">Quick search</label>
-			<label index="detailsearch">Detail search</label>
-			<label index="directlinks">Direct links</label>
-			<label index="list">Search results</label>
-			<label index="detail">Realty detail</label>
+			<label index="realtynumber_search">Realty number search</label>
+			<label index="quick_search">Quick search</label>
+			<label index="detail_search">Detail search</label>
+			<label index="direct_links">Direct links</label>
+			<label index="search_results">Search results</label>
+			<label index="realty_detail">Realty detail</label>
 		</languageKey>
 		<languageKey index="de" type="array">
 			<label index="tx_justimmo_domain_model_realty">stellt ein Immobilien-Objekt dar</label>
-			<label index="quicksearch">Schnellsuche</label>
-			<label index="detailsearch">Detailsuche</label>
-			<label index="directlinks">Direktlinks</label>
-			<label index="list">Suchresultate</label>
-			<label index="detail">Immobiliendetail</label>
+			<label index="realtynumber_search">Suche nach Objektnummer</label>
+			<label index="quick_search">Schnellsuche</label>
+			<label index="detail_search">Detailsuche</label>
+			<label index="direct_links">Direktlinks</label>
+			<label index="search_results">Suchresultate</label>
+			<label index="realty_detail">Immobiliendetail</label>
 		</languageKey>
 	</data>
 </T3locallang>
