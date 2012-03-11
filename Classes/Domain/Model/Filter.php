@@ -37,7 +37,6 @@ class Tx_Justimmo_Domain_Model_Filter extends Tx_Extbase_DomainObject_AbstractVa
 	 * objektnummer
 	 *
 	 * @var integer
-	 * @validate Integer
 	 */
 	protected $objektnummer;
 
@@ -45,7 +44,6 @@ class Tx_Justimmo_Domain_Model_Filter extends Tx_Extbase_DomainObject_AbstractVa
 	 * kauf
 	 *
 	 * @var boolean
-	 * @validate NumberRange(startRange = 0, endRange = 1)
 	 */
 	protected $kauf;
 
@@ -53,7 +51,6 @@ class Tx_Justimmo_Domain_Model_Filter extends Tx_Extbase_DomainObject_AbstractVa
 	 * miete
 	 *
 	 * @var boolean
-	 * @validate NumberRange(startRange = 0, endRange = 1)
 	 */
 	protected $miete;
 
@@ -68,7 +65,6 @@ class Tx_Justimmo_Domain_Model_Filter extends Tx_Extbase_DomainObject_AbstractVa
 	 * preisVon
 	 *
 	 * @var float
-	 * @validate Float
 	 */
 	protected $preisVon;
 
@@ -76,7 +72,6 @@ class Tx_Justimmo_Domain_Model_Filter extends Tx_Extbase_DomainObject_AbstractVa
 	 * preisBis
 	 *
 	 * @var float
-	 * @validate Float
 	 */
 	protected $preisBis;
 
@@ -84,7 +79,6 @@ class Tx_Justimmo_Domain_Model_Filter extends Tx_Extbase_DomainObject_AbstractVa
 	 * zimmerVon
 	 *
 	 * @var integer
-	 * @validate Integer
 	 */
 	protected $zimmerVon;
 
@@ -92,7 +86,6 @@ class Tx_Justimmo_Domain_Model_Filter extends Tx_Extbase_DomainObject_AbstractVa
 	 * zimmerBis
 	 *
 	 * @var integer
-	 * @validate Integer
 	 */
 	protected $zimmerBis;
 
@@ -100,7 +93,6 @@ class Tx_Justimmo_Domain_Model_Filter extends Tx_Extbase_DomainObject_AbstractVa
 	 * wohnflaecheVon
 	 *
 	 * @var integer
-	 * @validate Integer
 	 */
 	protected $wohnflaecheVon;
 
@@ -108,7 +100,6 @@ class Tx_Justimmo_Domain_Model_Filter extends Tx_Extbase_DomainObject_AbstractVa
 	 * wohnflaecheBis
 	 *
 	 * @var integer
-	 * @validate Integer
 	 */
 	protected $wohnflaecheBis;
 
@@ -130,7 +121,6 @@ class Tx_Justimmo_Domain_Model_Filter extends Tx_Extbase_DomainObject_AbstractVa
 	 * ort
 	 *
 	 * @var string
-	 * @validate String
 	 */
 	protected $ort;
 
@@ -138,7 +128,6 @@ class Tx_Justimmo_Domain_Model_Filter extends Tx_Extbase_DomainObject_AbstractVa
 	 * landId
 	 *
 	 * @var integer
-	 * @validate Integer
 	 */
 	protected $landId;
 
@@ -146,7 +135,6 @@ class Tx_Justimmo_Domain_Model_Filter extends Tx_Extbase_DomainObject_AbstractVa
 	 * bundeslandId
 	 *
 	 * @var integer
-	 * @valdiate Integer
 	 */
 	protected $bundeslandId;
 
