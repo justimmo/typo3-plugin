@@ -7,21 +7,38 @@
 	<data type="array">
 		<languageKey index="default" type="array">
 			<label index="tx_justimmo_domain_model_realty">reflects a realty object</label>
-			<label index="realtynumber_search">Realty number search</label>
-			<label index="quick_search">Quick search</label>
-			<label index="detail_search">Detail search</label>
-			<label index="direct_links">Direct links</label>
-			<label index="search_results">Search results</label>
-			<label index="realty_detail">Realty detail</label>
+			<label index="plugin.name.realtynumber_search">Realty number search</label>
+			<label index="plugin.name.quick_search">Quick search</label>
+			<label index="plugin.name.direct_links">Direct links</label>
+			<label index="plugin.name.detail_search">Detail search</label>
+			<label index="plugin.name.search_results">Search results</label>
+			<label index="plugin.name.realty_detail">Realty detail</label>
+			<label index="tx_justimmo_domain_model_filter">Filter</label>
+			<label index="tx_justimmo_domain_model_filter.objektnummer">objektnummer</label>
+			<label index="tx_justimmo_domain_model_filter.kauf">kauf</label>
+			<label index="tx_justimmo_domain_model_filter.miete">miete</label>
+			<label index="tx_justimmo_domain_model_filter.objektart_id">objektartId</label>
+			<label index="tx_justimmo_domain_model_filter.preis_von">preisVon</label>
+			<label index="tx_justimmo_domain_model_filter.preis_bis">preisBis</label>
+			<label index="tx_justimmo_domain_model_filter.zimmer_von">zimmerVon</label>
+			<label index="tx_justimmo_domain_model_filter.zimmer_bis">zimmerBis</label>
+			<label index="tx_justimmo_domain_model_filter.wohnflaeche_von">wohnflaecheVon</label>
+			<label index="tx_justimmo_domain_model_filter.wohnflaeche_bis">wohnflaecheBis</label>
+			<label index="tx_justimmo_domain_model_filter.plz_von">plzVon</label>
+			<label index="tx_justimmo_domain_model_filter.plz_bis">plzBis</label>
+			<label index="tx_justimmo_domain_model_filter.ort">ort</label>
+			<label index="tx_justimmo_domain_model_filter.land_id">landId</label>
+			<label index="tx_justimmo_domain_model_filter.bundesland_id">bundeslandId</label>
+			<label index="tx_justimmo_domain_model_filter.region">region</label>
 		</languageKey>
 		<languageKey index="de" type="array">
 			<label index="tx_justimmo_domain_model_realty">stellt ein Immobilien-Objekt dar</label>
-			<label index="realtynumber_search">Suche nach Objektnummer</label>
-			<label index="quick_search">Schnellsuche</label>
-			<label index="detail_search">Detailsuche</label>
-			<label index="direct_links">Direktlinks</label>
-			<label index="search_results">Suchresultate</label>
-			<label index="realty_detail">Immobiliendetail</label>
+			<label index="plugin.name.realtynumber_search">Suche nach Objektnummer</label>
+			<label index="plugin.name.quick_search">Schnellsuche</label>
+			<label index="plugin.name.direct_links">Direktlinks</label>
+			<label index="plugin.name.detail_search">Detailsuche</label>
+			<label index="plugin.name.search_results">Suchresultate</label>
+			<label index="plugin.name.realty_detail">Immobiliendetail</label>
 		</languageKey>
 	</data>
 </T3locallang>

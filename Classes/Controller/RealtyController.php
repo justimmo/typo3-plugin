@@ -50,7 +50,6 @@ class Tx_Justimmo_Controller_RealtyController extends Tx_Extbase_MVC_Controller_
 		$this->realtyRepository = $realtyRepository;
 	}
 
-
 	/**
 	 * action show
 	 *
@@ -60,5 +59,21 @@ class Tx_Justimmo_Controller_RealtyController extends Tx_Extbase_MVC_Controller_
 	public function showAction(Tx_Justimmo_Domain_Model_Realty $realty) {
 		$this->view->assign('realty', $realty);
 	}
+
+	/**
+	 * action list
+	 *
+	 * @param Tx_Justimmo_Domain_Model_Filter $filter
+	 * @return void
+	 */
+	public function listAction(Tx_Justimmo_Domain_Model_Filter $filter) {
+		/*
+		$realties = $this->realtyRepository->findAll();
+		$this->view->assign('realties', $realties);
+		*/
+
+		$this->view->assign('filter', $filter);
+	}
+
 }
 ?>

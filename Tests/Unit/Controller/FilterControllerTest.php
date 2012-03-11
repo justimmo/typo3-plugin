@@ -4,13 +4,13 @@
  *  Copyright notice
  *
  *  (c) 2012 Thomas Juhnke <tommy@van-tomas.de>
- *  
+ *  			
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
  *  free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 3 of the License, or
+ *  the Free Software Foundation; either version 2 of the License, or
  *  (at your option) any later version.
  *
  *  The GNU General Public License can be found at
@@ -25,55 +25,37 @@
  ***************************************************************/
 
 /**
+ * Test case for class Tx_Justimmo_Controller_FilterController.
  *
- *
- * @package justimmo
+ * @version $Id$
+ * @copyright Copyright belongs to the respective authors
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
+ * @package TYPO3
+ * @subpackage justimmo.at Real estate plugin
+ *
+ * @author Thomas Juhnke <tommy@van-tomas.de>
  */
-class Tx_Justimmo_Controller_SearchController extends Tx_Extbase_MVC_Controller_ActionController {
-
+class Tx_Justimmo_Controller_FilterControllerTest extends Tx_Extbase_Tests_Unit_BaseTestCase {
 	/**
-	 * reflects the realty number search
-	 *
-	 * @param Tx_Justimmo_Domain_Model_Filter $filter
-	 * @dontvalidate $filter
-	 * @return void
+	 * @var Tx_Justimmo_Domain_Model_Filter
 	 */
-	public function realtynumberAction(Tx_Justimmo_Domain_Model_Filter $filter = NULL) {
-		$this->view->assign('filter', $filter);
+	protected $fixture;
+
+	public function setUp() {
+		$this->fixture = new Tx_Justimmo_Domain_Model_Filter();
+	}
+
+	public function tearDown() {
+		unset($this->fixture);
 	}
 
 	/**
-	 * reflects the quick search
-	 *
+	 * @test
 	 */
-	public function quickAction() {
+	public function dummyMethod() {
+		$this->markTestIncomplete();
 	}
 
-	/**
-	 * reflects the direct links search
-	 *
-	 */
-	public function directAction() {
-	}
-
-	/**
-	 * reflects the detail search
-	 *
-	 */
-	public function detailAction() {
-	}
-
-	/**
-	 * reflects the search results list
-	 *
-	 * This actions simply forwards to the realty list action
-	 *
-	 * @param Tx_Justimmo_Domain_Model_Filter $filter
-	 * @return void
-	 */
-	public function listAction(Tx_Justimmo_Domain_Model_Filter $filter) {
-		$this->forward('list', 'Realty', NULL, array('filter' => $filter));
-	}
 }
+?>

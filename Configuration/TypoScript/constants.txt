@@ -11,4 +11,8 @@ plugin.tx_justimmo {
 		# cat=plugin.tx_justimmo//a; type=int+; label=Default storage PID
 		storagePid = 
 	}
+	settings {
+		# cat=plugin.tx_justimmo/settings/search; type=int+; label=Search results PID
+		searchResultsPid = 
+	}
 }

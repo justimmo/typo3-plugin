@@ -8,6 +8,24 @@
 		<languageKey index="default" type="array">
 			<label index="tx_justimmo_domain_model_realty">Realty</label>
 
+			<label index="tx_justimmo_domain_model_filter">Filter</label>
+			<label index="tx_justimmo_domain_model_filter.objektnummer">Objektnummer</label>
+			<label index="tx_justimmo_domain_model_filter.kauf">Kauf</label>
+			<label index="tx_justimmo_domain_model_filter.miete">Miete</label>
+			<label index="tx_justimmo_domain_model_filter.objektart_id">Objektart Id</label>
+			<label index="tx_justimmo_domain_model_filter.preis_von">Preis Von</label>
+			<label index="tx_justimmo_domain_model_filter.preis_bis">Preis Bis</label>
+			<label index="tx_justimmo_domain_model_filter.zimmer_von">Zimmer Von</label>
+			<label index="tx_justimmo_domain_model_filter.zimmer_bis">Zimmer Bis</label>
+			<label index="tx_justimmo_domain_model_filter.wohnflaeche_von">Wohnflaeche Von</label>
+			<label index="tx_justimmo_domain_model_filter.wohnflaeche_bis">Wohnflaeche Bis</label>
+			<label index="tx_justimmo_domain_model_filter.plz_von">Plz Von</label>
+			<label index="tx_justimmo_domain_model_filter.plz_bis">Plz Bis</label>
+			<label index="tx_justimmo_domain_model_filter.ort">Ort</label>
+			<label index="tx_justimmo_domain_model_filter.land_id">Land Id</label>
+			<label index="tx_justimmo_domain_model_filter.bundesland_id">Bundesland Id</label>
+			<label index="tx_justimmo_domain_model_filter.region">Region</label>
+
 		</languageKey>
 	</data>
 </T3locallang>

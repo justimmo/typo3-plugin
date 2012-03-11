@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<description>Context Sensitive Help (CSH) for table tx_justimmo_domain_model_filter</description>
+		<type>CSH</type>
+		<csh_table>tx_justimmo_domain_model_filter</csh_table>
+	</meta>
+	<data type="array">
+	<languageKey index="default" type="array">
+			<label index="objektnummer.description">objektnummer</label>
+			<label index="kauf.description">kauf</label>
+			<label index="miete.description">miete</label>
+			<label index="objektart_id.description">objektartId</label>
+			<label index="preis_von.description">preisVon</label>
+			<label index="preis_bis.description">preisBis</label>
+			<label index="zimmer_von.description">zimmerVon</label>
+			<label index="zimmer_bis.description">zimmerBis</label>
+			<label index="wohnflaeche_von.description">wohnflaecheVon</label>
+			<label index="wohnflaeche_bis.description">wohnflaecheBis</label>
+			<label index="plz_von.description">plzVon</label>
+			<label index="plz_bis.description">plzBis</label>
+			<label index="ort.description">ort</label>
+			<label index="land_id.description">landId</label>
+			<label index="bundesland_id.description">bundeslandId</label>
+			<label index="region.description">region</label>
+		</languageKey>
+	</data>
+</T3locallang>
