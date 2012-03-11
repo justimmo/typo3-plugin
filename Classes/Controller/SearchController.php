@@ -64,16 +64,4 @@ class Tx_Justimmo_Controller_SearchController extends Tx_Extbase_MVC_Controller_
 	 */
 	public function detailAction() {
 	}
-
-	/**
-	 * reflects the search results list
-	 *
-	 * This actions simply forwards to the realty list action
-	 *
-	 * @param Tx_Justimmo_Domain_Model_Filter $filter
-	 * @return void
-	 */
-	public function listAction(Tx_Justimmo_Domain_Model_Filter $filter) {
-		$this->forward('list', 'Realty', NULL, array('filter' => $filter));
-	}
 }
