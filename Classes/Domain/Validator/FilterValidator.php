@@ -157,6 +157,22 @@ class Tx_Justimmo_Domain_Validator_FilterValidator extends Tx_Extbase_Validation
 			return FALSE;
 		}
 
+		if (!$this->buildAndProcessValidator($value, 'nutzflaecheVon', 'IntegerValidator')) {
+			return FALSE;
+		}
+
+		if (!$this->buildAndProcessValidator($value, 'nutzflaecheBis', 'IntegerValidator')) {
+			return FALSE;
+		}
+
+		if (!$this->buildAndProcessValidator($value, 'grundflaecheVon', 'IntegerValidator')) {
+			return FALSE;
+		}
+
+		if (!$this->buildAndProcessValidator($value, 'grundflaecheBis', 'IntegerValidator')) {
+			return FALSE;
+		}
+
 		if (!$this->buildAndProcessValidator($value, 'plzVon', 'IntegerValidator')) {
 			return FALSE;
 		}

@@ -47,7 +47,7 @@ class Tx_Justimmo_Controller_SearchController extends Tx_Extbase_MVC_Controller_
 	/**
 	 * reflects the quick search
 	 *
-	 * @param Tx_Justimmo_Domain_Model_Filer $filter
+	 * @param Tx_Justimmo_Domain_Model_Filter $filter
 	 * @dontvalidate $filter
 	 * @return void
 	 */
@@ -60,7 +60,6 @@ class Tx_Justimmo_Controller_SearchController extends Tx_Extbase_MVC_Controller_
 
 	/**
 	 * reflects the direct links search
-	 *
 	 */
 	public function directAction() {
 	}
@@ -68,7 +67,15 @@ class Tx_Justimmo_Controller_SearchController extends Tx_Extbase_MVC_Controller_
 	/**
 	 * reflects the detail search
 	 *
+	 * @param Tx_Justimmo_Domain_Model_Filter $filter
+	 * @dontvalidate $filter
+	 * @return void
 	 */
-	public function detailAction() {
+	public function detailAction(Tx_Justimmo_Domain_ModeL_Filter $filter = NULL) {
+		if ($filter === NULL) { // workaround for fluid bug #5636
+			$filter = $this->objectManager->get('Tx_Justimmo_Domain_Model_Filter');
+		}
+
+		$this->view->assign('filter', $filter);
 	}
 }

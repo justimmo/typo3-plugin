@@ -104,6 +104,34 @@ class Tx_Justimmo_Domain_Model_Filter extends Tx_Extbase_DomainObject_AbstractVa
 	protected $wohnflaecheBis;
 
 	/**
+	 * nutzflaecheVon
+	 *
+	 * @var integer
+	 */
+	protected $nutzflaecheVon;
+
+	/**
+	 * nutzflaecheBis
+	 *
+	 * @var integer
+	 */
+	protected $nutzflaecheBis;
+
+	/**
+	 * grundflaecheVon
+	 *
+	 * @var integer
+	 */
+	protected $grundflaecheVon;
+
+	/**
+	 * grundflaecheBis
+	 *
+	 * @var integer
+	 */
+	protected $grundflaecheBis;
+
+	/**
 	 * plzVon
 	 *
 	 * @var string
@@ -332,6 +360,82 @@ class Tx_Justimmo_Domain_Model_Filter extends Tx_Extbase_DomainObject_AbstractVa
 	 */
 	public function setWohnflaecheBis($wohnflaecheBis) {
 		$this->wohnflaecheBis = $wohnflaecheBis;
+	}
+
+	/**
+	 * Returns the nutzflaecheVon
+	 *
+	 * @return integer $nutzflaecheVon
+	 */
+	public function getNutzflaecheVon() {
+		return $this->nutzflaecheVon;
+	}
+
+	/**
+	 * Sets the nutzflaecheVon
+	 *
+	 * @param integer $nutzflaecheVon
+	 * @return void
+	 */
+	public function setNutzflaecheVon($nutzflaecheVon) {
+		$this->nutzflaecheVon = $nutzflaecheVon;
+	}
+
+	/**
+	 * Returns the nutzflaecheBis
+	 *
+	 * @return string $nutzflaecheBis
+	 */
+	public function getNutzflaecheBis() {
+		return $this->nutzflaecheBis;
+	}
+
+	/**
+	 * Sets the nutzflaecheBis
+	 *
+	 * @param string $nutzflaecheBis
+	 * @return void
+	 */
+	public function setNutzflaecheBis($nutzflaecheBis) {
+		$this->nutzflaecheBis = $nutzflaecheBis;
+	}
+
+	/**
+	 * Returns the grundflaecheVon
+	 *
+	 * @return integer $grundflaecheVon
+	 */
+	public function getGrundflaecheVon() {
+		return $this->grundflaecheVon;
+	}
+
+	/**
+	 * Sets the grundflaecheVon
+	 *
+	 * @param integer $grundflaecheVon
+	 * @return void
+	 */
+	public function setGrundflaecheVon($grundflaecheVon) {
+		$this->grundflaecheVon = $grundflaecheVon;
+	}
+
+	/**
+	 * Returns the grundflaecheBis
+	 *
+	 * @return string $grundflaecheBis
+	 */
+	public function getGrundflaecheBis() {
+		return $this->grundflaecheBis;
+	}
+
+	/**
+	 * Sets the grundflaecheBis
+	 *
+	 * @param string $grundflaecheBis
+	 * @return void
+	 */
+	public function setGrundflaecheBis($grundflaecheBis) {
+		$this->grundflaecheBis = $grundflaecheBis;
 	}
 
 	/**
