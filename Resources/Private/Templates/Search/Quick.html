@@ -3,5 +3,54 @@
 <f:section name="main">
 	<f:flashMessages />
 
-	<p>This is the quick search view</p>
+	<f:form method="post" object="{filter}" name="filter" controller="Search" action="list" pageUid="{settings.searchResultsPid}" fieldNamePrefix="tx_justimmo_searchresults">
+		<label for="filter_miete"><f:translate key="tx_justimmo_domain_model_filter.miete" /></label>
+		<f:form.checkbox property="miete" value="1" id="filter_miete" />
+		<label for="filter_kauf"><f:translate key="tx_justimmo_domain_model_filter.kauf" /></label>
+		<f:form.checkbox property="kauf" value="1" id="filter_kauf" />
+
+		<br>
+
+		<f:form.checkbox property="objektartId" value="5" id="objektart_id_5" />
+		<label for="objektart_id_5">Büro/Praxis</label>
+		<f:form.checkbox property="objektartId" value="3" id="objektart_id_3" />
+		<label for="objektart_id_3">Haus</label>
+		<f:form.checkbox property="objektartId" value="2" id="objektart_id_2" />
+		<label for="objektart_id_2">Wohnung</label>
+
+		<br>
+
+		<label for="filter_preis_von"><f:translate key="tx_justimmo_domain_model_filter.preis_von" /></label>
+		<f:form.textfield property="preisVon" id="filter_preis_von" size="6" />
+		<label for="filter_preis_bis"><f:translate key="tx_justimmo_domain_model_filter.preis_bis" /></label>
+		<f:form.textfield property="preisBis" id="filter_preis_bis" size="6" /> €
+
+		<br>
+
+		<label for="filter_zimmer_von"><f:translate key="tx_justimmo_domain_model_filter.zimmer_von" /></label>
+		<f:form.textfield property="zimmerVon" id="filter_zimmer_von" size="3" />
+		<label for="filter_zimmer_bis"><f:translate key="tx_justimmo_domain_model_filter.zimmer_bis" /></label>
+		<f:form.textfield property="zimmerBis" id="filter_zimmer_bis" size="3" />
+
+		<br>
+
+		<label for="filter_wohnflaeche_von"><f:translate key="tx_justimmo_domain_model_filter.wohnflaeche_von" /></label>
+		<f:form.textfield property="wohnflaecheVon" id="filter_wohnflaeche_von" size="3" />
+		<label for="filter_wohnflaeche_bis"><f:translate key="tx_justimmo_domain_model_filter.wohnflaeche_bis" /></label>
+		<f:form.textfield property="wohnflaecheBis" id="filter_wohnflaeche_bis" size="3" /> m²
+
+		<br>
+
+		<label for="filter_plz_von"><f:translate key="tx_justimmo_domain_model_filter.plz_von" /></label>
+		<f:form.textfield property="plzVon" id="filter_plz_von" size="5" />
+		<label for="filter_plz_bis"><f:translate key="tx_justimmo_domain_model_filter.plz_bis" /></label>
+		<f:form.textfield property="plzBis" id="filter_plz_bis" size="5" />
+
+		<br>
+
+		<label for="filter_ort"><f:translate key="tx_justimmo_domain_model_filter.ort" /></label>
+		<f:form.textfield property="ort" id="filter_ort" />
+
+		<f:form.submit name="submit" value="Suchen"><button>Suchen</button></f:form.submit>
+	</f:form>
 </f:section>

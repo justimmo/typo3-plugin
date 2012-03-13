@@ -45,21 +45,21 @@ class Tx_Justimmo_Domain_Model_Filter extends Tx_Extbase_DomainObject_AbstractVa
 	 *
 	 * @var boolean
 	 */
-	protected $kauf;
+	protected $kauf = FALSE;
 
 	/**
 	 * miete
 	 *
 	 * @var boolean
 	 */
-	protected $miete;
+	protected $miete = FALSE;
 
 	/**
 	 * objektartId
 	 *
-	 * @var integer
+	 * @var array
 	 */
-	protected $objektartId;
+	protected $objektartId = array();
 
 	/**
 	 * preisVon
@@ -132,11 +132,11 @@ class Tx_Justimmo_Domain_Model_Filter extends Tx_Extbase_DomainObject_AbstractVa
 	protected $landId;
 
 	/**
-	 * bundeslandId
+	 * bundesland
 	 *
-	 * @var integer
+	 * @var string
 	 */
-	protected $bundeslandId;
+	protected $bundesland;
 
 	/**
 	 * region
@@ -411,22 +411,22 @@ class Tx_Justimmo_Domain_Model_Filter extends Tx_Extbase_DomainObject_AbstractVa
 	}
 
 	/**
-	 * Returns the bundeslandId
+	 * Returns the bundesland
 	 *
-	 * @return integer $bundeslandId
+	 * @return string $bundesland
 	 */
-	public function getBundeslandId() {
-		return $this->bundeslandId;
+	public function getBundesland() {
+		return $this->bundesland;
 	}
 
 	/**
-	 * Sets the bundeslandId
+	 * Sets the bundesland
 	 *
-	 * @param integer $bundeslandId
+	 * @param string $bundesland
 	 * @return void
 	 */
-	public function setBundeslandId($bundeslandId) {
-		$this->bundeslandId = $bundeslandId;
+	public function setBundesland($bundesland) {
+		$this->bundesland = $bundesland;
 	}
 
 	/**
@@ -451,7 +451,7 @@ class Tx_Justimmo_Domain_Model_Filter extends Tx_Extbase_DomainObject_AbstractVa
 	/**
 	 * Returns the objektartId
 	 *
-	 * @return integer objektartId
+	 * @return array objektartId
 	 */
 	public function getObjektartId() {
 		return $this->objektartId;
@@ -460,8 +460,8 @@ class Tx_Justimmo_Domain_Model_Filter extends Tx_Extbase_DomainObject_AbstractVa
 	/**
 	 * Sets the objektartId
 	 *
-	 * @param integer $objektartId
-	 * @return integer objektartId
+	 * @param array $objektartId
+	 * @return void
 	 */
 	public function setObjektartId($objektartId) {
 		$this->objektartId = $objektartId;

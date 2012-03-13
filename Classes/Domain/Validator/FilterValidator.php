@@ -52,16 +52,45 @@ class Tx_Justimmo_Domain_Validator_FilterValidator extends Tx_Extbase_Validation
 	}
 
 	/**
+	 * builds and processes a validator
+	 *
+	 * Use this to create a simple validator which gets processed with self::processPropertyValidator
+	 *
+	 * @param object $subject the subject whose property should be validated
+	 * @param string $property the property which should be valiadated; use lowerCamelCase
+	 * @param string $validatorName the validator name, e.g. Tx_Extbase_Validation_Validator_IntegerValidator
+	 * @param array $validatorOptions optional validator options
+	 * @return TRUE on successful validation, FALSE otherwise
+	 */
+	protected function buildAndProcessValidator($subject, $property, $validatorName, $validatorOptions = array()) {
+		// expand to extbase internal validator
+		if ('Tx_' !== substr($validatorName, 0, 3)) {
+			$validatorName = 'Tx_Extbase_Validation_Validator_' . $validatorName;
+		}
+
+		$validator = $this->objectManager->get($validatorName);
+
+		if (0 < count($validatorOptions)) {
+			$validator->setOptions($validatorOptions);
+		}
+
+		$propertyValue = call_user_func(array($subject, 'get'. ucfirst($property)));
+
+		return $this->processPropertyValidator($validator, $propertyValue);
+	}
+
+	/**
 	 * processes a property validator
 	 *
-	 * This method only validates if the given $property is not empty.
+	 * This method processes validation if the given $property is not empty.
 	 *
 	 * @param Tx_Extbase_Validation_Validator_AbstractValidator $validator
 	 * @param mixed $property
 	 * @return boolean
 	 */
 	protected function processPropertyValidator(Tx_Extbase_Validation_Validator_AbstractValidator $validator, $property) {
-		if ($property && !$validator->isValid($property)) {
+		if ($property // validation is performed if property is set
+			&& !$validator->isValid($property)) {
 			$errors = $validator->getErrors();
 			foreach ($errors as $error) {
 				$this->addError($error->getMessage(), $error->getCode());
@@ -87,86 +116,83 @@ class Tx_Justimmo_Domain_Validator_FilterValidator extends Tx_Extbase_Validation
 			return FALSE;
 		}
 
-		$objektnummerValidator = $this->objectManager->get('Tx_Extbase_Validation_Validator_IntegerValidator');
-
-		if (!$this->processPropertyValidator($objektnummerValidator, $value->getObjektnummer())) {
+		if (!$this->buildAndProcessValidator($value, 'objektnummer', 'IntegerValidator')) {
 			return FALSE;
 		}
 
-		$kaufValidator = $this->objectManager->get('Tx_Extbase_Validation_Validator_NumberRangeValidator');
-		/* @var $kaufValidator Tx_Extbase_Validation_Validator_NumberRangeValidator */
-		$kaufValidator->setOptions(array(
+		$purchaseTypeOptions = array(
 			'startRange' => 0,
 			'endRange' => 1
-		));
+		);
 
-		if (!$this->processPropertyValidator($kaufValidator, $value->getKauf())) {
+		if (!$this->buildAndProcessValidator($value, 'kauf', 'NumberRangeValidator', $purchaseTypeOptions)) {
 			return FALSE;
 		}
 
-		$mieteValidator = $this->objectManager->get('Tx_Extbase_Validation_Validator_NumberRangeValidator');
-		/* @var $mieteValidator Tx_Extbase_Validation_Validator_NumberRangeValidator */
-		$mieteValidator->setOptions(array(
-			'startRange' => 0,
-			'endRange' => 1
-		));
-
-		if (!$this->processPropertyValidator($mieteValidator, $value->getMiete())) {
+		if (!$this->buildAndProcessValidator($value, 'miete', 'NumberRangeValidator', $purchaseTypeOptions)) {
 			return FALSE;
 		}
 
-		$preisVonValidator = $this->objectManager->get('Tx_Extbase_Validation_Validator_FloatValidator');
-
-		if (!$this->processPropertyValidator($preisVonValidator, $value->getPreisVon())) {
+		if (!$this->buildAndProcessValidator($value, 'preisVon', 'FloatValidator')) {
 			return FALSE;
 		}
 
-		$preisBisValidator = $this->objectManager->get('Tx_Extbase_Validation_Validator_FloatValidator');
-
-		if (!$this->processPropertyValidator($preisBisValidator, $value->getPreisBis())) {
+		if (!$this->buildAndProcessValidator($value, 'preisBis', 'FloatValidator')) {
 			return FALSE;
 		}
 
-		$zimmerVonValidator = $this->objectManager->get('Tx_Extbase_Validation_Validator_IntegerValidator');
-
-		if (!$this->processPropertyValidator($zimmerVonValidator, $value->getZimmerVon())) {
+		if (!$this->buildAndProcessValidator($value, 'zimmerVon', 'IntegerValidator')) {
 			return FALSE;
 		}
 
-		$zimmerBisValidator = $this->objectManager->get('Tx_Extbase_Validation_Validator_IntegerValidator');
-
-		if (!$this->processPropertyValidator($zimmerBisValidator, $value->getZimmerBis())) {
+		if (!$this->buildAndProcessValidator($value, 'zimmerBis', 'IntegerValidator')) {
 			return FALSE;
 		}
 
-		$wohnflaecheVonValidator = $this->objectManager->get('Tx_Extbase_Validation_Validator_IntegerValidator');
-
-		if (!$this->processPropertyValidator($wohnflaecheVonValidator, $value->getWohnflaecheVon())) {
+		if (!$this->buildAndProcessValidator($value, 'wohnflaecheVon', 'IntegerValidator')) {
 			return FALSE;
 		}
 
-		$wohnflaecheBisValidator = $this->objectManager->get('Tx_Extbase_Validation_Validator_IntegerValidator');
-
-		if (!$this->processPropertyValidator($wohnflaecheBisValidator, $value->getWohnflaecheBis())) {
+		if (!$this->buildAndProcessValidator($value, 'wohnflaecheBis', 'IntegerValidator')) {
 			return FALSE;
 		}
 
-		$plzVonValidator = $this->objectManager->get('Tx_Extbase_Validation_Validator_IntegerValidator');
-
-		if (!$this->processPropertyValidator($plzVonValidator, $value->getPlzVon())) {
+		if (!$this->buildAndProcessValidator($value, 'plzVon', 'IntegerValidator')) {
 			return FALSE;
 		}
 
-		$plzBisValidator = $this->objectManager->get('Tx_Extbase_Validation_Validator_IntegerValidator');
-
-		if (!$this->processPropertyValidator($plzBisValidator, $value->getPlzBis())) {
+		if (!$this->buildAndProcessValidator($value, 'plzBis', 'IntegerValidator')) {
 			return FALSE;
 		}
 
-		$ortValidator = $this->objectManager->get('Tx_Extbase_Validation_Validator_StringValidator');
-
-		if (!$this->processPropertyValidator($ortValidator, $value->getOrt())) {
+		if (!$this->buildAndProcessValidator($value, 'ort', 'StringValidator')) {
 			return FALSE;
+		}
+
+		if (!$this->buildAndProcessValidator($value, 'landId', 'IntegerValidator')) {
+			return FALSE;
+		}
+
+		if (!$this->buildAndProcessValidator($value, 'bundesland', 'StringValidator')) {
+			return FALSE;
+		}
+
+		$objektartIdValidator = $this->objectManager->get('Tx_Extbase_Validation_Validator_IntegerValidator');
+
+		$objektartIds = $value->getObjektartId();
+		foreach ($objektartIds as $objektart_id) {
+			if (!$this->processPropertyValidator($objektartIdValidator, $objektart_id)) {
+				return FALSE;
+			}
+		}
+
+		$regionValidator = $this->objectManager->get('Tx_Extbase_Validation_Validator_IntegerValidator');
+
+		$regions = $value->getRegion();
+		foreach ($regions as $region) {
+			if (!$this->processPropertyValidator($regionValidator, $region)) {
+				return FALSE;
+			}
 		}
 	}
 }
