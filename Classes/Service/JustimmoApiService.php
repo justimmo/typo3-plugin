@@ -63,22 +63,25 @@ class Tx_Justimmo_Service_JustimmoApiService implements t3lib_Singleton {
 	 */
 	protected $debug = FALSE;
 
-	/**
-	 * constructs the API service
-	 *
-	 * @param string $username username for authentication
-	 * @param string $password password for authentication
-	 * @param string $baseUrl overrides default baseUrl of API endpoint
-	 * @return void
-	 */
-	public function __construct($username, $password, $baseUrl = NULL) {
-		$this->username = $username;
-		$this->password = $password;
+    /**
+     * injects the API configuration
+     *
+     * This injection method also sets the username, password and baseUrl for the API.
+     *
+     * @param Tx_Extbase_Configuration_ConfigurationManagerInterface $configurationManager
+     * @return void
+     */
+	public function injectConfigurationManager(Tx_Extbase_Configuration_ConfigurationManagerInterface $configurationManager) {
+		$configuration = $configurationManager->getConfiguration(Tx_Extbase_Configuration_ConfigurationManager::CONFIGURATION_TYPE_SETTINGS);
+		$apiConfiguration = $configuration['settings']['api'];
 
-		if (NULL !== $baseUrl) {
-			$this->baseUrl = $baseUrl;
+		$this->username = $apiConfiguration['username'];
+		$this->password = $apiConfiguration['password'];
+
+		if ('' !== trim($apiConfiguration['baseUrl'])) {
+			$this->baseUrl = $apiConfiguration['baseUrl'];
 		}
-    }
+	}
 
     /**
      * sets the debug flag

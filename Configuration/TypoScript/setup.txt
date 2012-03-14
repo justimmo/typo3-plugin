@@ -9,6 +9,18 @@ plugin.tx_justimmo {
 	}
 	settings {
 		searchResultsPid = {$plugin.tx_justimmo.settings.searchResultsPid}
+
+		api {
+			username = {$plugin.tx_justimmo.settings.api.username}
+			password = {$plugin.tx_justimmo.settings.api.password}
+			baseUrl = {$plugin.tx_justimmo.settings.api.baseUrl}
+		}
+
+		realtyRepository {
+			defaults {
+				// define your defaults here...
+			}
+		}
 	}
 }
 

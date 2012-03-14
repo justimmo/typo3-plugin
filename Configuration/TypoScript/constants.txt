@@ -14,5 +14,14 @@ plugin.tx_justimmo {
 	settings {
 		# cat=plugin.tx_justimmo/settings/search; type=int+; label=Search results PID
 		searchResultsPid = 
+
+		api {
+			# cat=plugin.tx_justimmo/settings/api; type=string; label=API username
+			username = 
+			# cat=plugin.tx_justimmo/settings/api; type=string; label=API password
+			password = 
+			# cat=plugin.tx_justimmo/settings/api; type=string; label=API base URL
+			baseUrl = 
+		}
 	}
 }
