@@ -1,3 +1,4 @@
+{namespace ji = Tx_Justimmo_ViewHelpers}
 <f:layout name="Default" />
 
 <f:section name="main">
@@ -58,6 +59,15 @@
 		<h2>3. Lage</h2>
 
 		<label for="filter_land_id"><f:translate key="tx_justimmo_domain_model_filter.land_id" /></label>
+		<ji:staticInfoTables.selectCountries property="landId" id="filter_land_id" apiAddWhere="cn_eu_member=1" />
+
+		<br>
+
+		<label for="filter_region"><f:translate key="tx_justimmo_domain_model_filter.region" /></label>
+
+		<br>
+
+		<label for="filter_bundesland"><f:translate key="tx_justimmo_domain_model_filter.bundesland" /></label>
 
 		<br>
 
