@@ -1,0 +1,27 @@
+<f:if condition="{is_pageable}">
+	<f:then>
+		<div class="tx_justimmo_list_pager">
+			<div class="tx_justimmo_list_pager_prev_page">
+				<f:if condition="{current_page} > 1">
+					<f:then>
+						<f:link.action controller="Realty" action="paginate" arguments="{ page: 1 }">Erste Seite</f:link.action>
+						<f:link.action controller="Realty" action="paginate" arguments="{ page: previous_page }">Vorherige Seite</f:link.action>
+					</f:then>
+				</f:if>
+				<!-- --> &nbsp;
+			</div>
+		    <div class="tx_justimmo_list_pager_page">
+		        <span>{current_page}</span>
+		    </div>
+			<div class="tx_justimmo_list_pager_next_page">
+				<f:if condition="{is_pageable_next_page}">
+					<f:then>
+						<f:link.action controller="Realty" action="paginate" arguments="{ page: next_page }">Nächste Seite</f:link.action>
+						<f:link.action controller="Realty" action="paginate" arguments="{ page: last_page }">Letzte Seite</f:link.action>
+					</f:then>
+				</f:if>
+				<!-- --> &nbsp;
+			</div>
+		</div>
+	</f:then>
+</f:if>

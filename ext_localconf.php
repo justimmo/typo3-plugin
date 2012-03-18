@@ -55,11 +55,11 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 	$_EXTKEY,
 	'SearchResults',
 	array(
-		'Realty' => 'list',
+		'Realty' => 'list, reset, paginate, order',
 	),
 	// non-cacheable actions
 	array(
-		'Realty' => 'list',
+		'Realty' => 'list, reset, paginate, order',
 	)
 );
 

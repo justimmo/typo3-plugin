@@ -65,15 +65,112 @@ class Tx_Justimmo_Controller_RealtyController extends Tx_Extbase_MVC_Controller_
 	 *
 	 * @param Tx_Justimmo_Domain_Model_Filter $filter
 	 * @return void
+	 * @todo implement reset, page, orderby params
 	 */
 	public function listAction(Tx_Justimmo_Domain_Model_Filter $filter) {
-		/*
-		$realties = $this->realtyRepository->findAll();
-		$this->view->assign('realties', $realties);
-		*/
+		$this->realtyRepository->setFilter($filter->toArray());
 
-		$this->view->assign('filter', $filter);
+		$realties = $this->realtyRepository->findAll();
+
+		$this->realtyRepository->persistListParameters();
+
+		$this->view->assign('realties', $realties);
+
+		// pagination variables
+		$this->view->assignMultiple(array(
+			'total_count' => $this->realtyRepository->getTotalCount(),
+			'current_page' => $this->realtyRepository->getPage(),
+			'previous_page' => $this->realtyRepository->getPreviousPage(),
+			'next_page' => $this->realtyRepository->getNextPage(),
+			'last_page' => $this->realtyRepository->getLastPage(),
+			'is_pageable' => $this->realtyRepository->isPageable(),
+			'is_pageable_next_page' => $this->realtyRepository->isPageable(TRUE)
+		));
 	}
 
+	/**
+	 * resets API filters
+	 *
+	 * @return void
+	 */
+	public function resetAction() {
+		$this->realtyRepository->resetFilter();
+
+		$realties = $this->realtyRepository->findAll();
+
+		$this->realtyRepository->persistListParameters();
+
+		$this->view->assign('realties', $realties);
+
+		// pagination variables
+		$this->view->assignMultiple(array(
+			'total_count' => $this->realtyRepository->getTotalCount(),
+			'current_page' => $this->realtyRepository->getPage(),
+			'previous_page' => $this->realtyRepository->getPreviousPage(),
+			'next_page' => $this->realtyRepository->getNextPage(),
+			'last_page' => $this->realtyRepository->getLastPage(),
+			'is_pageable' => $this->realtyRepository->isPageable(),
+			'is_pageable_next_page' => $this->realtyRepository->isPageable(TRUE)
+		));
+
+		$this->view->setTemplatePathAndFilename(t3lib_extMgm::extPath('justimmo') . 'Resources/Private/Templates/Realty/List.html');
+	}
+
+	/**
+	 * paginates the realty object list
+	 *
+	 * @param integer $page
+	 * @return void
+	 */
+	public function paginateAction($page) {
+		$this->realtyRepository->setPage($page);
+
+		$realties = $this->realtyRepository->findAll();
+
+		$this->realtyRepository->persistListParameters();
+
+		$this->view->assign('realties', $realties);
+
+		// pagination variables
+		$this->view->assignMultiple(array(
+			'total_count' => $this->realtyRepository->getTotalCount(),
+			'current_page' => $this->realtyRepository->getPage(),
+			'previous_page' => $this->realtyRepository->getPreviousPage(),
+			'next_page' => $this->realtyRepository->getNextPage(),
+			'last_page' => $this->realtyRepository->getLastPage(),
+			'is_pageable' => $this->realtyRepository->isPageable(),
+			'is_pageable_next_page' => $this->realtyRepository->isPageable(TRUE)
+		));
+
+		$this->view->setTemplatePathAndFilename(t3lib_extMgm::extPath('justimmo') . 'Resources/Private/Templates/Realty/List.html');
+	}
+
+	/**
+	 * orders the realty object list
+	 *
+	 * @param string $order
+	 * @param string $direction order direction ("asc" or "desc"), defaults to "desc"
+	 * @return void
+	 */
+	public function orderAction($order, $direction = 'desc') {
+		$this->realtyRepository->setOrderBy($order);
+
+		$realties = $this->realtyRepository->findAll();
+
+		$this->view->assign('realties', $realties);
+
+		// pagination variables
+		$this->view->assignMultiple(array(
+			'total_count' => $this->realtyRepository->getTotalCount(),
+			'current_page' => $this->realtyRepository->getPage(),
+			'previous_page' => $this->realtyRepository->getPreviousPage(),
+			'next_page' => $this->realtyRepository->getNextPage(),
+			'last_page' => $this->realtyRepository->getLastPage(),
+			'is_pageable' => $this->realtyRepository->isPageable(),
+			'is_pageable_next_page' => $this->realtyRepository->isPageable(TRUE)
+		));
+
+		$this->view->setTemplatePathAndFilename(t3lib_extMgm::extPath('justimmo') . 'Resources/Private/Templates/Realty/List.html');
+	}
 }
 ?>

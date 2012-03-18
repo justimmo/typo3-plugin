@@ -1,0 +1,47 @@
+.tx_justimmo_list .tx_justimmo_list_item {
+	border-bottom: 1px solid #cecece;
+	clear: both;
+	overflow: hidden;
+	padding: 5px 0;
+}
+	.tx_justimmo_list_item .tx_justimmo_list_item_img {
+		float: left;
+		padding: 0 10px 0 0;
+		width: 100px;
+	}
+	.tx_justimmo_list_item .tx_justimmo_list_item_content {
+		margin-left: 110px;
+	}
+		.tx_justimmo_list_item_content h1,
+		.tx_justimmo_list_item_content h2 {
+			margin-top: 0;
+			padding-top: 0;
+		}
+		.tx_justimmo_list_item_content .tx_justimmo_list_item_meta {
+			font-weight: bold;
+		}
+
+/* pager styles */
+.tx_justimmo_list_pager {
+	border-bottom: 1px solid #cecece;
+	border-top: 1px solid #cecece;
+	clear: both;
+	margin: 5px auto;
+	overflow: hidden;
+	padding: 5px 0;
+	width: 320px;
+}
+	.tx_justimmo_list_pager_prev_page {
+		float: left;
+		width: 150px;
+	}
+	.tx_justimmo_list_pager_page {
+		float: left;
+		text-align: center;
+		width: 20px;
+	}
+	.tx_justimmo_list_pager_next_page {
+		float: left;
+		text-align: right;
+		width: 150px;
+	}

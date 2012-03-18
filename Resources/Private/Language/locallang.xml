@@ -28,7 +28,7 @@
 			<label index="tx_justimmo_domain_model_filter.plz_bis">to</label>
 			<label index="tx_justimmo_domain_model_filter.ort">City</label>
 			<label index="tx_justimmo_domain_model_filter.land_id">Country</label>
-			<label index="tx_justimmo_domain_model_filter.bundesland">State</label>
+			<label index="tx_justimmo_domain_model_filter.bundesland_id">State</label>
 			<label index="tx_justimmo_domain_model_filter.region">Region</label>
 		</languageKey>
 		<languageKey index="de" type="array">
@@ -53,7 +53,7 @@
 			<label index="tx_justimmo_domain_model_filter.plz_bis">bis</label>
 			<label index="tx_justimmo_domain_model_filter.ort">Ort</label>
 			<label index="tx_justimmo_domain_model_filter.land_id">Land</label>
-			<label index="tx_justimmo_domain_model_filter.bundesland">Bundesland</label>
+			<label index="tx_justimmo_domain_model_filter.bundesland_id">Bundesland</label>
 			<label index="tx_justimmo_domain_model_filter.region">Region</label>
 		</languageKey>
 	</data>

@@ -160,11 +160,14 @@ class Tx_Justimmo_Domain_Model_Filter extends Tx_Extbase_DomainObject_AbstractVa
 	protected $landId;
 
 	/**
-	 * bundesland
+	 * bundeslandId
+	 * 
+	 * Even it is called "ID", you have to pass a string representation of the
+	 * state ("Bundesland")
 	 *
 	 * @var string
 	 */
-	protected $bundesland;
+	protected $bundeslandId;
 
 	/**
 	 * region
@@ -515,22 +518,22 @@ class Tx_Justimmo_Domain_Model_Filter extends Tx_Extbase_DomainObject_AbstractVa
 	}
 
 	/**
-	 * Returns the bundesland
+	 * Returns the bundesland ID
 	 *
-	 * @return string $bundesland
+	 * @return string
 	 */
-	public function getBundesland() {
-		return $this->bundesland;
+	public function getBundeslandId() {
+		return $this->bundeslandId;
 	}
 
 	/**
-	 * Sets the bundesland
+	 * Sets the bundesland ID
 	 *
-	 * @param string $bundesland
+	 * @param string $bundeslandId
 	 * @return void
 	 */
-	public function setBundesland($bundesland) {
-		$this->bundesland = $bundesland;
+	public function setBundeslandId($bundeslandId) {
+		$this->bundeslandId = $bundeslandId;
 	}
 
 	/**
@@ -569,6 +572,34 @@ class Tx_Justimmo_Domain_Model_Filter extends Tx_Extbase_DomainObject_AbstractVa
 	 */
 	public function setObjektartId($objektartId) {
 		$this->objektartId = $objektartId;
+	}
+
+	/**
+	 * converts the filter to an array
+	 *
+	 * @return array
+	 */
+	public function toArray() {
+		// skip TYPO3 internal properties
+		$skip = array(
+			'uid',
+			'_localizedUid',
+			'_languageUid',
+			'pid'
+		);
+
+		$filterArray = array();
+
+		foreach ($this as $key => $value) {
+			if (TRUE === in_array($key, $skip)) {
+				continue;
+			}
+
+			$normalizedKey = t3lib_div::camelCaseToLowerCaseUnderscored($key);
+			$filterArray[$normalizedKey] = $value;
+		}
+
+		return $filterArray;
 	}
 }
 ?>

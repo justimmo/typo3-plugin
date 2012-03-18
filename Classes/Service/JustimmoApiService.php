@@ -73,7 +73,7 @@ class Tx_Justimmo_Service_JustimmoApiService implements t3lib_Singleton {
      */
 	public function injectConfigurationManager(Tx_Extbase_Configuration_ConfigurationManagerInterface $configurationManager) {
 		$configuration = $configurationManager->getConfiguration(Tx_Extbase_Configuration_ConfigurationManager::CONFIGURATION_TYPE_SETTINGS);
-		$apiConfiguration = $configuration['settings']['api'];
+		$apiConfiguration = $configuration['api'];
 
 		$this->username = $apiConfiguration['username'];
 		$this->password = $apiConfiguration['password'];
@@ -101,6 +101,8 @@ class Tx_Justimmo_Service_JustimmoApiService implements t3lib_Singleton {
 	 */
 	public function loadData($url) {
 		$ch = curl_init();
+
+		//die($this->baseUrl . $url);
 
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($ch, CURLOPT_URL, $this->baseUrl . $url);
@@ -148,7 +150,7 @@ class Tx_Justimmo_Service_JustimmoApiService implements t3lib_Singleton {
 			foreach ($filter as $key => $value) {
 				if (is_array($value)) {
 					foreach ($value as $key1 => $value1) {
-						$params[] = 'filter['. $key .'][]=' . $value1;
+						$params[] = 'filter[' . $key . '][]=' . $value1;
 					}
 				} else {
 					$params[] = 'filter[' . $key . ']=' . $value;
@@ -165,7 +167,7 @@ class Tx_Justimmo_Service_JustimmoApiService implements t3lib_Singleton {
 		}
 
 		if ($limit) {
-			$params[] = 'limit='.$limit;
+			$params[] = 'limit=' . $limit;
 		}
 
 		return new SimpleXMLElement($this->loadData('/objekt/list?' . implode('&', $params)));

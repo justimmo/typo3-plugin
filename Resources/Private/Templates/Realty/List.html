@@ -12,23 +12,91 @@ in /Configuration/ExtensionBuilder/settings.yaml:
 Otherwise your changes will be overwritten the next time you save the extension in the extension builder
 
 <f:section name="main">
-<f:flashMessages />
+	<f:flashMessages />
 
-<f:debug>{filter}</f:debug>
+	<div class="tx_justimmo_list">
+		<div class="tx_justimmo_list_meta_controls">
+			<f:render partial="Realty/ListControls" arguments="{ total_count: total_count }" />
+	
+			<f:render partial="Realty/Pager" arguments="{ is_pageable: is_pageable, is_pageable_next_page: is_pageable_next_page, current_page: current_page, next_page: next_page, previous_page: previous_page, last_page: last_page }" />
+		</div>
+	
+		<f:for each="{realties}" as="realty">
+			<div class="tx_justimmo_list_item">
+				<div class="tx_justimmo_list_item_img">
+					<f:if condition="{realty.erstes_bild">
+						<f:then>
+							<img src="{realty.erstes_bild}" />
+						</f:then>
+						<f:else>
+						image not found!
+						</f:else>
+					</f:if>
+				</div>
+				<div class="tx_justimmo_list_item_content">
+					<h1>
+						<a href="#">
+							<f:if condition="{realty.titel}">
+								<f:then>
+									{realty.titel}
+								</f:then>
+								<f:else>
+									{realty.id}
+								</f:else>
+							</f:if>
+						</a>
+					</h1>
+					<h2>{realty.plz} {realty.ort}</h2>
+					<div class="tx_justimmo_list_item_meta">
+						 <p>
+							Objektnr.: {realty.objektnummer}
+							<f:if condition="{realty.kaufpreis}">
+								<f:then>
+									<f:if condition="{realty.kaufpreis} > 0">
+										<f:then>
+										| Kaufpreis: <f:format.number decimalSeparator="," thousandsSeparator=".">{realty.kaufpreis}</f:format.number> &euro;
+										</f:then>
+										<f:else>
+										| Kaufpreis auf Anfrage
+										</f:else>
+									</f:if>
+								</f:then>
+							</f:if>
+							<f:if condition="{realty.gesamtmiete}">
+								<f:then>
+									<f:if condition="{realty.gesamtmiete} > 0">
+										<f:then>
+											| Gesamtmiete: <f:format.number decimalSeparator="," thousandsSeparator=".">{realty.gesamtmiete}</f:format.number> &euro;
+										</f:then>
+										<f:else>
+											| Miete auf Anfrage
+										</f:else>
+									</f:if>
+								</f:then>
+							</f:if>
+							<f:if condition="{realty.wohnflaeche}">
+								<f:then>
+									| Wohnfläche: <f:format.number decimalSeparator="," thousandsSeparator=".">{realty.wohnflaeche}</f:format.number> m²
+								</f:then>
+							</f:if>
+							<f:if condition="{realty.nutzflaeche}">
+								<f:then>
+									| Nutzfläche: <f:format.number decimalSeparator="," thousandsSeparator=".">{realty.nutzflaeche}</f:format.number> m²
+								</f:then>
+							</f:if>
+							<f:if condition="{realty.zimmer}">
+								<f:then>
+									| Zimmer: {realty.zimmer}
+								</f:then>
+							</f:if>
+						</p>
+					</div>
+				</div>
+			</div>
+		</f:for>
 
-<table  class="tx_justimmo" >
-	<tr>
-		<th> </th>
-		<th> </th>
-	</tr>
-
-	<f:for each="{realties}" as="realty">
-		<tr>
-			<td><f:link.action action="edit" arguments="{realty : realty}">Edit</f:link.action></td>
-			<td><f:link.action action="delete" arguments="{realty : realty}">Delete</f:link.action></td>
-		</tr>
-	</f:for>
-</table>
-
-<f:link.action action="new">New Realty</f:link.action>
+		<div class="tx_justimmo_list_meta_controls">
+			<f:render partial="Realty/Pager" arguments="{ is_pageable: is_pageable, is_pageable_next_page: is_pageable_next_page, current_page: current_page, next_page: next_page, previous_page: previous_page, last_page: last_page }" />
+		</div>
+	</div>
 </f:section>

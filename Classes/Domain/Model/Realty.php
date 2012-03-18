@@ -32,6 +32,70 @@
  *
  */
 class Tx_Justimmo_Domain_Model_Realty extends Tx_Extbase_DomainObject_AbstractEntity {
+	/**
+	 * holds the SimpleXMLElement result object
+	 *
+	 * @var SimpleXMLElement
+	 */
+	protected $xml;
 
+	/**
+	 * constructs a Realty object
+	 *
+	 * Input from the repository is a SimpleXMLElement object
+	 *
+	 * @param SimpleXMLElement $xml
+	 */
+	public function __construct($xml) {
+		$this->xml = $xml;
+	}
+
+	public function getId() {
+		return (int) $this->xml->id;
+	}
+
+	public function getObjektnummer() {
+		return (int) $this->xml->objektnummer;
+	}
+
+	public function getTitel() {
+		return (string) $this->xml->titel;
+	}
+
+	public function getObjektbeschreibung() {
+		return (string) $this->xml->objektbeschreibung;
+	}
+
+	public function getAnzahl_zimmer() {
+		return (int) $this->xml->anzahl_zimmer;
+	}
+
+	public function getPlz() {
+		return (string) $this->xml->plz;
+	}
+
+	public function getOrt() {
+		return (string) $this->xml->ort;
+	}
+
+	public function getKaufpreis() {
+		return (float) $this->xml->kaufpreis;
+	}
+
+	public function getGesamtmiete() {
+		return (float) $this->xml->gesamtmiete;
+	}
+
+	public function getWohnflaeche() {
+		return (float) $this->xml->wohnflaeche;
+	}
+
+	public function getNutzflaeche() {
+		return (float) $this->xml->nutzflaeche;
+	}
+
+	public function getErstes_bild() {
+		return (string) $this->xml->erstes_bild;
+	}
 }
 ?>
