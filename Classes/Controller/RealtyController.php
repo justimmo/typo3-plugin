@@ -53,11 +53,30 @@ class Tx_Justimmo_Controller_RealtyController extends Tx_Extbase_MVC_Controller_
 	/**
 	 * action show
 	 *
-	 * @param $realty
+	 * @param integer $realty
+	 * @return void
+	 * @todo do *NOT* bypass extbases's Repository/hydration functionality, change param to Tx_Justimmo_Domain_Model_Realty if possible
+	 */
+	public function showAction($realty) {
+		$realty = $this->realtyRepository->findById($realty);
+
+		$this->view->assign('realty', $realty);
+	}
+
+	/**
+	 * action position
+	 *
+	 * Fetches a realty by position
+	 *
+	 * @param integer $position
 	 * @return void
 	 */
-	public function showAction(Tx_Justimmo_Domain_Model_Realty $realty) {
+	public function showPositionAction($position) {
+		$realty = $this->realtyRepository->findByPosition($position);
+
 		$this->view->assign('realty', $realty);
+
+		$this->view->setTemplatePathAndFilename(t3lib_extMgm::extPath('justimmo') . 'Resources/Private/Templates/Realty/Show.html');
 	}
 
 	/**

@@ -39,6 +39,7 @@ class Tx_Justimmo_Domain_Model_Realty extends Tx_Extbase_DomainObject_AbstractEn
 	 */
 	protected $xml;
 
+
 	/**
 	 * constructs a Realty object
 	 *
@@ -48,6 +49,8 @@ class Tx_Justimmo_Domain_Model_Realty extends Tx_Extbase_DomainObject_AbstractEn
 	 */
 	public function __construct($xml) {
 		$this->xml = $xml;
+
+		$this->uid = (int) $this->xml->id;
 	}
 
 	public function getId() {
@@ -96,6 +99,99 @@ class Tx_Justimmo_Domain_Model_Realty extends Tx_Extbase_DomainObject_AbstractEn
 
 	public function getErstes_bild() {
 		return (string) $this->xml->erstes_bild;
+	}
+
+	public function getNbAnhaenge() {
+		return count($this->xml->anhaenge->anhang);
+	}
+
+	public function getAnhaenge() {
+		return (array) $this->xml->anhaenge->anhang;
+	}
+
+	public function getNbDokumente() {
+		return count($this->xml->dokumente->dokument);
+	}
+
+	public function getDokumente() {
+		return (array) $this->xml->dokumente->dokument;
+	}
+
+	public function getObjektart() {
+		return (string) $this->xml->objektkategorie->objektart->children()->getName();
+	}
+
+	public function getObjektartNormalized() {
+		$internalType = $this->getObjektart();
+
+		$type = '';
+
+		switch ($internalType) {
+			case "haus":
+				$type = 'Haus';
+			break;
+			default:
+				$type = 'Wohnung';
+			break;
+		}
+
+		return $type;
+	}
+
+	public function getNbNutzungsart() {
+		return (int) count($this->xml->objektkategorie->nutzungsart);
+	}
+
+	public function getIsNutzungsartWohnen() {
+		return $this->xml->objektkategorie->nutzungsart['WOHNEN'] == 1;
+	}
+
+	public function getIsNutzungsartGewerbe() {
+		return $this->xml->objektkategorie->nutzungsart['GEWERBE'] == 1;
+	}
+
+	public function getIsNutzungsartAnlage() {
+		return $this->xml->objektkategorie->nutzungsart['ANLAGE'] == 1;
+	}
+
+	public function getObjektnrExtern() {
+		return (string) $this->xml->verwaltung_techn->objektnr_extern;
+	}
+
+	public function getPreise() {
+		return (array) $this->xml->preise;
+	}
+
+	public function getNettokaltmiete() {
+		$returnValue = 0;
+
+		if (isset($this->xml->preise->nettokaltmiete) && $this->xml->preise->nettokaltmiete > 0) {
+			$returnValue = $this->xml->preise->nettokaltmiete;
+		} elseif ($this->xml->preise->kaltmiete) {
+			$returnValue = $this->xml->preise->kaltmiete;
+		}
+
+		return $returnValue;
+	}
+
+	public function getHasAusstattungsBeschreibung($minimumLength = 2) {
+		if (strlen(trim($this->xml->freitexte->ausstatt_beschr)) > $minimumLength) {
+			return TRUE;
+		}
+
+		return FALSE;
+	}
+
+	public function getHasTelefonZentrale() {
+		return ($this->xml->kontaktperson->tel_zentrale && $this->xml->kontaktperson->tel_zentrale != 0);
+	}
+
+	public function getHasTelefonHandy() {
+		return ($this->xml->kontaktperson->tel_handy && $this->xml->kontaktperson->tel_handy != 0);
+	}
+
+	public function getHasFax() {
+		return ($this->xml->kontaktperson->tel_fax && $this->xml->kontaktperson->tel_fax != 0);
 	}
 }
 ?>

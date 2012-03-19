@@ -12,8 +12,11 @@ plugin.tx_justimmo {
 		storagePid = 
 	}
 	settings {
-		# cat=plugin.tx_justimmo/settings/search; type=int+; label=Search results PID
+		# cat=plugin.tx_justimmo/settings/pids; type=int+; label=Search results PID
 		searchResultsPid = 
+
+		# cat=plugin.tx_justimmo/settings/pids; type=int+; label=Realty detail PID
+		realtyDetailPid = 
 
 		api {
 			# cat=plugin.tx_justimmo/settings/api; type=string; label=API username

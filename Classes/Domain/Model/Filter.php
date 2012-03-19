@@ -577,6 +577,9 @@ class Tx_Justimmo_Domain_Model_Filter extends Tx_Extbase_DomainObject_AbstractVa
 	/**
 	 * converts the filter to an array
 	 *
+	 * This method converts the Filter object into an array which can be passed
+	 * directly into the justimmo API service.
+	 *
 	 * @return array
 	 */
 	public function toArray() {

@@ -28,10 +28,10 @@
 /**
  * justimmo.at API service
  * 
- *
  * @package justimmo
  * @subpackage Service
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
+ * @author Thomas Juhnke <tommy@van-tomas.de>
  */
 class Tx_Justimmo_Service_JustimmoApiService implements t3lib_Singleton {
 

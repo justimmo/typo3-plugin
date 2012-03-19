@@ -237,6 +237,15 @@ class Tx_Justimmo_Domain_Repository_RealtyRepository implements t3lib_Singleton 
 	}
 
 	/**
+	 * (non-PHPdoc)
+	 *
+	 * @see self::findById()
+	 */
+	public function findByUid($uid) {
+		return $this->findById($uid);
+	}
+
+	/**
 	 * finds and returns a realty object by its position in the result set list
 	 *
 	 * @param integer $pos

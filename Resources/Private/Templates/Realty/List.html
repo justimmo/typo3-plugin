@@ -15,88 +15,92 @@ Otherwise your changes will be overwritten the next time you save the extension 
 	<f:flashMessages />
 
 	<div class="tx_justimmo_list">
-		<div class="tx_justimmo_list_meta_controls">
-			<f:render partial="Realty/ListControls" arguments="{ total_count: total_count }" />
-	
-			<f:render partial="Realty/Pager" arguments="{ is_pageable: is_pageable, is_pageable_next_page: is_pageable_next_page, current_page: current_page, next_page: next_page, previous_page: previous_page, last_page: last_page }" />
-		</div>
-	
-		<f:for each="{realties}" as="realty">
-			<div class="tx_justimmo_list_item">
-				<div class="tx_justimmo_list_item_img">
-					<f:if condition="{realty.erstes_bild">
-						<f:then>
-							<img src="{realty.erstes_bild}" />
-						</f:then>
-						<f:else>
-						image not found!
-						</f:else>
-					</f:if>
+		<f:if condition="{total_count} > 0">
+			<f:then>
+				<div class="tx_justimmo_list_meta_controls">
+					<f:render partial="Realty/ListControls" arguments="{ total_count: total_count }" />
+			
+					<f:render partial="Realty/Pager" arguments="{ is_pageable: is_pageable, is_pageable_next_page: is_pageable_next_page, current_page: current_page, next_page: next_page, previous_page: previous_page, last_page: last_page }" />
 				</div>
-				<div class="tx_justimmo_list_item_content">
-					<h1>
-						<a href="#">
-							<f:if condition="{realty.titel}">
+			
+				<f:for each="{realties}" as="realty">
+					<div class="tx_justimmo_list_item">
+						<div class="tx_justimmo_list_item_img">
+							<f:if condition="{realty.erstes_bild">
 								<f:then>
-									{realty.titel}
+									<f:link.action controller="Realty" action="show" arguments="{ realty: realty }" pageUid="{settings.realtyDetailPid}"><img src="{realty.erstes_bild}" /></f:link.action>
 								</f:then>
-								<f:else>
-									{realty.id}
-								</f:else>
 							</f:if>
-						</a>
-					</h1>
-					<h2>{realty.plz} {realty.ort}</h2>
-					<div class="tx_justimmo_list_item_meta">
-						 <p>
-							Objektnr.: {realty.objektnummer}
-							<f:if condition="{realty.kaufpreis}">
-								<f:then>
-									<f:if condition="{realty.kaufpreis} > 0">
+						</div>
+						<div class="tx_justimmo_list_item_content">
+							<h1>
+								<a href="#">
+									<f:if condition="{realty.titel}">
 										<f:then>
-										| Kaufpreis: <f:format.number decimalSeparator="," thousandsSeparator=".">{realty.kaufpreis}</f:format.number> &euro;
+											{realty.titel}
 										</f:then>
 										<f:else>
-										| Kaufpreis auf Anfrage
+											{realty.id}
 										</f:else>
 									</f:if>
-								</f:then>
-							</f:if>
-							<f:if condition="{realty.gesamtmiete}">
-								<f:then>
-									<f:if condition="{realty.gesamtmiete} > 0">
+								</a>
+							</h1>
+							<h2>{realty.plz} {realty.ort}</h2>
+							<div class="tx_justimmo_list_item_meta">
+								 <p>
+									Objektnr.: {realty.objektnummer}
+									<f:if condition="{realty.kaufpreis}">
 										<f:then>
-											| Gesamtmiete: <f:format.number decimalSeparator="," thousandsSeparator=".">{realty.gesamtmiete}</f:format.number> &euro;
+											<f:if condition="{realty.kaufpreis} > 0">
+												<f:then>
+												| Kaufpreis: <f:format.number decimalSeparator="," thousandsSeparator=".">{realty.kaufpreis}</f:format.number> &euro;
+												</f:then>
+												<f:else>
+												| Kaufpreis auf Anfrage
+												</f:else>
+											</f:if>
 										</f:then>
-										<f:else>
-											| Miete auf Anfrage
-										</f:else>
 									</f:if>
-								</f:then>
-							</f:if>
-							<f:if condition="{realty.wohnflaeche}">
-								<f:then>
-									| Wohnfläche: <f:format.number decimalSeparator="," thousandsSeparator=".">{realty.wohnflaeche}</f:format.number> m²
-								</f:then>
-							</f:if>
-							<f:if condition="{realty.nutzflaeche}">
-								<f:then>
-									| Nutzfläche: <f:format.number decimalSeparator="," thousandsSeparator=".">{realty.nutzflaeche}</f:format.number> m²
-								</f:then>
-							</f:if>
-							<f:if condition="{realty.zimmer}">
-								<f:then>
-									| Zimmer: {realty.zimmer}
-								</f:then>
-							</f:if>
-						</p>
+									<f:if condition="{realty.gesamtmiete}">
+										<f:then>
+											<f:if condition="{realty.gesamtmiete} > 0">
+												<f:then>
+													| Gesamtmiete: <f:format.number decimalSeparator="," thousandsSeparator=".">{realty.gesamtmiete}</f:format.number> &euro;
+												</f:then>
+												<f:else>
+													| Miete auf Anfrage
+												</f:else>
+											</f:if>
+										</f:then>
+									</f:if>
+									<f:if condition="{realty.wohnflaeche}">
+										<f:then>
+											| Wohnfläche: <f:format.number decimalSeparator="," thousandsSeparator=".">{realty.wohnflaeche}</f:format.number> m²
+										</f:then>
+									</f:if>
+									<f:if condition="{realty.nutzflaeche}">
+										<f:then>
+											| Nutzfläche: <f:format.number decimalSeparator="," thousandsSeparator=".">{realty.nutzflaeche}</f:format.number> m²
+										</f:then>
+									</f:if>
+									<f:if condition="{realty.zimmer}">
+										<f:then>
+											| Zimmer: {realty.zimmer}
+										</f:then>
+									</f:if>
+								</p>
+							</div>
+						</div>
 					</div>
+				</f:for>
+		
+				<div class="tx_justimmo_list_meta_controls">
+					<f:render partial="Realty/Pager" arguments="{ is_pageable: is_pageable, is_pageable_next_page: is_pageable_next_page, current_page: current_page, next_page: next_page, previous_page: previous_page, last_page: last_page }" />
 				</div>
-			</div>
-		</f:for>
-
-		<div class="tx_justimmo_list_meta_controls">
-			<f:render partial="Realty/Pager" arguments="{ is_pageable: is_pageable, is_pageable_next_page: is_pageable_next_page, current_page: current_page, next_page: next_page, previous_page: previous_page, last_page: last_page }" />
-		</div>
+			</f:then>
+			<f:else>
+				Keine Ergebnisse!
+			</f:else>
+		</f:if>
 	</div>
 </f:section>

@@ -10,6 +10,8 @@ plugin.tx_justimmo {
 	settings {
 		searchResultsPid = {$plugin.tx_justimmo.settings.searchResultsPid}
 
+		realtyDetailPid = {$plugin.tx_justimmo.settings.realtyDetailPid}
+
 		api {
 			username = {$plugin.tx_justimmo.settings.api.username}
 			password = {$plugin.tx_justimmo.settings.api.password}
@@ -24,30 +26,9 @@ plugin.tx_justimmo {
 	}
 }
 
-// -- default styles
-
-plugin.tx_justimmo._CSS_DEFAULT_STYLE (
-	input.f3-form-error {
-		background-color:#FF9F9F;
-		border: 1px #FF0000 solid;
-	}
-
-	.tx-justimmo table {
-		border-collapse:separate;
-		border-spacing:10px;
-	}
-
-	.tx-justimmo table th {
-		font-weight:bold;
-	}
-
-	.tx-justimmo table td {
-		vertical-align:top;
-	}
-)
-
 // adding plugin styles
 
 page.includeCSS {
+	tx_justimmo_default = EXT:justimmo/Resources/Public/Css/default.css
 	tx_justimmo_list = EXT:justimmo/Resources/Public/Css/list.css
 }
