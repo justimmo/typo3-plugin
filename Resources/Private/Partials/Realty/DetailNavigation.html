@@ -2,7 +2,7 @@
 	<ul class="menu menu-horizontal">
 		<li>
 			<f:if condition="{position} > 1">
-				<f:link.action controller="Realty" action="showPosition" arguments="{ position: position }">vorheriges Objekt</f:link.action>
+				<f:link.action controller="Realty" action="show" arguments="{ position: prev_position }">vorheriges Objekt</f:link.action>
 			</f:if>
 		</li>
 		<li>
@@ -10,11 +10,11 @@
 		</li>
 		<li class="last-item">
 			<f:if condition="{position} < {total_count}">
-				<f:link.action controller="Realty" action="showPosition" arguments="{ position: position + 1 }">nächstes Objekt</f:link.action>
+				<f:link.action controller="Realty" action="show" arguments="{ position: next_position }">nächstes Objekt</f:link.action>
 			</f:if>
 		</li>
 		<li>
-			<f:link.action controller="Realty" action="expose" arguments="{ id: realty.verwaltung_techn.objektnr_intern }">EXPOSÉ</f:link.action>
+			<f:link.action controller="Realty" action="expose" arguments="{ id: realty.objektnrIntern }">EXPOSÉ</f:link.action>
 		</li>
 	</ul>
 </div>

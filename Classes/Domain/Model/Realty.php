@@ -40,6 +40,11 @@ class Tx_Justimmo_Domain_Model_Realty extends Tx_Extbase_DomainObject_AbstractEn
 	 */
 	protected $xml;
 
+	/**
+	 *
+	 * @var integer
+	 */
+	protected $position;
 
 	/**
 	 * constructs a Realty object
@@ -47,11 +52,30 @@ class Tx_Justimmo_Domain_Model_Realty extends Tx_Extbase_DomainObject_AbstractEn
 	 * Input from the repository is a SimpleXMLElement object
 	 *
 	 * @param SimpleXMLElement $xml
+	 * @return void
 	 */
 	public function __construct($xml) {
 		$this->xml = $xml;
 
 		$this->uid = (int) $this->xml->id;
+	}
+
+	/**
+	 * sets the position property
+	 *
+	 * @param integer $position
+	 */
+	public function setPosition($position) {
+		$this->position = $position;
+	}
+
+	/**
+	 * returns the position property
+	 *
+	 * @return integer
+	 */
+	public function getPosition() {
+		return $this->position;
 	}
 
 	/* list information getters - START */
@@ -187,6 +211,10 @@ class Tx_Justimmo_Domain_Model_Realty extends Tx_Extbase_DomainObject_AbstractEn
 
 	public function getObjektnrExtern() {
 		return (string) $this->xml->verwaltung_techn->objektnr_extern;
+	}
+
+	public function getObjektNrIntern() {
+		return (string) $this->xml->verwaltung_techn->objektnr_intern;
 	}
 
 	public function getPreise() {

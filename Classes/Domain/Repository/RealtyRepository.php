@@ -217,8 +217,12 @@ class Tx_Justimmo_Domain_Repository_RealtyRepository implements t3lib_Singleton 
 		$this->total_count = (int) $xml->{'query-result'}->count;
 
 		$result = array();
+		$i = 1;
 		foreach ($xml->immobilie as $realty) {
-			$result[] = $this->objectManager->get('Tx_Justimmo_Domain_Model_Realty', $realty);
+			$realtyObj = $this->objectManager->create('Tx_Justimmo_Domain_Model_Realty', $realty);
+			$realtyObj->setPosition(($this->getPage() - 1) * $this->getMaxPerPage() + $i);
+			$result[] = $realtyObj;
+			$i++; 
 		}
 
 		return $result;
@@ -233,7 +237,7 @@ class Tx_Justimmo_Domain_Repository_RealtyRepository implements t3lib_Singleton 
 	public function findById($id) {
 		$xml = $this->api->getDetail($id);
 
-		return $this->objectManager->get('Tx_Justimmo_Domain_Model_Realty', $xml->immobilie[0]);
+		return $this->objectManager->create('Tx_Justimmo_Domain_Model_Realty', $xml->immobilie[0]);
 	}
 
 	/**
@@ -248,15 +252,15 @@ class Tx_Justimmo_Domain_Repository_RealtyRepository implements t3lib_Singleton 
 	/**
 	 * finds and returns a realty object by its position in the result set list
 	 *
-	 * @param integer $pos
+	 * @param integer $position
 	 * @return Tx_Justimmo_Domain_Model_Realty
 	 */
-	public function findByPosition($pos) {
+	public function findByPosition($position) {
 		$xml = $this->api->getList(
 			array(),
 			$this->filter,
 			$this->orderby,
-			$pos - 1,
+			$position - 1,
 			1
 		);
 

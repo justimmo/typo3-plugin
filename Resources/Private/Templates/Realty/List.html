@@ -28,13 +28,13 @@ Otherwise your changes will be overwritten the next time you save the extension 
 						<div class="tx_justimmo_list_item_img">
 							<f:if condition="{realty.erstes_bild">
 								<f:then>
-									<f:link.action controller="Realty" action="show" arguments="{ realty: realty }" pageUid="{settings.realtyDetailPid}"><img src="{realty.erstes_bild}" /></f:link.action>
+									<f:link.action controller="Realty" action="show" arguments="{ id: realty, position: realty.position }" pageUid="{settings.realtyDetailPid}"><img src="{realty.erstes_bild}" /></f:link.action>
 								</f:then>
 							</f:if>
 						</div>
 						<div class="tx_justimmo_list_item_content">
 							<h1>
-								<a href="#">
+								<f:link.action controller="Realty" action="show" arguments="{ id: realty, position: realty.position }" pageUid="{settings.realtyDetailPid}">
 									<f:if condition="{realty.titel}">
 										<f:then>
 											{realty.titel}
@@ -43,7 +43,7 @@ Otherwise your changes will be overwritten the next time you save the extension 
 											{realty.id}
 										</f:else>
 									</f:if>
-								</a>
+								</f:link.action>
 							</h1>
 							<h2>{realty.plz} {realty.ort}</h2>
 							<div class="tx_justimmo_list_item_meta">

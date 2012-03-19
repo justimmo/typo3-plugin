@@ -3,6 +3,10 @@
 	width: 550px;
 }
 
+	.tx_justimmo_detail_image img {
+		width: 100%;
+	}
+
 .tx_justimmo_detail_sidebar {
 	float: right;
 	width: 200px;

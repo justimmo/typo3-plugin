@@ -69,30 +69,26 @@ class Tx_Justimmo_Controller_RealtyController extends Tx_Extbase_MVC_Controller_
 	/**
 	 * action show
 	 *
-	 * @param integer $realty
-	 * @return void
-	 * @todo do *NOT* bypass extbases's Repository/hydration functionality, change param to Tx_Justimmo_Domain_Model_Realty if possible
-	 */
-	public function showAction($realty) {
-		$realty = $this->realtyRepository->findById($realty);
-
-		$this->view->assign('realty', $realty);
-	}
-
-	/**
-	 * action position
-	 *
-	 * Fetches a realty by position
-	 *
+	 * @param integer $id
 	 * @param integer $position
 	 * @return void
+	 * @todo do *NOT* bypass extbase's Repository/hydration functionality, change param to Tx_Justimmo_Domain_Model_Realty if possible
 	 */
-	public function showPositionAction($position) {
-		$realty = $this->realtyRepository->findByPosition($position);
+	public function showAction($id = NULL, $position = NULL) {
+		if (NULL !== $id) {
+			$realty = $this->realtyRepository->findById($id);
+		}
+
+		if (FALSE === isset($realty) && NULL !== $position) {
+			$realty = $this->realtyRepository->findByPosition($position);
+		}
+
+		$this->view->assign('position', $position);
+		$this->view->assign('prev_position', $position - 1);
+		$this->view->assign('next_position', $position + 1);
+		$this->view->assign('total_count', $this->realtyRepository->getTotalCount());		
 
 		$this->view->assign('realty', $realty);
-
-		$this->view->setTemplatePathAndFilename(t3lib_extMgm::extPath('justimmo') . 'Resources/Private/Templates/Realty/Show.html');
 	}
 
 	/**
