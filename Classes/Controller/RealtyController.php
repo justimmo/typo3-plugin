@@ -120,6 +120,11 @@ class Tx_Justimmo_Controller_RealtyController extends Tx_Extbase_MVC_Controller_
 
 		$this->realtyRepository->persistListParameters();
 
+		// forward if only one realty (e.g. objektnummer search)
+		if (count($realties) == 1) {
+			$this->forward('show', NULL, NULL, array('id' => $realties[0]->getId()));
+		}
+
 		$this->view->assign('realties', $realties);
 
 		// pagination variables
