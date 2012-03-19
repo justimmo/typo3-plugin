@@ -142,7 +142,7 @@ class Tx_Justimmo_Domain_Model_Realty extends Tx_Extbase_DomainObject_AbstractEn
 		// simple, but sufficient mapping of document data
 		$dokumente = array();
 		foreach ($dokumenteInternal as $dokument) {
-			$dokumente[0] = (array) $dokument;
+			$dokumente[] = (array) $dokument;
 		}
 
 		return $dokumente;
@@ -243,6 +243,10 @@ class Tx_Justimmo_Domain_Model_Realty extends Tx_Extbase_DomainObject_AbstractEn
 
 	public function getKontaktperson() {
 		return (array) $this->xml->kontaktperson;
+	}
+
+	public function getVerwaltung_techn() {
+		return (array) $this->xml->verwaltung_techn;
 	}
 
 	/* detail information getters - END */

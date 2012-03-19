@@ -41,6 +41,13 @@ class Tx_Justimmo_Controller_RealtyController extends Tx_Extbase_MVC_Controller_
 	protected $realtyRepository;
 
 	/**
+	 * justimmo API service
+	 *
+	 * @var Tx_Justimmo_Service_JustimmoApiService
+	 */
+	protected $justimmoApiService;
+
+	/**
 	 * injectRealtyRepository
 	 *
 	 * @param Tx_Justimmo_Domain_Repository_RealtyRepository $realtyRepository
@@ -48,6 +55,15 @@ class Tx_Justimmo_Controller_RealtyController extends Tx_Extbase_MVC_Controller_
 	 */
 	public function injectRealtyRepository(Tx_Justimmo_Domain_Repository_RealtyRepository $realtyRepository) {
 		$this->realtyRepository = $realtyRepository;
+	}
+
+	/**
+	 * injects the justimmo API service
+	 *
+	 * @param Tx_Justimmo_Service_JustimmoApiService $justimmoApiService
+	 */
+	public function injectJustimmoApiService(Tx_Justimmo_Service_JustimmoApiService $justimmoApiService) {
+		$this->justimmoApiService = $justimmoApiService;
 	}
 
 	/**
@@ -77,6 +93,19 @@ class Tx_Justimmo_Controller_RealtyController extends Tx_Extbase_MVC_Controller_
 		$this->view->assign('realty', $realty);
 
 		$this->view->setTemplatePathAndFilename(t3lib_extMgm::extPath('justimmo') . 'Resources/Private/Templates/Realty/Show.html');
+	}
+
+	/**
+	 * sends a PDF expose download to the browser
+	 *
+	 * @param integer $id
+	 */
+	public function exposeAction($id) {
+		header('Content-type: application/pdf');
+		header('Content-Disposition: attachment; filename="expose-' . $id . '-' .time() . '.pdf"');
+		
+		echo $this->justimmoApiService->getExpose($id);
+		exit();
 	}
 
 	/**

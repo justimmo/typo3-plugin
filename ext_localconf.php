@@ -67,7 +67,7 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 	$_EXTKEY,
 	'RealtyDetail',
 	array(
-		'Realty' => 'show, showPosition',
+		'Realty' => 'show, showPosition, expose',
 	),
 	// non-cacheable actions
 	array(
