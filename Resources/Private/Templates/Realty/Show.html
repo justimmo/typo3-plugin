@@ -14,5 +14,7 @@ Otherwise your changes will be overwritten the next time you save the extension 
 <f:section name="main">
 	<f:flashMessages />
 
+	<f:render partial="Realty/DetailNavigation" arguments="{ realty: realty }" />
+
 	<f:render partial="Realty/Properties" arguments="{ realty: realty }" />
 </f:section>

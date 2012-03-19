@@ -31,4 +31,5 @@ plugin.tx_justimmo {
 page.includeCSS {
 	tx_justimmo_default = EXT:justimmo/Resources/Public/Css/default.css
 	tx_justimmo_list = EXT:justimmo/Resources/Public/Css/list.css
+	tx_justimmo_detail = EXT:justimmo/Resources/Public/Css/detail.css
 }

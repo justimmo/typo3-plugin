@@ -16,3 +16,13 @@ input.f3-form-error {
 .tx-justimmo table td {
 	vertical-align: top;
 }
+
+.menu {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+	.menu-horizontal li {
+		display: inline;
+	}

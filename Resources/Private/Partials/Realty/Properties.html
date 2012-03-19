@@ -1,49 +1,18 @@
-<div id="tx_justimmo_detail_navigation">
-	<ul>
-		<li>
-			<f:if condition="{position} > 1">
-				<f:then>
-					<f:link.action controller="Realty" action="showPosition" arguments="{ position: position }">vorheriges Objekt</f:link.action>
-					<!--   --><a href="detail.php?pos=<?php echo $pos - 1 ?>">Letztes Objekt</a> -->
-				</f:then>
-			</f:if>
-		</li>
-		<li>
-			<f:link.action controller="Realty" action="list">zurück zur Übersicht</f:link.action>
-		</li>
-		<li class="last-item">
-			<f:if condition="{position} < {total_count}">
-				<f:then>
-					<f:link.action controller="Realty" action="showPosition" arguments="{ position: position + 1 }">nächstes Objekt</f:link.action>
-					<!-- <a class="bg_lastLink" href="detail.php?pos=<?php echo $pos + 1 ?>">Nächstes Objekt</a> -->
-				</f:then>
-			</f:if>
-		</li>
-		<li>
-			<f:link.action controller="Realty" action="expose" arguments="{ id: realty.verwaltung_techn.objektnr_intern }">EXPOSÉ</f:link.action>
-			<!-- <a href="expose.php?id=<?php echo $immobilie->verwaltung_techn->objektnr_intern; ?>">EXPOSÉ</a> -->
-		</li>
-	</ul>
-</div>
-
 <div class="tx_justimmo_detail">
 	<h1>{realty.freitexte.objekttitel}</h1>
 	<h2>
 		{realty.geo.plz}
-		{realty.geo.ort}<f:if condition="{immobilie.freitexte.lage}"><f:then>, {realty.freitexte.lage}</f:then></f:if>
+		{realty.geo.ort}<f:if condition="{immobilie.freitexte.lage}">, {realty.freitexte.lage}</f:if>
 	</h2>
 
 	<f:if condition="{realty.nbAnhaenge} > 0">
 		<div class="tx_justimmo_detail_image">
-			<a title="" href="#">
-				<img src="{realty.anhaenge.0.daten.pfad}" />
-			</a>
+			<img src="{realty.anhaenge.0.daten.pfad}" />
 		</div>
 
 		<div class="tx_justimmo_detail_images_thumbnails">
-			<?php $i = 0; ?>
 			<f:for each="{realty.anhaenge}" as="anhang">
-				<a class="tx_justimmo_detail_image_thumbnail_item" href="{anhang.data.pfad}";">
+				<a class="tx_justimmo_detail_image_thumbnail_item" href="{anhang.data.pfad}">
 					<img src="{anhang.daten.small}" alt="" />
 				</a>
 			</f:for>
@@ -51,178 +20,133 @@
 	</f:if>
 
 	<div class="tx_justimmo_detail_description">
-		{realty.freitexte.objektbeschreibung}
+		<f:format.html parseFuncTSPath="lib.parseFunc">{realty.freitexte.objektbeschreibung}</f:format.html>
 	</div>
+</div>
 
-	<f:if condition="{realty.nbDokumente} > 0">
-		<div class="tx_justimmo_detail_documents">
-			<h2>Dokumente</h2>
-			<f:for each="{realty.dokumente}" as="anhang">
-				<a href="{anhang.pfad}" target="_blank">
-					{anhang.titel}
-				</a>
-				<br>
-			</f:for>
-		</div>
-	</f:if>
-
-	<div id="tx_justimmo_detail_data">
+<div class="tx_justimmo_detail_sidebar">
+	<div class="tx_justimmo_detail_data">
 		<h1>Eckdaten Objektnummer {realty.objektnrExtern}</h1>
-		<ul>
+		<ul class="menu">
 			<li>
 				<f:if condition="{realty.objektartNormalized}">
-					<f:then>
-						<strong>Objektart:</strong>
-						{realty.objektartNormalized}
-					</f:then>
+					<strong>Objektart:</strong>
+					{realty.objektartNormalized}
 				</f:if>
 			</li>
 			<li>
 				<f:if condition="{realty.nbNutzungsart} > 0">
-					<f:then>
-						<strong>Nutzungsart: </strong>
-						<f:if condition="{realty.isNutzungsartWohnen}"><f:then>Wohnen</f:then></f:if>
-						<f:if condition="{realty.isNutzungsartGewerbe}"><f:then>Gewerbe</f:then></f:if>
-						<f:if condition="{realty.isNutzungsartAnlage}"><f:then>Anlage</f:then></f:if>
-					</f:then>
+					<strong>Nutzungsart: </strong>
+					<f:if condition="{realty.isNutzungsartWohnen}">Wohnen</f:if>
+					<f:if condition="{realty.isNutzungsartGewerbe}">Gewerbe</f:if>
+					<f:if condition="{realty.isNutzungsartAnlage}">Anlage</f:if>
 				</f:if>
 			</li>
 		</ul>
 
 		<h1>Preisinformation</h1>
-		<ul>
+		<ul class="menu">
 			<f:if condition="{realty.preise.kaufpreis}">
-				<f:then>
-					<li><strong>Kaufpreis:</strong> <f:format.number decimalsSeparator="," thousandsSeparator=".">{immobilie.preise.kaufpreis</f:format.number> &euro;</li>
-				</f:then>
+				<li><strong>Kaufpreis:</strong> <f:format.number decimalSeparator="," thousandsSeparator=".">{realty.preise.kaufpreis}</f:format.number> &euro;</li>
 			</f:if>
 
-			<f:if condition="{realty.nettokaltmiete}">
-				<f:then>
-					<li><strong>Nettomiete:</strong> <f:format.number decimalsSeparator="," thousandsSeparator=".">{realty.nettokaltmiete}</f:format.number> &euro;</li>
-				</f:then>
+			<f:if condition="{realty.nettomiete}">
+				<li><strong>Nettomiete:</strong> <f:format.number decimalSeparator="," thousandsSeparator=".">{realty.nettomiete}</f:format.number> &euro;</li>
 			</f:if>
 
 			<f:if condition="{realty.preise.warmmiete}">
-				<f:then>
-					<li><strong>Gesamtmiete: (inkl. USt. &amp; BK):</strong> <f:format.number decimalsSeparator="," thousandsSeparator=".">{realty.preise.warmmiete}</f:format.number> &euro;</li>
-				</f:then>
+				<li><strong>Gesamtmiete: (inkl. USt. &amp; BK):</strong> <f:format.number decimalSeparator="," thousandsSeparator=".">{realty.preise.warmmiete}</f:format.number> &euro;</li>
 			</f:if>
 
 			<f:if condition="{realty.preise.kaution}">
-				<f:then>
-					<li><strong>Kaution:</strong> <f:format.number decimalsSeparator="," thousandsSeparator=".">{realty.preise.kaution}</f:format.number> &euro;</li>
-				</f:then>
+				<li><strong>Kaution:</strong> <f:format.number decimalSeparator="," thousandsSeparator=".">{realty.preise.kaution}</f:format.number> &euro;</li>
 			</f:if>
 
 			<f:if condition="{realty.preise.aussen_courtage}">
-				<f:then>
-					<li><strong>Provision:</strong> {realty.preise.aussen_courtage}</li>
-				</f:then>
+				<li><strong>Provision:</strong> {realty.preise.aussen_courtage}</li>
 			</f:if>
 		</ul>
 
 		<h1>Details</h1>
-		<ul>
+		<ul class="menu">
 			<f:if condition="{realty.zustand_angaben.baujahr}">
-				<f:then>
-					<li><strong>Baujahr:</strong> {realty.zustand_angaben.baujahr}</li>
-				</f:then>
+				<li><strong>Baujahr:</strong> {realty.zustand_angaben.baujahr}</li>
 			</f:if>
 
 			<f:if condition="{realty.flaechen.anzahl_zimmer}">
-				<f:then>
-					<li><strong>Zimmer:</strong> {realty.flaechen.anzahl_zimmer}</li>
-				</f:then>
+				<li><strong>Zimmer:</strong> {realty.flaechen.anzahl_zimmer}</li>
 			</f:if>
 
 			<f:if condition="{realty.flaechen.wohnflaeche}">
-				<f:then>
-					<li><strong>Wohnfl&auml;che:</strong> <f:format.number decimalsSeparator="," thousandsSeparator=".">{realty.flaechen.wohnflaeche}</f:format.number> m<sup>2</sup></li>
-				</f:then>
+				<li><strong>Wohnfl&auml;che:</strong> <f:format.number decimalSeparator="," thousandsSeparator=".">{realty.flaechen.wohnflaeche}</f:format.number> m<sup>2</sup></li>
 			</f:if>
 
 			<f:if condition="{realty.flaechen.nutzflaeche}">
-				<f:then>
-					<li><strong>Nutzfl&auml;che:</strong> <f:format.number decimalsSeparator="," thousandsSeparator".">{realty.flaechen.nutzflaeche}</f:format.number> m<sup>2</sup></li>
-				</f:then>
+				<li><strong>Nutzfläche:</strong> <f:format.number decimalSeparator="," thousandsSeparator=".">{realty.flaechen.nutzflaeche}</f:format.number> m<sup>2</sup></li>
 			</f:if>
 
 			<f:if condition="{realty.flaechen.gesamtflaeche}">
-				<f:then>
-					<li><strong>Gesamtfl&auml;che:</strong> <f:format.number decimalsSeparator="," thousandsSeparator=".">{realty.flaechen.gesamtflaeche}</f:format.number> m<sup>2</sup></li>
-				</f:then>
+				<li><strong>Gesamtfl&auml;che:</strong> <f:format.number decimalSeparator="," thousandsSeparator=".">{realty.flaechen.gesamtflaeche}</f:format.number> m<sup>2</sup></li>
 			</f:if>
 
 			<f:if condition="{realty.flaechen.grundstuecksflaeche}">
-				<f:then>
-					<li><strong>Grundst&uuml;cksfl&auml;che:</strong> <f:format.number decimalsSeparator="," thousandsSeparator=".">{realty.flaechen.grundstuecksflaeche}</f:format.number> m<sup>2</sup></li>
-				</f:then>
+				<li><strong>Grundst&uuml;cksfl&auml;che:</strong> <f:format.number decimalSeparator="," thousandsSeparator=".">{realty.flaechen.grundstuecksflaeche}</f:format.number> m<sup>2</sup></li>
 			</f:if>
 
 			<f:if condition="{realty.flaechen.anzahl_badezimmer}">
-				<f:then>
-					<li><strong>B&auml;der:</strong> {realty.flaechen.anzahl_badezimmer}</li>
-				</f:then>
+				<li><strong>B&auml;der:</strong> {realty.flaechen.anzahl_badezimmer}</li>
 			</f:if>
 
 			<f:if condition="{realty.flaechen.anzahl_sep_wc}">
-				<f:then>
-					<li><strong>WC:</strong> {realty.flaechen.anzahl_sep_wc}</li>
-				</f:then>
+				<li><strong>WC:</strong> {realty.flaechen.anzahl_sep_wc}</li>
 			</f:if>
 
 			<f:if condition="{realty.flaechen.anzahl_balkon_terrassen}">
-				<f:then>
-					<li><strong>Balkon/Terrassen:</strong> {realty.flaechen.anzahl_balkon_terrassen}, <f:format.number decimalsSeparator="," thousandsSeparator=".">{realty.flaechen.balkon_terrasse_flaeche}</f:format.number> m<sup>2</sup></li>
-				</f:then>
+				<li><strong>Balkon/Terrassen:</strong> {realty.flaechen.anzahl_balkon_terrassen}, <f:format.number decimalSeparator="," thousandsSeparator=".">{realty.flaechen.balkon_terrasse_flaeche}</f:format.number> m<sup>2</sup></li>
 			</f:if>
 
 			<f:if condition="{realty.flaechen.gartenflaeche}">
-				<f:then>
-					<li><strong>Garten:</strong> <f:format.number decimalsSeparator="," thousandsSeparator=".">{realty.flaechen.gartenflaeche}</f:format.number> m<sup>2</sup></li>
-				</f:then>
+				<li><strong>Garten:</strong> <f:format.number decimalSeparator="," thousandsSeparator=".">{realty.flaechen.gartenflaeche}</f:format.number> m<sup>2</sup></li>
 			</f:if>
 
 			<f:if condition="{realty.flaechen.kellerflaeche}">
-				<f:then>
-					<li><strong>Keller:</strong> <f:format.number decimalsSeparator="," thousandsSeparator=".">{realty.flaechen.kellerflaeche}</f:format.number> m<sup>2</sup></li>
-				</f:then>
+				<li><strong>Keller:</strong> <f:format.number decimalSeparator="," thousandsSeparator=".">{realty.flaechen.kellerflaeche}</f:format.number> m<sup>2</sup></li>
 			</f:if>
 		</ul>
 	</div>
 
 	<f:if condition="{realty.hasAusstattungsBeschreibung}">
-		<f:then>
-			<div class="tx_justimmo_detail_interior">
-				<h1>Ausstattung</h1>
-				<p>{realty.freitexte.ausstatt_beschr}</p>
-			</div>
-		</f:then>
+		<div class="tx_justimmo_detail_interior">
+			<h2>Ausstattung</h2>
+			<p>{realty.freitexte.ausstatt_beschr}</p>
+		</div>
+	</f:if>
+
+	<f:if condition="{realty.nbDokumente} > 0">
+		<div class="tx_justimmo_detail_documents">
+			<h2>Dokumente</h2>
+			<f:for each="{realty.dokumente}" as="anhang">
+				<a href="{anhang.pfad}" target="_blank">{anhang.titel}</a><br>
+			</f:for>
+		</div>
 	</f:if>
 
 	<div class="tx_justimmo_detail_contact">
-		<h1>Ihr Ansprechpartner</h1>
+		<h2>Ihr Ansprechpartner</h2>
 		<p>
 			{realty.kontaktperson.vorname} {realty.kontaktperson.name}<br>
 			<a href="mailto:{realty.kontaktperson.email_direkt}">E-Mail an {realty.kontaktperson.vorname} {realty.kontaktperson.name}</a><br>
 
 			<f:if condition="{realty.hasTelefonZentrale}">
-				<f:then>
-					Telefon: {realty.kontaktperson.tel_zentrale}<br>
-				</f:then>
+				Telefon: {realty.kontaktperson.tel_zentrale}<br>
 			</f:if>
 
 			<f:if condition="{realty.hasTelefonHandy}">
-				<f:then>
-					Mobil: {realty.kontaktperson.tel_handy}<br>
-				</f:then>
+				Mobil: {realty.kontaktperson.tel_handy}<br>
 			</f:if>
 
 			<f:if condition="{realty.hasFax}">
-				<f:then>
-					Fax: {realty.kontaktperson.tel_fax}
-				</f:then>
+				Fax: {realty.kontaktperson.tel_fax}
 			</f:if>
 		</p>
 	</div>

@@ -25,7 +25,8 @@
  ***************************************************************/
 
 /**
- *
+ * Basically, this model object maps the most important data from the SimpleXMLElement
+ * object to some extbase/fluid compatible getters.
  *
  * @package justimmo
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
@@ -52,6 +53,8 @@ class Tx_Justimmo_Domain_Model_Realty extends Tx_Extbase_DomainObject_AbstractEn
 
 		$this->uid = (int) $this->xml->id;
 	}
+
+	/* list information getters - START */
 
 	public function getId() {
 		return (int) $this->xml->id;
@@ -101,20 +104,48 @@ class Tx_Justimmo_Domain_Model_Realty extends Tx_Extbase_DomainObject_AbstractEn
 		return (string) $this->xml->erstes_bild;
 	}
 
+	/* list information getters - END */
+
+	/* detail information getters - START */
+
 	public function getNbAnhaenge() {
-		return count($this->xml->anhaenge->anhang);
+		return count((array) $this->xml->anhaenge);
 	}
 
 	public function getAnhaenge() {
-		return (array) $this->xml->anhaenge->anhang;
+		$anhaengeInternal = (array) $this->xml->anhaenge;
+
+		// simple but sufficient mapping of attachment data
+		$anhaenge = array();
+		foreach ($anhaengeInternal['anhang'] as $anhang) {
+			$anhaenge[] = array(
+				'daten' => array(
+					'pfad' => (string) $anhang->daten->pfad,
+					'small' => (string) $anhang->daten->small,
+					'medium' => (string) $anhang->daten->medium,
+					'big2' => (string) $anhang->daten->big2,
+					'medium2' => (string) $anhang->daten->medium2
+				)
+			);
+		}
+
+		return $anhaenge;
 	}
 
 	public function getNbDokumente() {
-		return count($this->xml->dokumente->dokument);
+		return count((array) $this->xml->dokumente);
 	}
 
 	public function getDokumente() {
-		return (array) $this->xml->dokumente->dokument;
+		$dokumenteInternal = (array) $this->xml->dokumente;
+
+		// simple, but sufficient mapping of document data
+		$dokumente = array();
+		foreach ($dokumenteInternal as $dokument) {
+			$dokumente[0] = (array) $dokument;
+		}
+
+		return $dokumente;
 	}
 
 	public function getObjektart() {
@@ -162,13 +193,13 @@ class Tx_Justimmo_Domain_Model_Realty extends Tx_Extbase_DomainObject_AbstractEn
 		return (array) $this->xml->preise;
 	}
 
-	public function getNettokaltmiete() {
-		$returnValue = 0;
+	public function getNettomiete() {
+		$returnValue = 0.0;
 
 		if (isset($this->xml->preise->nettokaltmiete) && $this->xml->preise->nettokaltmiete > 0) {
-			$returnValue = $this->xml->preise->nettokaltmiete;
+			$returnValue = (float) $this->xml->preise->nettokaltmiete;
 		} elseif ($this->xml->preise->kaltmiete) {
-			$returnValue = $this->xml->preise->kaltmiete;
+			$returnValue = (float) $this->xml->preise->kaltmiete;
 		}
 
 		return $returnValue;
@@ -193,5 +224,27 @@ class Tx_Justimmo_Domain_Model_Realty extends Tx_Extbase_DomainObject_AbstractEn
 	public function getHasFax() {
 		return ($this->xml->kontaktperson->tel_fax && $this->xml->kontaktperson->tel_fax != 0);
 	}
+
+	public function getGeo() {
+		return (array) $this->xml->geo;
+	}
+
+	public function getFreitexte() {
+		return (array) $this->xml->freitexte;
+	}
+
+	public function getZustand_angaben() {
+		return (array) $this->xml->zustand_angaben;
+	}
+
+	public function getFlaechen() {
+		return (array) $this->xml->flaechen;
+	}
+
+	public function getKontaktperson() {
+		return (array) $this->xml->kontaktperson;
+	}
+
+	/* detail information getters - END */
 }
 ?>

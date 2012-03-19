@@ -1,0 +1,9 @@
+.tx_justimmo_detail {
+	float: left;
+	width: 550px;
+}
+
+.tx_justimmo_detail_sidebar {
+	float: right;
+	width: 200px;
+}
