@@ -115,8 +115,10 @@ class Tx_Justimmo_Controller_RealtyController extends Tx_Extbase_MVC_Controller_
 	 * @return void
 	 * @todo implement reset, page, orderby params
 	 */
-	public function listAction(Tx_Justimmo_Domain_Model_Filter $filter) {
-		$this->realtyRepository->setFilter($filter->toArray());
+	public function listAction(Tx_Justimmo_Domain_Model_Filter $filter = NULL) {
+		if (NULL !== $filter) {
+			$this->realtyRepository->setFilter($filter->toArray());
+		}
 
 		$realties = $this->realtyRepository->findAll();
 
