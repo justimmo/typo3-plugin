@@ -3,54 +3,108 @@
 <f:section name="main">
 	<f:flashMessages />
 
-	<f:form method="post" object="{filter}" name="filter" controller="Search" action="list" pageUid="{settings.searchResultsPid}" fieldNamePrefix="tx_justimmo_searchresults">
-		<label for="quick_miete"><f:translate key="tx_justimmo_domain_model_filter.miete" /></label>
-		<f:form.checkbox property="miete" value="1" id="quick_miete" />
-		<label for="quick_kauf"><f:translate key="tx_justimmo_domain_model_filter.kauf" /></label>
-		<f:form.checkbox property="kauf" value="1" id="quick_kauf" />
+	<f:form method="post" object="{filter}" name="filter" controller="Search" action="list" pageUid="{settings.searchResultsPid}" fieldNamePrefix="tx_justimmo_searchresults" additionalAttributes="{ class: 'tx_justimmo_search_quick' }">
+		<fieldset class="row-fluid">
+			<ul class="menu menu-horizontal checkbox-list">
+				<li>
+					<f:form.checkbox property="miete" value="1" id="quick_miete" />
+					<label for="quick_miete"><f:translate key="tx_justimmo_domain_model_filter.miete" /></label>
+				</li>
+				<li>
+					<f:form.checkbox property="kauf" value="1" id="quick_kauf" />
+					<label for="quick_kauf"><f:translate key="tx_justimmo_domain_model_filter.kauf" /></label>
+				</li>
+			</ul>
+		</fieldset>
 
-		<br>
+		<fieldset class="row-fluid">
+			<ul class="menu menu-horizontal checkbox-list">
+				<li>
+					<f:form.checkbox property="objektartId" value="5" id="quick_objektart_id_5" />
+					<label for="quick_objektart_id_5">Büro/Praxis</label>
+				</li>
+				<li>
+					<f:form.checkbox property="objektartId" value="3" id="quick_objektart_id_3" />
+					<label for="quick_objektart_id_3">Haus</label>
+				</li>
+				<li>
+					<f:form.checkbox property="objektartId" value="2" id="quick_objektart_id_2" />
+					<label for="quick_objektart_id_2">Wohnung</label>
+				</li>
+			</ul>
+		</fieldset>
 
-		<f:form.checkbox property="objektartId" value="5" id="quick_objektart_id_5" />
-		<label for="quick_objektart_id_5">Büro/Praxis</label>
-		<f:form.checkbox property="objektartId" value="3" id="quick_objektart_id_3" />
-		<label for="quick_objektart_id_3">Haus</label>
-		<f:form.checkbox property="objektartId" value="2" id="quick_objektart_id_2" />
-		<label for="quick_objektart_id_2">Wohnung</label>
+		<fieldset class="row-fluid">
+			<div class="span2">
+				<label for="quick_preis_von"><f:translate key="tx_justimmo_domain_model_filter.preis_von" /></label>
+			</div>
+			<div class="span4">
+				<f:form.textfield property="preisVon" id="quick_preis_von" size="6" />
+			</div>
+			<div class="span1">
+				<label for="quick_preis_bis"><f:translate key="tx_justimmo_domain_model_filter.preis_bis" /></label>
+			</div>
+			<div class="span5">
+				<f:form.textfield property="preisBis" id="quick_preis_bis" size="6" /> €
+			</div>
+		</fieldset>
 
-		<br>
+		<fieldset class="row-fluid">
+			<div class="span2">
+				<label for="quick_zimmer_von"><f:translate key="tx_justimmo_domain_model_filter.zimmer_von" /></label>
+			</div>
+			<div class="span4">
+				<f:form.textfield property="zimmerVon" id="quick_zimmer_von" size="3" />
+			</div>
+			<div class="span1">
+				<label for="quick_zimmer_bis"><f:translate key="tx_justimmo_domain_model_filter.zimmer_bis" /></label>
+			</div>
+			<div class="span5">
+				<f:form.textfield property="zimmerBis" id="quick_zimmer_bis" size="3" />
+			</div>
+		</fieldset>
 
-		<label for="quick_preis_von"><f:translate key="tx_justimmo_domain_model_filter.preis_von" /></label>
-		<f:form.textfield property="preisVon" id="quick_preis_von" size="6" />
-		<label for="quick_preis_bis"><f:translate key="tx_justimmo_domain_model_filter.preis_bis" /></label>
-		<f:form.textfield property="preisBis" id="quick_preis_bis" size="6" /> €
+		<fieldset class="row-fluid">
+			<div class="span3">
+				<label for="quick_wohnflaeche_von"><f:translate key="tx_justimmo_domain_model_filter.wohnflaeche_von" /></label>
+			</div>
+			<div class="span4">
+				<f:form.textfield property="wohnflaecheVon" id="quick_wohnflaeche_von" size="3" />
+			</div>
+			<div class="span1">
+				<label for="quick_wohnflaeche_bis"><f:translate key="tx_justimmo_domain_model_filter.wohnflaeche_bis" /></label>
+			</div>
+			<div class="span4">
+				<f:form.textfield property="wohnflaecheBis" id="quick_wohnflaeche_bis" size="3" /> m²
+			</div>
+		</fieldset>
 
-		<br>
+		<fieldset class="row-fluid">
+			<div class="span2">
+				<label for="quick_plz_von"><f:translate key="tx_justimmo_domain_model_filter.plz_von" /></label>
+			</div>
+			<div class="span4">
+				<f:form.textfield property="plzVon" id="quick_plz_von" size="5" />
+			</div>
+			<div class="span1">
+				<label for="quick_plz_bis"><f:translate key="tx_justimmo_domain_model_filter.plz_bis" /></label>
+			</div>
+			<div class="span5">
+				<f:form.textfield property="plzBis" id="quick_plz_bis" size="5" />
+			</div>
+		</fieldset>
 
-		<label for="quick_zimmer_von"><f:translate key="tx_justimmo_domain_model_filter.zimmer_von" /></label>
-		<f:form.textfield property="zimmerVon" id="quick_zimmer_von" size="3" />
-		<label for="quick_zimmer_bis"><f:translate key="tx_justimmo_domain_model_filter.zimmer_bis" /></label>
-		<f:form.textfield property="zimmerBis" id="quick_zimmer_bis" size="3" />
+		<fieldset class="row-fluid">
+			<div class="span2">
+				<label for="quick_ort"><f:translate key="tx_justimmo_domain_model_filter.ort" /></label>
+			</div>
+			<div class="span10">
+				<f:form.textfield property="ort" id="quick_ort" />
+			</div>
+		</fieldset>
 
-		<br>
-
-		<label for="quick_wohnflaeche_von"><f:translate key="tx_justimmo_domain_model_filter.wohnflaeche_von" /></label>
-		<f:form.textfield property="wohnflaecheVon" id="quick_wohnflaeche_von" size="3" />
-		<label for="quick_wohnflaeche_bis"><f:translate key="tx_justimmo_domain_model_filter.wohnflaeche_bis" /></label>
-		<f:form.textfield property="wohnflaecheBis" id="quick_wohnflaeche_bis" size="3" /> m²
-
-		<br>
-
-		<label for="quick_plz_von"><f:translate key="tx_justimmo_domain_model_filter.plz_von" /></label>
-		<f:form.textfield property="plzVon" id="quick_plz_von" size="5" />
-		<label for="quick_plz_bis"><f:translate key="tx_justimmo_domain_model_filter.plz_bis" /></label>
-		<f:form.textfield property="plzBis" id="quick_plz_bis" size="5" />
-
-		<br>
-
-		<label for="quick_ort"><f:translate key="tx_justimmo_domain_model_filter.ort" /></label>
-		<f:form.textfield property="ort" id="quick_ort" />
-
-		<f:form.submit name="submit" value="Suchen"><button>Suchen</button></f:form.submit>
+		<ul class="menu menu-horizontal align-right">
+			<li><f:form.submit name="submit" value="Suchen"><button>Suchen</button></f:form.submit></li>
+		</ul>
 	</f:form>
 </f:section>

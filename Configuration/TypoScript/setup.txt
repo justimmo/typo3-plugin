@@ -42,5 +42,6 @@ page.includeCSS {
 	tx_justimmo_default = EXT:justimmo/Resources/Public/Css/default.css
 	tx_justimmo_list = EXT:justimmo/Resources/Public/Css/list.css
 	tx_justimmo_detail = EXT:justimmo/Resources/Public/Css/detail.css
+	tx_justimmo_search_quick = EXT:justimmo/Resources/Public/Css/search_quick.css
 	tx_justimmo_search_detail = EXT:justimmo/Resources/Public/Css/search_detail.css
 }

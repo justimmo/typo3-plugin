@@ -4,7 +4,7 @@
 <f:section name="main">
 	<f:flashMessages />
 
-	<f:form method="post" object="{filter}" name="filter" controller="Search" action="list" pageUid="{settings.searchResultsPid}" fieldNamePrefix="tx_justimmo_searchresults">
+	<f:form method="post" object="{filter}" name="filter" controller="Search" action="list" pageUid="{settings.searchResultsPid}" fieldNamePrefix="tx_justimmo_searchresults" additionalAttributes="{ class: 'tx_justimmo_search_detail' }">
 		<div class="row-fluid">
 			<div class="span2">
 				<h2>1. Objektart</h2>
@@ -119,25 +119,25 @@
 			<div class="span5">
 				<h2>3. Lage</h2>
 
-				<div class="row-fluid">
+				<fieldset class="row-fluid">
 					<div class="span3">
 						<label for="detail_land_id"><f:translate key="tx_justimmo_domain_model_filter.land_id" /></label>
 					</div>
 					<div class="span9">
 						<ji:justimmoGeo.selectCountries property="landId" id="detail_land_id" />
 					</div>
-				</div>
+				</fieldset>
 
-				<div class="row-fluid">
+				<fieldset class="row-fluid">
 					<div class="span3">
 						<label for="detail_bundesland_id"><f:translate key="tx_justimmo_domain_model_filter.bundesland_id" /></label>
 					</div>
 					<div class="span9">
 						<ji:justimmoGeo.selectSubDivisions property="bundeslandId" id="detail_bundesland_id" keyField="name" />
 					</div>
-				</div>
+				</fieldset>
 
-				<div class="row-fluid">
+				<fieldset class="row-fluid">
 					<div class="span3">		
 						<label for="detail_region"><f:translate key="tx_justimmo_domain_model_filter.region" /></label>
 					</div>
@@ -151,9 +151,9 @@
 							</f:for>
 						</ul>
 					</div>
-				</div>
+				</fieldset>
 
-				<div class="row-fluid">
+				<fieldset class="row-fluid">
 					<div class="span3">
 						<label for="detail_plz_von"><f:translate key="tx_justimmo_domain_model_filter.plz_von" /></label>
 					</div>
@@ -166,19 +166,21 @@
 					<div class="span4">
 						<f:form.textfield property="plzBis" id="detail_plz_bis" size="5" />
 					</div>
-				</div>
+				</fieldset>
 
-				<div class="row-fluid">
+				<fieldset class="row-fluid">
 					<div class="span3">
 						<label for="detail_ort"><f:translate key="tx_justimmo_domain_model_filter.ort" /></label>
 					</div>
 					<div class="span9">
 						<f:form.textfield property="ort" id="detail_ort" />
 					</div>
-				</div>
+				</fieldset>
 			</div>
 		</div>
 
-		<f:form.submit name="submit" value="Suchen"><button>Suchen</button></f:form.submit>
+		<ul class="menu menu-horizontal align-right">
+			<li><f:form.submit name="submit" value="Suchen"><button>Suchen</button></f:form.submit></li>
+		</ul>
 	</f:form>
 </f:section>
