@@ -16,6 +16,12 @@ plugin.tx_justimmo {
 			username = {$plugin.tx_justimmo.settings.api.username}
 			password = {$plugin.tx_justimmo.settings.api.password}
 			baseUrl = {$plugin.tx_justimmo.settings.api.baseUrl}
+
+			geo {
+				regions {
+					defaultCountryIdent = {$plugin.tx_justimmo.settings.api.geo.regions.defaultCountryIdent}
+				}
+			}
 		}
 
 		realtyRepository {

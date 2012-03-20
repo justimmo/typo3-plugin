@@ -25,6 +25,13 @@ plugin.tx_justimmo {
 			password = 
 			# cat=plugin.tx_justimmo/settings/api; type=string; label=API base URL
 			baseUrl = 
+
+			geo {
+				regions {
+					# cat=plugin.tx_justimmo/settings/api; type=string; label=Geo API Regions: default country identification
+					defaultCountryIdent = AT
+				}
+			}
 		}
 	}
 }

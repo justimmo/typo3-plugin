@@ -34,6 +34,21 @@
 class Tx_Justimmo_Controller_SearchController extends Tx_Extbase_MVC_Controller_ActionController {
 
 	/**
+	 *
+	 * @var Tx_Justimmo_Service_JustimmoApiService
+	 */
+	protected $justimmoApiService;
+
+	/**
+	 * injects the justimmo API service into this controller
+	 *
+	 * @param Tx_Justimmo_Service_JustimmoApiService $justimmoApiService
+	 */
+	public function injectJustimmoApiService(Tx_Justimmo_Service_JustimmoApiService $justimmoApiService) {
+		$this->justimmoApiService = $justimmoApiService;
+	}
+
+	/**
 	 * reflects the realty number search
 	 *
 	 * @param Tx_Justimmo_Domain_Model_Filter $filter
@@ -76,6 +91,15 @@ class Tx_Justimmo_Controller_SearchController extends Tx_Extbase_MVC_Controller_
 			$filter = $this->objectManager->get('Tx_Justimmo_Domain_Model_Filter');
 		}
 
+		$regionsInternal = $this->justimmoApiService->getRegions(
+			$this->settings['api']['geo']['regions']['defaultCountryIdent']
+		);
+		$regions = array();
+		foreach ($regionsInternal as $region) {
+			$regions[] = (array) $region;
+		}
+
 		$this->view->assign('filter', $filter);
+		$this->view->assign('regions', $regions);
 	}
 }

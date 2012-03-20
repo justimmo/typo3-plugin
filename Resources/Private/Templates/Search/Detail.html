@@ -69,6 +69,14 @@
 		<br>
 
 		<label for="detail_region"><f:translate key="tx_justimmo_domain_model_filter.region" /></label>
+		<ul>
+			<f:for each="{regions}" as="region">
+				<li>
+					<f:form.checkbox property="region" id="detail_region_{region.id}" value="{region.id}" />
+					<label for="detail_region_{region.id}">{region.name}</label>
+				</li>
+			</f:for>
+		</ul>
 
 		<br>
 
