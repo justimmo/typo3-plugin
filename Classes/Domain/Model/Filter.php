@@ -208,7 +208,7 @@ class Tx_Justimmo_Domain_Model_Filter extends Tx_Extbase_DomainObject_AbstractVa
 	 * @return boolean $kauf
 	 */
 	public function getKauf() {
-		return $this->kauf;
+		return (boolean) $this->kauf;
 	}
 
 	/**
@@ -236,7 +236,7 @@ class Tx_Justimmo_Domain_Model_Filter extends Tx_Extbase_DomainObject_AbstractVa
 	 * @return boolean $miete
 	 */
 	public function getMiete() {
-		return $this->miete;
+		return (boolean) $this->miete;
 	}
 
 	/**
@@ -621,9 +621,15 @@ class Tx_Justimmo_Domain_Model_Filter extends Tx_Extbase_DomainObject_AbstractVa
 		foreach ($this as $key => $value) {
 			if (TRUE === in_array($key, $skip)) {
 				continue;
-			}
+			}			
 
 			$normalizedKey = t3lib_div::camelCaseToLowerCaseUnderscored($key);
+
+			// skip land_iso2 filter key if value is empty... (empty API response otherwise)
+			if ('land_iso2' === $normalizedKey && FALSE !== empty($value)) {
+				continue;
+			}
+
 			$filterArray[$normalizedKey] = $value;
 		}
 
