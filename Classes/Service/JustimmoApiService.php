@@ -170,7 +170,15 @@ class Tx_Justimmo_Service_JustimmoApiService implements t3lib_Singleton {
 			$params[] = 'limit=' . $limit;
 		}
 
-		return new SimpleXMLElement($this->loadData('/objekt/list?' . implode('&', $params)));
+		try {
+			return new SimpleXMLElement($this->loadData('/objekt/list?' . implode('&', $params)));
+		} catch (Exception $e) {
+			$msg = sprintf('%s. Please check the filter query parameters. Additionally, you should check the filter defaults in your TypoScript setup! Current filter string: %s',
+				$e->getMessage(),
+				implode('&', $params)
+			);
+			throw new Tx_Extbase_Exception($msg, $e->getCode());
+		}
     }
 
     /**
