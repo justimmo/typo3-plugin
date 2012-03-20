@@ -4,6 +4,8 @@
 <f:section name="main">
 	<f:flashMessages />
 
+	<f:render partial="FormErrors" />
+
 	<f:form method="post" object="{filter}" name="filter" controller="Search" action="list" pageUid="{settings.searchResultsPid}" fieldNamePrefix="tx_justimmo_searchresults" additionalAttributes="{ class: 'tx_justimmo_search_detail' }">
 		<div class="row-fluid">
 			<div class="span4">
