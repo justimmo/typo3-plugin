@@ -57,7 +57,7 @@ class Tx_Justimmo_ViewHelpers_JustimmoGeo_SelectCountriesViewHelper extends Tx_F
 		parent::initializeArguments();
 
 		$this
-			->registerArgument('keyField', 'string', 'Specifies the key field for the options key.', FALSE, 'iso2');
+			->registerArgument('keyField', 'string', 'Specifies the key field for the options key.', FALSE, 'id');
 
 		// override options argument
 		$this
