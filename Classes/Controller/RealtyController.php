@@ -48,6 +48,20 @@ class Tx_Justimmo_Controller_RealtyController extends Tx_Extbase_MVC_Controller_
 	protected $justimmoApiService;
 
 	/**
+	 * holds the framework settings
+	 *
+	 * @var array
+	 */
+	protected $frameworkSettings;
+
+	/**
+	 * holds the view settings
+	 *
+	 * @var array
+	 */
+	protected $viewSettings;
+
+	/**
 	 * injectRealtyRepository
 	 *
 	 * @param Tx_Justimmo_Domain_Repository_RealtyRepository $realtyRepository
@@ -64,6 +78,25 @@ class Tx_Justimmo_Controller_RealtyController extends Tx_Extbase_MVC_Controller_
 	 */
 	public function injectJustimmoApiService(Tx_Justimmo_Service_JustimmoApiService $justimmoApiService) {
 		$this->justimmoApiService = $justimmoApiService;
+	}
+
+	/**
+	 * injects the configuration manager and retrieves the framework settings
+	 *
+	 * @param Tx_Extbase_Configuration_ConfigurationManagerInterface $configurationManager
+	 * @return void
+	 */
+	public function injectFrameworkConfiguration(Tx_Extbase_Configuration_ConfigurationManagerInterface $configurationManager) {
+		$this->frameworkSettings = $configurationManager->getConfiguration(Tx_Extbase_Configuration_ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
+	}
+
+	/**
+	 * initializing the controller object
+	 *
+	 * @return void
+	 */
+	public function initializeObject() {
+		$this->viewSettings = $this->frameworkSettings['view'];
 	}
 
 	/**
@@ -164,7 +197,8 @@ class Tx_Justimmo_Controller_RealtyController extends Tx_Extbase_MVC_Controller_
 			'is_pageable_next_page' => $this->realtyRepository->isPageable(TRUE)
 		));
 
-		$this->view->setTemplatePathAndFilename(t3lib_extMgm::extPath('justimmo') . 'Resources/Private/Templates/Realty/List.html');
+		$templatePathAndFilename = t3lib_div::getFileAbsFileName($this->viewSettings['templateRootPath'] . 'Realty/List.html');
+		$this->view->setTemplatePathAndFilename($templatePathAndFilename);
 	}
 
 	/**
@@ -193,7 +227,8 @@ class Tx_Justimmo_Controller_RealtyController extends Tx_Extbase_MVC_Controller_
 			'is_pageable_next_page' => $this->realtyRepository->isPageable(TRUE)
 		));
 
-		$this->view->setTemplatePathAndFilename(t3lib_extMgm::extPath('justimmo') . 'Resources/Private/Templates/Realty/List.html');
+		$templatePathAndFilename = t3lib_div::getFileAbsFileName($this->viewSettings['templateRootPath'] . 'Realty/List.html');
+		$this->view->setTemplatePathAndFilename($templatePathAndFilename);
 	}
 
 	/**
@@ -221,7 +256,8 @@ class Tx_Justimmo_Controller_RealtyController extends Tx_Extbase_MVC_Controller_
 			'is_pageable_next_page' => $this->realtyRepository->isPageable(TRUE)
 		));
 
-		$this->view->setTemplatePathAndFilename(t3lib_extMgm::extPath('justimmo') . 'Resources/Private/Templates/Realty/List.html');
+		$templatePathAndFilename = t3lib_div::getFileAbsFileName($this->viewSettings['templateRootPath'] . 'Realty/List.html');
+		$this->view->setTemplatePathAndFilename($templatePathAndFilename);
 	}
 }
 ?>
