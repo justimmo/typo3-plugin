@@ -55,7 +55,8 @@ class Tx_Justimmo_ViewHelpers_JustimmoGeo_SelectSubDivisionsViewHelper extends T
 		$this
 			->registerArgument('keyField', 'string', 'Specifies the key field for the options key.', FALSE, 'id')
 			->registerArgument('countryCode', 'string', 'Specifies for which country the subdivisions should be fetched', FALSE)
-			->registerArgument('countryId', 'integer', 'Specifies for which country the subdivisions should be fetched', FALSE);
+			->registerArgument('countryId', 'integer', 'Specifies for which country the subdivisions should be fetched', FALSE)
+			->registerArgument('includeBlank', 'boolean', 'Flags if a blank list item should be added to the top of the options list', FALSE, TRUE);
 		
 		// override options argument
 		$this
@@ -68,6 +69,10 @@ class Tx_Justimmo_ViewHelpers_JustimmoGeo_SelectSubDivisionsViewHelper extends T
 	 */
 	protected function getOptions() {
 		$options = array();
+
+		if (TRUE === $this->arguments['includeBlank']) {
+			$options[''] = '';
+		}
 
 		if (0 === count($this->arguments['options'])) {
 			$countryIdent = NULL;

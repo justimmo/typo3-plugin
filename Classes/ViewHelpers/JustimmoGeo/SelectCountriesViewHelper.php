@@ -57,7 +57,8 @@ class Tx_Justimmo_ViewHelpers_JustimmoGeo_SelectCountriesViewHelper extends Tx_F
 		parent::initializeArguments();
 
 		$this
-			->registerArgument('keyField', 'string', 'Specifies the key field for the options key.', FALSE, 'id');
+			->registerArgument('keyField', 'string', 'Specifies the key field for the options key.', FALSE, 'id')
+			->registerArgument('includeBlank', 'boolean', 'Flags if a blank list item should be added to the top of the options list', FALSE, TRUE);
 
 		// override options argument
 		$this
@@ -71,12 +72,15 @@ class Tx_Justimmo_ViewHelpers_JustimmoGeo_SelectCountriesViewHelper extends Tx_F
 	protected function getOptions() {
 		$options = array();
 
+		if (TRUE === $this->arguments['includeBlank']) {
+			$options[''] = '';
+		}
+
 		if (0 === count($this->arguments['options'])) {
 			$keyField = $this->arguments['keyField'];
 
 			$optionsInternal = $this->api->getCountries();
 	
-			$options = array();
 			foreach ($optionsInternal as $country) {
 				$keyFieldValue = (string) $country->$keyField;
 				$key = (FALSE === empty($keyFieldValue)) ? $keyFieldValue : (string) $country->id;
