@@ -5,3 +5,7 @@
 	.tx_justimmo_search_detail fieldset.row-fluid {
 		padding: 3px 0;
 	}
+
+	.tx_justimmo_search_detail .small-textfields input {
+		width: 60px;
+	}

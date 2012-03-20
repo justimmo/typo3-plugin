@@ -6,7 +6,7 @@
 
 	<f:form method="post" object="{filter}" name="filter" controller="Search" action="list" pageUid="{settings.searchResultsPid}" fieldNamePrefix="tx_justimmo_searchresults" additionalAttributes="{ class: 'tx_justimmo_search_detail' }">
 		<div class="row-fluid">
-			<div class="span2">
+			<div class="span4">
 				<h2>1. Objektart</h2>
 	
 				<ul class="menu checkbox-list">
@@ -25,7 +25,7 @@
 				</ul>
 			</div>
 
-			<div class="span5">
+			<div class="span4">
 				<h2>2. Eigenschaften</h2>
 	
 				<ul class="menu menu-horizontal checkbox-list">
@@ -39,84 +39,104 @@
 					</li>
 				</ul>
 	
-				<fieldset class="row-fluid">
-					<div class="span2">
-						<label for="detail_preis_von"><f:translate key="tx_justimmo_domain_model_filter.preis_von" /></label>
+				<fieldset class="row-fluid small-textfields">
+					<div class="row-fluid">
+						<div class="span12">
+							<label for="detail_preis_von"><f:translate key="tx_justimmo_domain_model_filter.preis_von" /></label>
+						</div>
 					</div>
-					<div class="span4">
-						<f:form.textfield property="preisVon" id="detail_preis_von" size="5" />
-					</div>
-					<div class="span1">
-						<label for="detail_preis_bis"><f:translate key="tx_justimmo_domain_model_filter.preis_bis" /></label>
-					</div>
-					<div class="span5">
-						<f:form.textfield property="preisBis" id="detail_preis_bis" size="5" /> €
+					<div class="row-fluid">
+						<div class="span5">
+							<f:form.textfield property="preisVon" id="detail_preis_von" size="5" />
+						</div>
+						<div class="span2">
+							<label for="detail_preis_bis"><f:translate key="tx_justimmo_domain_model_filter.preis_bis" /></label>
+						</div>
+						<div class="span5">
+							<f:form.textfield property="preisBis" id="detail_preis_bis" size="5" /> €
+						</div>
 					</div>
 				</fieldset>
 		
 	
-				<fieldset class="row-fluid">
-					<div class="span2">
-						<label for="detail_zimmer_von"><f:translate key="tx_justimmo_domain_model_filter.zimmer_von" /></label>
+				<fieldset class="row-fluid small-textfields">
+					<div class="row-fluid">
+						<div class="span12">
+							<label for="detail_zimmer_von"><f:translate key="tx_justimmo_domain_model_filter.zimmer_von" /></label>
+						</div>
 					</div>
-					<div class="span4">
-						<f:form.textfield property="zimmerVon" id="detail_zimmer_von" size="3" />
-					</div>
-					<div class="span1">
-						<label for="detail_zimmer_bis"><f:translate key="tx_justimmo_domain_model_filter.zimmer_bis" /></label>
-					</div>
-					<div class="span5">
-						<f:form.textfield property="zimmerBis" id="detail_zimmer_bis" size="3" />
-					</div>
-				</fieldset>
-	
-				<fieldset class="row-fluid">
-					<div class="span3">		
-						<label for="detail_wohnflaeche_von"><f:translate key="tx_justimmo_domain_model_filter.wohnflaeche_von" /></label>
-					</div>
-					<div class="span3">
-						<f:form.textfield property="wohnflaecheVon" id="detail_wohnflaeche_von" size="3" />
-					</div>
-					<div class="span1">
-						<label for="detail_wohnflaeche_bis"><f:translate key="tx_justimmo_domain_model_filter.wohnflaeche_bis" /></label>
-					</div>
-					<div class="span5">
-						<f:form.textfield property="wohnflaecheBis" id="detail_wohnflaeche_bis" size="3" /> m²
+					<div class="row-fluid">
+						<div class="span5">
+							<f:form.textfield property="zimmerVon" id="detail_zimmer_von" size="3" />
+						</div>
+						<div class="span2">
+							<label for="detail_zimmer_bis"><f:translate key="tx_justimmo_domain_model_filter.zimmer_bis" /></label>
+						</div>
+						<div class="span5">
+							<f:form.textfield property="zimmerBis" id="detail_zimmer_bis" size="3" />
+						</div>
 					</div>
 				</fieldset>
 	
-				<fieldset class="row-fluid">
-					<div class="span3">
-						<label for="detail_nutzflaeche_von"><f:translate key="tx_justimmo_domain_model_filter.nutzflaeche_von" /></label>
+				<fieldset class="row-fluid small-textfields">
+					<div class="row-fluid">
+						<div class="span12">		
+							<label for="detail_wohnflaeche_von"><f:translate key="tx_justimmo_domain_model_filter.wohnflaeche_von" /></label>
+						</div>
 					</div>
-					<div class="span3">
-						<f:form.textfield property="nutzflaecheVon" id="detail_nutzflaeche_von" size="3" />
-					</div>
-					<div class="span1">
-						<label for="detail_nutzflaeche_bis"><f:translate key="tx_justimmo_domain_model_filter.nutzflaeche_bis" /></label>
-					</div>
-					<div class="span5">
-						<f:form.textfield property="nutzflaecheBis" id="detail_nutzflaeche_bis" size="3" /> m²
+					<div class="row-fluid">
+						<div class="span5">
+							<f:form.textfield property="wohnflaecheVon" id="detail_wohnflaeche_von" size="3" />
+						</div>
+						<div class="span2">
+							<label for="detail_wohnflaeche_bis"><f:translate key="tx_justimmo_domain_model_filter.wohnflaeche_bis" /></label>
+						</div>
+						<div class="span5">
+							<f:form.textfield property="wohnflaecheBis" id="detail_wohnflaeche_bis" size="3" /> m²
+						</div>
 					</div>
 				</fieldset>
 	
-				<fieldset class="row-fluid">
-					<div class="span3">		
-						<label for="detail_grundflaeche_von"><f:translate key="tx_justimmo_domain_model_filter.grundflaeche_von" /></label>
+				<fieldset class="row-fluid small-textfields">
+					<div class="row-fluid">
+						<div class="span12">
+							<label for="detail_nutzflaeche_von"><f:translate key="tx_justimmo_domain_model_filter.nutzflaeche_von" /></label>
+						</div>
 					</div>
-					<div class="span3">
-						<f:form.textfield property="grundflaecheVon" id="detail_grundflaeche_von" size="3" />
+					<div class="row-fluid">
+						<div class="span5">
+							<f:form.textfield property="nutzflaecheVon" id="detail_nutzflaeche_von" size="3" />
+						</div>
+						<div class="span2">
+							<label for="detail_nutzflaeche_bis"><f:translate key="tx_justimmo_domain_model_filter.nutzflaeche_bis" /></label>
+						</div>
+						<div class="span5">
+							<f:form.textfield property="nutzflaecheBis" id="detail_nutzflaeche_bis" size="3" /> m²
+						</div>
 					</div>
-					<div class="span1">
-						<label for="detail_grundflaeche_bis"><f:translate key="tx_justimmo_domain_model_filter.grundflaeche_bis" /></label>
+				</fieldset>
+	
+				<fieldset class="row-fluid small-textfields">
+					<div class="row-fluid">
+						<div class="span12">
+							<label for="detail_grundflaeche_von"><f:translate key="tx_justimmo_domain_model_filter.grundflaeche_von" /></label>
+						</div>
 					</div>
-					<div class="span5">
-						<f:form.textfield property="grundflaecheBis" id="detail_grundflaeche_bis" size="3" /> m²
+					<div class="row-fluid">
+						<div class="span5">
+							<f:form.textfield property="grundflaecheVon" id="detail_grundflaeche_von" size="3" />
+						</div>
+						<div class="span2">
+							<label for="detail_grundflaeche_bis"><f:translate key="tx_justimmo_domain_model_filter.grundflaeche_bis" /></label>
+						</div>
+						<div class="span5">
+							<f:form.textfield property="grundflaecheBis" id="detail_grundflaeche_bis" size="3" /> m²
+						</div>
 					</div>
 				</fieldset>
 			</div>
 
-			<div class="span5">
+			<div class="span4">
 				<h2>3. Lage</h2>
 
 				<fieldset class="row-fluid">
@@ -153,7 +173,7 @@
 					</div>
 				</fieldset>
 
-				<fieldset class="row-fluid">
+				<fieldset class="row-fluid small-textfields">
 					<div class="span3">
 						<label for="detail_plz_von"><f:translate key="tx_justimmo_domain_model_filter.plz_von" /></label>
 					</div>
