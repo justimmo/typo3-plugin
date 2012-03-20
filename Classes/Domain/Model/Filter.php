@@ -172,9 +172,9 @@ class Tx_Justimmo_Domain_Model_Filter extends Tx_Extbase_DomainObject_AbstractVa
 	/**
 	 * region
 	 *
-	 * @var integer
+	 * @var array
 	 */
-	protected $region;
+	protected $region = array();
 
 	/**
 	 * Returns the objektnummer
@@ -537,18 +537,18 @@ class Tx_Justimmo_Domain_Model_Filter extends Tx_Extbase_DomainObject_AbstractVa
 	}
 
 	/**
-	 * Returns the region
+	 * Returns the region IDs
 	 *
-	 * @return integer $region
+	 * @return array $region
 	 */
 	public function getRegion() {
 		return $this->region;
 	}
 
 	/**
-	 * Sets the region
+	 * Sets the region IDs
 	 *
-	 * @param integer $region
+	 * @param array $region
 	 * @return void
 	 */
 	public function setRegion($region) {
