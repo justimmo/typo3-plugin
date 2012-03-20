@@ -189,6 +189,10 @@ class Tx_Justimmo_Domain_Validator_FilterValidator extends Tx_Extbase_Validation
 			return FALSE;
 		}
 
+		if (!$this->buildAndProcessValidator($value, 'landIso2', 'StringValidator')) {
+			return FALSE;
+		}
+
 		if (!$this->buildAndProcessValidator($value, 'bundeslandId', 'StringValidator')) {
 			return FALSE;
 		}

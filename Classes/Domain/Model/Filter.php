@@ -160,6 +160,13 @@ class Tx_Justimmo_Domain_Model_Filter extends Tx_Extbase_DomainObject_AbstractVa
 	protected $landId;
 
 	/**
+	 * land ISO2 code
+	 *
+	 * @var string
+	 */
+	protected $landIso2;
+
+	/**
 	 * bundeslandId
 	 * 
 	 * Even it is called "ID", you have to pass a string representation of the
@@ -515,6 +522,24 @@ class Tx_Justimmo_Domain_Model_Filter extends Tx_Extbase_DomainObject_AbstractVa
 	 */
 	public function setLandId($landId) {
 		$this->landId = $landId;
+	}
+
+	/**
+	 * returns the land ISO2 code
+	 *
+	 * @return string
+	 */
+	public function getLandIso2() {
+		return $this->landIso2;
+	}
+
+	/**
+	 * sets the land ISO2 code
+	 *
+	 * @param string $landIso2
+	 */
+	public function setLandIso2($landIso2) {
+		$this->landIso2 = $landIso2;
 	}
 
 	/**
