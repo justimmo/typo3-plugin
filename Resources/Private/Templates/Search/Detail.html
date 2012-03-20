@@ -59,15 +59,16 @@
 		<h2>3. Lage</h2>
 
 		<label for="detail_land_id"><f:translate key="tx_justimmo_domain_model_filter.land_id" /></label>
-		<ji:staticInfoTables.selectCountries property="landId" id="detail_land_id" apiAddWhere="cn_eu_member=1" />
-
-		<br>
-
-		<label for="detail_region"><f:translate key="tx_justimmo_domain_model_filter.region" /></label>
+		<ji:justimmoGeo.selectCountries property="landId" id="detail_land_id" />
 
 		<br>
 
 		<label for="detail_bundesland_id"><f:translate key="tx_justimmo_domain_model_filter.bundesland_id" /></label>
+		<ji:justimmoGeo.selectSubDivisions property="bundeslandId" id="detail_bundesland_id" keyField="name" />
+
+		<br>
+
+		<label for="detail_region"><f:translate key="tx_justimmo_domain_model_filter.region" /></label>
 
 		<br>
 

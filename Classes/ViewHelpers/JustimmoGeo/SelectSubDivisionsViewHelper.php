@@ -26,13 +26,13 @@
 
 
 /**
- * ViewHelper for retrieving a <select> list from justimmo geo API
+ * ViewHelper for retrieving a <select> list of subdivisions from justimmo geo API
  * 
  * @package justimmo
  * @subpackage ViewHelpers\JustimmoGeo
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
-class Tx_Justimmo_ViewHelpers_JustimmoGeo_SelectCountriesViewHelper extends Tx_Fluid_ViewHelpers_Form_SelectViewHelper implements Tx_Justimmo_Core_ViewHelper_JustimmoGeoViewHelperInterface {
+class Tx_Justimmo_ViewHelpers_JustimmoGeo_SelectSubDivisionsViewHelper extends Tx_Fluid_ViewHelpers_Form_SelectViewHelper implements Tx_Justimmo_Core_ViewHelper_JustimmoGeoViewHelperInterface {
 
 	/**
 	 *
@@ -49,16 +49,14 @@ class Tx_Justimmo_ViewHelpers_JustimmoGeo_SelectCountriesViewHelper extends Tx_F
 		$this->api = $justimmoApiService;
 	}
 
-	/**
-	 * (non-PHPdoc)
-	 * @see Tx_Fluid_ViewHelpers_Form_SelectViewHelper::initializeArguments()
-	 */
 	public function initializeArguments() {
 		parent::initializeArguments();
 
 		$this
-			->registerArgument('keyField', 'string', 'Specifies the key field for the options key.', FALSE, 'iso2');
-
+			->registerArgument('keyField', 'string', 'Specifies the key field for the options key.', FALSE, 'id')
+			->registerArgument('countryCode', 'string', 'Specifies for which country the subdivisions should be fetched', FALSE)
+			->registerArgument('countryId', 'integer', 'Specifies for which country the subdivisions should be fetched', FALSE);
+		
 		// override options argument
 		$this
 			->overrideArgument('options', 'array', 'Associative array with internal IDs as key, and the values are displayed in the select box', FALSE);
@@ -72,16 +70,23 @@ class Tx_Justimmo_ViewHelpers_JustimmoGeo_SelectCountriesViewHelper extends Tx_F
 		$options = array();
 
 		if (0 === count($this->arguments['options'])) {
+			$countryIdent = NULL;
+
+			if (NULL !== $this->arguments['countryCode']) {
+				$countryIdent = $this->arguments['countryCode'];
+			} elseif (NULL !== $this->arguments['countryId']) {
+				$countryIdent = $this->arguments['countryId'];
+			}
+
+			$optionsInternal = $this->api->getSubDivisions($countryIdent);
+
 			$keyField = $this->arguments['keyField'];
 
-			$optionsInternal = $this->api->getCountries();
-	
-			$options = array();
-			foreach ($optionsInternal as $country) {
-				$keyFieldValue = (string) $country->$keyField;
-				$key = (FALSE === empty($keyFieldValue)) ? $keyFieldValue : (string) $country->id;
-
-				$options[$key] = (string) $country->name;
+			foreach ($optionsInternal as $subdivision) {
+				$keyFieldValue = (string) $subdivision->$keyField;
+				$key = (FALSE === empty($keyFieldValue)) ? $keyFieldValue : (string) $subdivision->id;
+				
+				$options[$key] = (string) $subdivision->name;
 			}
 		} else {
 			$options = parent::getOptions();
