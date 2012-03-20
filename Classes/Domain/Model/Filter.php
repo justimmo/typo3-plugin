@@ -208,7 +208,7 @@ class Tx_Justimmo_Domain_Model_Filter extends Tx_Extbase_DomainObject_AbstractVa
 	 * @return boolean $kauf
 	 */
 	public function getKauf() {
-		return (boolean) $this->kauf;
+		return $this->kauf;
 	}
 
 	/**
@@ -236,7 +236,7 @@ class Tx_Justimmo_Domain_Model_Filter extends Tx_Extbase_DomainObject_AbstractVa
 	 * @return boolean $miete
 	 */
 	public function getMiete() {
-		return (boolean) $this->miete;
+		return $this->miete;
 	}
 
 	/**
@@ -634,6 +634,50 @@ class Tx_Justimmo_Domain_Model_Filter extends Tx_Extbase_DomainObject_AbstractVa
 		}
 
 		return $filterArray;
+	}
+
+	/**
+	 * allows re-populating a filter domain object from an array of filter properties
+	 *
+	 * @param array $filterProperties array of filter properties, created with self::toArray()
+	 * @return void
+	 * @todo: switch to Reflection API if possibble, see workaround for kauf/miete properties
+	 */
+	public function fromArray($filterProperties) {
+		// skip TYPO3 internal properties
+		$skip = array(
+			'uid',
+			'_localizedUid',
+			'_languageUid',
+			'pid'
+		);
+
+		foreach ($filterProperties as $filterProperty => $filterPropertyValue) {
+			$filterPropertyCamelized = t3lib_div::underscoredToLowerCamelCase($filterProperty);
+
+			if (TRUE === in_array($filterProperty, $skip)
+				|| TRUE === in_array($filterPropertyCamelized, $skip)) {
+				continue;
+			}
+
+			$filterPropertySetter = 'set'. t3lib_div::underscoredToUpperCamelCase($filterProperty);
+
+			// @see http://de.php.net/manual/en/function.property-exists.php#97538
+			// for a PHP4 @see http://de.php.net/manual/en/function.property-exists.php#66969
+			// 		array_key_exists('propertyName',get_object_vars($myObj))
+			$propertyExists = isset($this->$filterPropertyCamelized) || property_exists($this, $filterPropertyCamelized);
+			$setterExists = method_exists($this, $filterPropertySetter);
+			$valueIsSet = FALSE === empty($filterPropertyValue);
+
+			if ('kauf' === $filterProperty
+				|| 'miete' === $filterProperty) {
+				$filterPropertyValue = (boolean) $filterProperty;
+			}
+
+			if ($propertyExists && $setterExists && $valueIsSet) {
+				$this->$filterPropertySetter($filterPropertyValue);
+			}
+		}
 	}
 }
 ?>

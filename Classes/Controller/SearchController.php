@@ -40,12 +40,27 @@ class Tx_Justimmo_Controller_SearchController extends Tx_Extbase_MVC_Controller_
 	protected $justimmoApiService;
 
 	/**
+	 *
+	 * @var Tx_Justimmo_Domain_Repository_RealtyRepository
+	 */
+	protected $realtyRepository;
+
+	/**
 	 * injects the justimmo API service into this controller
 	 *
 	 * @param Tx_Justimmo_Service_JustimmoApiService $justimmoApiService
 	 */
 	public function injectJustimmoApiService(Tx_Justimmo_Service_JustimmoApiService $justimmoApiService) {
 		$this->justimmoApiService = $justimmoApiService;
+	}
+
+	/**
+	 * injects the realty repository
+	 *
+	 * @param Tx_Justimmo_Domain_Repository_RealtyRepository $realtyRepository
+	 */
+	public function injectRealtyRepository(Tx_Justimmo_Domain_Repository_RealtyRepository $realtyRepository) {
+		$this->realtyRepository = $realtyRepository;
 	}
 
 	/**
@@ -68,7 +83,11 @@ class Tx_Justimmo_Controller_SearchController extends Tx_Extbase_MVC_Controller_
 	 */
 	public function quickAction(Tx_Justimmo_Domain_Model_Filter $filter = NULL) {
 		if ($filter === NULL) { // workaround for fluid bug #5636
+			/* @var $filter Tx_Justimmo_Domain_Model_Filter */
 			$filter = $this->objectManager->get('Tx_Justimmo_Domain_Model_Filter');
+
+			$this->realtyRepository->reconstituteListParameters();
+			$filter->fromArray($this->realtyRepository->getFilter());
 		}
 		$this->view->assign('filter', $filter);
 	}
@@ -88,7 +107,11 @@ class Tx_Justimmo_Controller_SearchController extends Tx_Extbase_MVC_Controller_
 	 */
 	public function detailAction(Tx_Justimmo_Domain_ModeL_Filter $filter = NULL) {
 		if ($filter === NULL) { // workaround for fluid bug #5636
+			/* @var $filter Tx_Justimmo_Domain_Model_Filter */
 			$filter = $this->objectManager->get('Tx_Justimmo_Domain_Model_Filter');
+
+			$this->realtyRepository->reconstituteListParameters();
+			$filter->fromArray($this->realtyRepository->getFilter());
 		}
 
 		$regionsInternal = $this->justimmoApiService->getRegions(

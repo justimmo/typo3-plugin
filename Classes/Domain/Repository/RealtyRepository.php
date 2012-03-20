@@ -70,11 +70,11 @@ class Tx_Justimmo_Domain_Repository_RealtyRepository implements t3lib_Singleton 
 	protected $total_count = 0;
 
 	/**
-	 * list filter query string
+	 * list filter array
 	 *
-	 * @var string
+	 * @var array
 	 */
-	protected $filter = '';
+	protected $filter = array();
 
 	/**
 	 * list filter ordering instruction
@@ -304,12 +304,21 @@ class Tx_Justimmo_Domain_Repository_RealtyRepository implements t3lib_Singleton 
 	}
 
 	/**
-	 * sets the API list filter query string
+	 * sets the API list filter array
 	 *
-	 * @param string $filter
+	 * @param array $filter
 	 */
 	public function setFilter($filter) {
 		$this->filter = $filter;
+	}
+
+	/**
+	 * returns the API list filter
+	 *
+	 * @return array
+	 */
+	public function getFilter() {
+		return $this->filter;
 	}
 
 	/**
