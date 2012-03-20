@@ -24,6 +24,10 @@
 			<label index="tx_justimmo_domain_model_filter.zimmer_bis">to</label>
 			<label index="tx_justimmo_domain_model_filter.wohnflaeche_von">Floor area</label>
 			<label index="tx_justimmo_domain_model_filter.wohnflaeche_bis">to</label>
+			<label index="tx_justimmo_domain_model_filter.nutzflaeche_von">Useful area</label>
+			<label index="tx_justimmo_domain_model_filter.nutzflaeche_bis">to</label>
+			<label index="tx_justimmo_domain_model_filter.grundflaeche_von">Ground area</label>
+			<label index="tx_justimmo_domain_model_filter.grundflaeche_bis">to</label>
 			<label index="tx_justimmo_domain_model_filter.plz_von">Zip</label>
 			<label index="tx_justimmo_domain_model_filter.plz_bis">to</label>
 			<label index="tx_justimmo_domain_model_filter.ort">City</label>
@@ -49,6 +53,10 @@
 			<label index="tx_justimmo_domain_model_filter.zimmer_bis">bis</label>
 			<label index="tx_justimmo_domain_model_filter.wohnflaeche_von">Wohnfläche</label>
 			<label index="tx_justimmo_domain_model_filter.wohnflaeche_bis">bis</label>
+			<label index="tx_justimmo_domain_model_filter.nutzflaeche_von">Nutzfläche</label>
+			<label index="tx_justimmo_domain_model_filter.nutzflaeche_bis">bis</label>
+			<label index="tx_justimmo_domain_model_filter.grundflaeche_von">Grundfläche</label>
+			<label index="tx_justimmo_domain_model_filter.grundflaeche_bis">bis</label>
 			<label index="tx_justimmo_domain_model_filter.plz_von">PLZ</label>
 			<label index="tx_justimmo_domain_model_filter.plz_bis">bis</label>
 			<label index="tx_justimmo_domain_model_filter.ort">Ort</label>

@@ -26,3 +26,23 @@ input.f3-form-error {
 	.menu-horizontal li {
 		display: inline;
 	}
+
+.checkbox-list li {
+	clear: both;
+}
+	.checkbox-list input {
+		display: inline;
+		height: 14px;
+		margin: 0 3px 0 0;
+		vertical-align: text-bottom;
+		width: 14px;
+	}
+	.checkbox-list label {
+		line-height: 1.5em;
+	}
+
+fieldset {
+	border: 0;
+	margin: 0;
+	padding: 0;
+}
