@@ -244,8 +244,9 @@ class Tx_Justimmo_Service_JustimmoApiService implements t3lib_Singleton {
 	/**
 	 * convenience method for self::getSubdivisions
 	 *
-	 * (non-PHPdoc)
-	 * @see self::getSubdivisions
+	 * @param mixed $countryIdent country identification, either the country ID or a valid ISO2 country code
+	 * @return SimpleXMLElement
+	 * @author THomas Juhnke <tommy@van-tomas.de> 
 	 */
 	public function getStates($countryIdent = NULL) {
 		return $this->getSubDivisions($countryIdent);

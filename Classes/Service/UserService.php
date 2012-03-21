@@ -159,9 +159,10 @@ class Tx_Justimmo_Service_UserService implements t3lib_Singleton, ArrayAccess {
 	 **********************************/
 
 	/**
-	 * (non PHP-doc)
-	 * 
-	 * @see ArrayAccess::offsetExists()
+	 * flags, if the given $offset exists in the user session data
+	 *
+	 * @param mixed $offset either a string or integer key
+	 * @return boolean
 	 */
 	public function offsetExists($offset) {
 		$data = $this->read();
@@ -170,9 +171,11 @@ class Tx_Justimmo_Service_UserService implements t3lib_Singleton, ArrayAccess {
 	}
 
 	/**
-	 * (non PHP-doc)
+	 * returns the given $offset from the user session data
 	 * 
-	 * @see ArrayAccess::offsetGet()
+	 * @param mixed $offset either a string or integer key
+	 * @return mixed the session data in $offset
+	 * @throws Tx_Extbase_Exception if $offset is not set
 	 */
 	public function offsetGet($offset) {
 		$data = $this->read();
@@ -185,9 +188,11 @@ class Tx_Justimmo_Service_UserService implements t3lib_Singleton, ArrayAccess {
 	}
 
 	/**
-	 * (non PHP-doc)
+	 * sets the given $value in $offset of the user session data
 	 * 
-	 * @see ArrayAccess::offsetSet()
+	 * @param mixed $offset either a string or integer key
+	 * @param mixed $value the session data payload
+	 * @return void
 	 */
 	public function offsetSet($offset, $value) {
 		$data = $this->read();
@@ -197,9 +202,11 @@ class Tx_Justimmo_Service_UserService implements t3lib_Singleton, ArrayAccess {
 	}
 
 	/**
-	 * (non PHP-doc)
-	 * 
-	 * @see ArrayAccess::offsetUnset
+	 * unsets the given $offest in the user session data
+	 *
+	 * @param mixed $offset either a string or integer key
+	 * @return void
+	 * @throws Tx_Extbase_Execption if the given offset doesn't exists in the user session data
 	 */
 	public function offsetUnset($offset) {
 		$data = $this->read();

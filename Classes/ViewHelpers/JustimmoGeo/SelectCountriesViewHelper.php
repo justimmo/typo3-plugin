@@ -35,6 +35,7 @@
 class Tx_Justimmo_ViewHelpers_JustimmoGeo_SelectCountriesViewHelper extends Tx_Fluid_ViewHelpers_Form_SelectViewHelper implements Tx_Justimmo_Core_ViewHelper_JustimmoGeoViewHelperInterface {
 
 	/**
+	 * a justimmo API service reference
 	 *
 	 * @var Tx_Justimmo_Service_JustimmoApiService
 	 */

@@ -33,15 +33,14 @@
  * @package justimmo
  * @subpackage ViewHelpers\StaticInfoTables
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
- *
  */
 class Tx_Justimmo_ViewHelpers_StaticInfoTables_SelectCountriesViewHelper extends Tx_Fluid_ViewHelpers_Form_SelectViewHelper implements Tx_Justimmo_Core_ViewHelper_StaticInfoTablesViewHelperInterface {
 	
 	/**
-	* reference to static_info_tables API
-	*
-	* @var tx_staticinfotables_pi1
-	*/
+	 * reference to static_info_tables API
+	 *
+	 * @var tx_staticinfotables_pi1
+	 */
 	protected $api;
 
 	/**
@@ -52,8 +51,9 @@ class Tx_Justimmo_ViewHelpers_StaticInfoTables_SelectCountriesViewHelper extends
 	protected $firstCountries = array();
 
 	/**
-	 * (non-PHPdoc)
-	 * @see Tx_Justimmo_Core_ViewHelper_StaticInfoTablesViewHelperInterface::injectStaticInfoTablesApiInitService()
+	 * injects the static_info_tables API service
+	 *
+	 * @param Tx_Justimmo_Service_StaticInfoTablesApiInitService $staticInfoTablesApiInitService
 	 */
 	public function injectStaticInfoTablesApiInitService(Tx_Justimmo_Service_StaticInfoTablesApiInitService $staticInfoTablesApiInitService) {
 		$this->api = $staticInfoTablesApiInitService->getApi();

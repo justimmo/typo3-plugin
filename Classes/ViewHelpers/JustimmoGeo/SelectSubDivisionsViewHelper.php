@@ -35,6 +35,7 @@
 class Tx_Justimmo_ViewHelpers_JustimmoGeo_SelectSubDivisionsViewHelper extends Tx_Fluid_ViewHelpers_Form_SelectViewHelper implements Tx_Justimmo_Core_ViewHelper_JustimmoGeoViewHelperInterface {
 
 	/**
+	 * a justimmo API service reference
 	 *
 	 * @var Tx_Justimmo_Service_JustimmoApiService
 	 */
@@ -49,6 +50,18 @@ class Tx_Justimmo_ViewHelpers_JustimmoGeo_SelectSubDivisionsViewHelper extends T
 		$this->api = $justimmoApiService;
 	}
 
+	/**
+	 * Initialize arguments.
+	 *
+	 * This method overrides the default by adding some new arguments to this
+	 * viewhelper: keyField (defines option elements key field value), countryCode
+	 * (specifies which country's sub divisions should be selected), countryId
+	 * (same as countryCode, but numeric) and includeBlank (flags if an empty
+	 * option element should be rendered on top of the option list)
+	 *
+	 * @return void
+	 * @api
+	 */
 	public function initializeArguments() {
 		parent::initializeArguments();
 

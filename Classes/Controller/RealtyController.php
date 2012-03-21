@@ -25,11 +25,16 @@
  ***************************************************************/
 
 /**
+ * controller for realty object based actions
  *
+ * This controller encapsulates the realty object base actions list (search
+ * results), order (search results ordering), paginate (search results pagination),
+ * reset (reset search results filter), show (realty objcet detail) and
+ * expose (realty object PDF download).
  *
  * @package justimmo
+ * @subpackage Controller
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
- *
  */
 class Tx_Justimmo_Controller_RealtyController extends Tx_Extbase_MVC_Controller_ActionController {
 
@@ -105,7 +110,7 @@ class Tx_Justimmo_Controller_RealtyController extends Tx_Extbase_MVC_Controller_
 	 * @param integer $id
 	 * @param integer $position
 	 * @return void
-	 * @todo do *NOT* bypass extbase's Repository/hydration functionality, change param to Tx_Justimmo_Domain_Model_Realty if possible
+	 * @todo do *NOT* bypass the Repository/hydration functionality of extbase, change param to Tx_Justimmo_Domain_Model_Realty if possible
 	 */
 	public function showAction($id = NULL, $position = NULL) {
 		if (NULL !== $id) {
@@ -142,7 +147,6 @@ class Tx_Justimmo_Controller_RealtyController extends Tx_Extbase_MVC_Controller_
 	 *
 	 * @param Tx_Justimmo_Domain_Model_Filter $filter
 	 * @return void
-	 * @todo implement reset, page, orderby params
 	 */
 	public function listAction(Tx_Justimmo_Domain_Model_Filter $filter = NULL) {
 		if (NULL !== $filter) {

@@ -25,17 +25,20 @@
  ***************************************************************/
 
 /**
+ * the realty repository
+ *
  * This repository is special because it doesn't implement extbase's default
  * persistance layer repository. This repo is querying the justimmo API service
  * layer to fetch the realty objects.
  *
  * @package justimmo
+ * @subpackage Domain\Repository
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
- *
  */
 class Tx_Justimmo_Domain_Repository_RealtyRepository implements t3lib_Singleton {
 
 	/**
+	 * a justimmo API service reference
 	 *
 	 * @var Tx_Justimmo_Service_JustimmoApiService
 	 */
@@ -91,12 +94,14 @@ class Tx_Justimmo_Domain_Repository_RealtyRepository implements t3lib_Singleton 
 	protected $repositorySettings = array();
 
 	/**
+	 * a user service reference
 	 *
 	 * @var Tx_Justimmo_Service_UserService
 	 */
 	protected $userService;
 
 	/**
+	 * a reference to the object manager
 	 *
 	 * @var Tx_Extbase_Object_ObjectManagerInterface
 	 */
@@ -243,9 +248,12 @@ class Tx_Justimmo_Domain_Repository_RealtyRepository implements t3lib_Singleton 
 	}
 
 	/**
-	 * (non-PHPdoc)
+	 * finds and returns a realty object by ID
 	 *
-	 * @see self::findById()
+	 * This is a convenience method for self::findById().
+	 *
+	 * @param integer $uid realty object id
+	 * @return Tx_Justimmo_Domain_ModelRealty
 	 */
 	public function findByUid($uid) {
 		return $this->findById($uid);

@@ -25,11 +25,15 @@
  ***************************************************************/
 
 /**
+ * filter domain object
  *
+ * The filter domain model object defines the available filters of the justimmo
+ * API service. This class must be extended if new filters become available or
+ * old ones disappear.
  *
  * @package justimmo
+ * @subpackage Domain\Model
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
- *
  */
 class Tx_Justimmo_Domain_Model_Filter extends Tx_Extbase_DomainObject_AbstractValueObject {
 
@@ -641,7 +645,7 @@ class Tx_Justimmo_Domain_Model_Filter extends Tx_Extbase_DomainObject_AbstractVa
 	 *
 	 * @param array $filterProperties array of filter properties, created with self::toArray()
 	 * @return void
-	 * @todo: switch to Reflection API if possibble, see workaround for kauf/miete properties
+	 * @todo: switch to Reflection API if possible, see workaround for kauf/miete properties
 	 */
 	public function fromArray($filterProperties) {
 		// skip TYPO3 internal properties

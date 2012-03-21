@@ -25,14 +25,17 @@
  ***************************************************************/
 
 /**
- * Basically, this model object maps the most important data from the SimpleXMLElement
- * object to some extbase/fluid compatible getters.
+ * realty domain model object
+ *
+ * Basically, this model object maps the most important data from the
+ * SimpleXMLElement object to some extbase/fluid compatible getters.
  *
  * @package justimmo
+ * @subpackage Domain\Model
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
- *
  */
 class Tx_Justimmo_Domain_Model_Realty extends Tx_Extbase_DomainObject_AbstractEntity {
+
 	/**
 	 * holds the SimpleXMLElement result object
 	 *
@@ -41,6 +44,7 @@ class Tx_Justimmo_Domain_Model_Realty extends Tx_Extbase_DomainObject_AbstractEn
 	protected $xml;
 
 	/**
+	 * holds the position of the realty in the list of realty objects of the current API query
 	 *
 	 * @var integer
 	 */
@@ -80,50 +84,134 @@ class Tx_Justimmo_Domain_Model_Realty extends Tx_Extbase_DomainObject_AbstractEn
 
 	/* list information getters - START */
 
+	/**
+	 * returns the ID
+	 *
+	 *Only available in the search results list view
+	 *
+	 * @return integer
+	 */
 	public function getId() {
-		return (int) $this->xml->id;
+		return (integer) $this->xml->id;
 	}
 
+	/**
+	 * returns the object number
+	 *
+	 * Only available in the search results view
+	 *
+	 * @return integer
+	 */
 	public function getObjektnummer() {
-		return (int) $this->xml->objektnummer;
+		return (integer) $this->xml->objektnummer;
 	}
 
+	/**
+	 * returns the title
+	 *
+	 * Only available in the search results view
+	 *
+	 * @return string
+	 */
 	public function getTitel() {
 		return (string) $this->xml->titel;
 	}
 
+	/**
+	 * returns the object description
+	 *
+	 * Only available in the search results view
+	 *
+	 * @return string
+	 */
 	public function getObjektbeschreibung() {
 		return (string) $this->xml->objektbeschreibung;
 	}
 
+	/**
+	 * returns amount of rooms
+	 *
+	 * Only available in search results view
+	 *
+	 * @return integer
+	 */
 	public function getAnzahl_zimmer() {
-		return (int) $this->xml->anzahl_zimmer;
+		return (integer) $this->xml->anzahl_zimmer;
 	}
 
+	/**
+	 * returns the zip code
+	 *
+	 * Only available in search results view
+	 *
+	 * @return string
+	 */
 	public function getPlz() {
 		return (string) $this->xml->plz;
 	}
 
+	/**
+	 * returns the city
+	 *
+	 * Only available in search results view
+	 *
+	 * @return string
+	 */
 	public function getOrt() {
 		return (string) $this->xml->ort;
 	}
 
+	/**
+	 * returns the purchase price
+	 *
+	 * Only available in search results view
+	 *
+	 * @return float
+	 */
 	public function getKaufpreis() {
 		return (float) $this->xml->kaufpreis;
 	}
 
+	/**
+	 * returns total rental fee
+	 *
+	 * Only available in search results view
+	 *
+	 * @return float
+	 */
 	public function getGesamtmiete() {
 		return (float) $this->xml->gesamtmiete;
 	}
 
+	/**
+	 * returns living space
+	 *
+	 * Only available in search results view
+	 *
+	 * @return float
+	 */
 	public function getWohnflaeche() {
 		return (float) $this->xml->wohnflaeche;
 	}
 
+	/**
+	 * returns usable area
+	 *
+	 * Only available in search results view
+	 *
+	 * @return float
+	 */
 	public function getNutzflaeche() {
 		return (float) $this->xml->nutzflaeche;
 	}
 
+	/**
+	 * returns the path of the first image
+	 *
+	 * Only available in search results view
+	 *
+	 * @return string
+	 */
 	public function getErstes_bild() {
 		return (string) $this->xml->erstes_bild;
 	}
@@ -132,10 +220,24 @@ class Tx_Justimmo_Domain_Model_Realty extends Tx_Extbase_DomainObject_AbstractEn
 
 	/* detail information getters - START */
 
+	/**
+	 * returns amount of attachments (images)
+	 *
+	 * Only available in detail view
+	 *
+	 * @return integer
+	 */
 	public function getNbAnhaenge() {
 		return count((array) $this->xml->anhaenge);
 	}
 
+	/**
+	 * returns a normalized version of the attachment (images) objects
+	 * 
+	 * Only available in detail view
+	 *
+	 * @return array
+	 */
 	public function getAnhaenge() {
 		$anhaengeInternal = (array) $this->xml->anhaenge;
 
@@ -156,10 +258,24 @@ class Tx_Justimmo_Domain_Model_Realty extends Tx_Extbase_DomainObject_AbstractEn
 		return $anhaenge;
 	}
 
+	/**
+	 * returns amount of documents (PDF files etc.)
+	 *
+	 * Only available in detail view
+	 *
+	 * @return integer
+	 */
 	public function getNbDokumente() {
 		return count((array) $this->xml->dokumente);
 	}
 
+	/**
+	 * returns documents a normalized version of document objects
+	 *
+	 * Only available in detail view
+	 *
+	 * @return array
+	 */
 	public function getDokumente() {
 		$dokumenteInternal = (array) $this->xml->dokumente;
 
@@ -172,10 +288,24 @@ class Tx_Justimmo_Domain_Model_Realty extends Tx_Extbase_DomainObject_AbstractEn
 		return $dokumente;
 	}
 
+	/**
+	 * returns the object type in string representation
+	 *
+	 * Only available in detail view
+	 *
+	 * @return string
+	 */
 	public function getObjektart() {
 		return (string) $this->xml->objektkategorie->objektart->children()->getName();
 	}
 
+	/**
+	 * returns the normalized object type string representation
+	 *
+	 * Only available in detail view
+	 *
+	 * @return string either "Haus" or "Wohnung"
+	 */
 	public function getObjektartNormalized() {
 		$internalType = $this->getObjektart();
 
@@ -193,34 +323,91 @@ class Tx_Justimmo_Domain_Model_Realty extends Tx_Extbase_DomainObject_AbstractEn
 		return $type;
 	}
 
+	/**
+	 * returns the amount of usage types
+	 *
+	 * Only available in detail view
+	 *
+	 * @return integer
+	 */
 	public function getNbNutzungsart() {
-		return (int) count($this->xml->objektkategorie->nutzungsart);
+		return (integer) count($this->xml->objektkategorie->nutzungsart);
 	}
 
+	/**
+	 * flags, if the usage type is set to "WOHNEN"
+	 *
+	 * Only available in detail view
+	 *
+	 * @return boolean
+	 */
 	public function getIsNutzungsartWohnen() {
 		return $this->xml->objektkategorie->nutzungsart['WOHNEN'] == 1;
 	}
 
+	/**
+	 * flags, if the usage type is set to "GEWERBE"
+	 *
+	 * Only available in detail view
+	 *
+	 * @return boolean
+	 */
 	public function getIsNutzungsartGewerbe() {
 		return $this->xml->objektkategorie->nutzungsart['GEWERBE'] == 1;
 	}
 
+	/**
+	 * flags, if the usage type is set to "ANLAGE"
+	 *
+	 * Only available in detail view
+	 *
+	 * @return boolean
+	 */
 	public function getIsNutzungsartAnlage() {
 		return $this->xml->objektkategorie->nutzungsart['ANLAGE'] == 1;
 	}
 
+	/**
+	 * returns the external object number from "verwaltung_techn" information array
+	 *
+	 * Only available in detail view
+	 *
+	 * @return string
+	 */
 	public function getObjektnrExtern() {
 		return (string) $this->xml->verwaltung_techn->objektnr_extern;
 	}
 
-	public function getObjektNrIntern() {
+	/**
+	 * returns the internal object number from "verwaltung_techn" information array
+	 *
+	 * Only available in detail view
+	 *
+	 * @return string
+	 */
+	public function getObjektnrIntern() {
 		return (string) $this->xml->verwaltung_techn->objektnr_intern;
 	}
 
+	/**
+	 * returns the normalized price information array
+	 *
+	 * Only available in detail view
+	 *
+	 * @return array
+	 */
 	public function getPreise() {
 		return (array) $this->xml->preise;
 	}
 
+	/**
+	 * returns the net rent
+	 *
+	 * Only available in detail view. First checks if the "nettokaltmiete" property
+	 * is available. If not, fallback to "kaltmiete" property.
+	 *
+	 * @return float
+	 */
 	public function getNettomiete() {
 		$returnValue = 0.0;
 
@@ -233,6 +420,14 @@ class Tx_Justimmo_Domain_Model_Realty extends Tx_Extbase_DomainObject_AbstractEn
 		return $returnValue;
 	}
 
+	/**
+	 * flags if the equipment features property is available
+	 *
+	 * Only available in detail view
+	 *
+	 * @param integer $minimumLength defines how many chars the equipment features string must consist of
+	 * @return boolean
+	 */
 	public function getHasAusstattungsBeschreibung($minimumLength = 2) {
 		if (strlen(trim($this->xml->freitexte->ausstatt_beschr)) > $minimumLength) {
 			return TRUE;
@@ -241,38 +436,101 @@ class Tx_Justimmo_Domain_Model_Realty extends Tx_Extbase_DomainObject_AbstractEn
 		return FALSE;
 	}
 
+	/**
+	 * flags, if the "tel_zentrale" property is set in the "kontaktperson" information array
+	 *
+	 * Only available in detail view
+	 *
+	 * @return boolean
+	 */
 	public function getHasTelefonZentrale() {
 		return ($this->xml->kontaktperson->tel_zentrale && $this->xml->kontaktperson->tel_zentrale != 0);
 	}
 
+	/**
+	 * flags if the "tel_handy" property is set in the "kontaktperson" information array
+	 *
+	 * Only available in detail view
+	 *
+	 * @return boolean
+	 */
 	public function getHasTelefonHandy() {
 		return ($this->xml->kontaktperson->tel_handy && $this->xml->kontaktperson->tel_handy != 0);
 	}
 
+	/**
+	 * flags if the "tel_fax" property is set in the "kontaktperson" information array
+	 *
+	 * Only available in detail view
+	 *
+	 * @return boolean
+	 */
 	public function getHasFax() {
 		return ($this->xml->kontaktperson->tel_fax && $this->xml->kontaktperson->tel_fax != 0);
 	}
 
+	/**
+	 * returns a normalized geo information array
+	 *
+	 * Only available in detail view
+	 *
+	 * @return array
+	 */
 	public function getGeo() {
 		return (array) $this->xml->geo;
 	}
 
+	/**
+	 * returns a normalized "free texts" information array
+	 *
+	 * Only available in detail view
+	 *
+	 * @return array
+	 */
 	public function getFreitexte() {
 		return (array) $this->xml->freitexte;
 	}
 
+	/**
+	 * returns a normalized information array about the realty object's state
+	 * 
+	 * Only available in detail view
+	 *
+	 * @return array
+	 */
 	public function getZustand_angaben() {
 		return (array) $this->xml->zustand_angaben;
 	}
 
+	/**
+	 * returns a normalized information array about the realty's areas
+	 *
+	 * Only available in detail view
+	 *
+	 * @return array
+	 */
 	public function getFlaechen() {
 		return (array) $this->xml->flaechen;
 	}
 
+	/**
+	 * returns a normalized information array about the realty's contact person
+	 *
+	 * Only available in detail view
+	 *
+	 * @return array
+	 */
 	public function getKontaktperson() {
 		return (array) $this->xml->kontaktperson;
 	}
 
+	/**
+	 * returns a normalized information array about the "verwaltung_techn" property
+	 *
+	 * Only available in detail view
+	 *
+	 * @return array
+	 */
 	public function getVerwaltung_techn() {
 		return (array) $this->xml->verwaltung_techn;
 	}

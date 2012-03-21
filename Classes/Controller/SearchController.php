@@ -25,21 +25,26 @@
  ***************************************************************/
 
 /**
+ * controller for search view based actions
  *
+ * This controller encapsulates the different search views (realty number, quick,
+ * detail)
  *
  * @package justimmo
+ * @subpackage Controller
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
- *
  */
 class Tx_Justimmo_Controller_SearchController extends Tx_Extbase_MVC_Controller_ActionController {
 
 	/**
+	 * holds the justimmo API service
 	 *
 	 * @var Tx_Justimmo_Service_JustimmoApiService
 	 */
 	protected $justimmoApiService;
 
 	/**
+	 * the realty repository
 	 *
 	 * @var Tx_Justimmo_Domain_Repository_RealtyRepository
 	 */
@@ -105,7 +110,7 @@ class Tx_Justimmo_Controller_SearchController extends Tx_Extbase_MVC_Controller_
 	 * @dontvalidate $filter
 	 * @return void
 	 */
-	public function detailAction(Tx_Justimmo_Domain_ModeL_Filter $filter = NULL) {
+	public function detailAction(Tx_Justimmo_Domain_Model_Filter $filter = NULL) {
 		if ($filter === NULL) { // workaround for fluid bug #5636
 			/* @var $filter Tx_Justimmo_Domain_Model_Filter */
 			$filter = $this->objectManager->get('Tx_Justimmo_Domain_Model_Filter');
