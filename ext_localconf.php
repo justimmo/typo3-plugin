@@ -29,18 +29,6 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 
 Tx_Extbase_Utility_Extension::configurePlugin(
 	$_EXTKEY,
-	'DirectSearch',
-	array(
-		'Search' => 'direct',
-	),
-	// non-cacheable actions
-	array(
-		'Search' => 'direct',
-	)
-);
-
-Tx_Extbase_Utility_Extension::configurePlugin(
-	$_EXTKEY,
 	'DetailSearch',
 	array(
 		'Search' => 'detail',

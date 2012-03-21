@@ -69,6 +69,43 @@ class Tx_Justimmo_Controller_SearchController extends Tx_Extbase_MVC_Controller_
 	}
 
 	/**
+	 * A special action which is called if the originally intended action could
+	 * not be called, for example if the arguments were not valid.
+	 *
+	 * The default implementation sets a flash message, request errors and forwards back
+	 * to the originating action. This is suitable for most actions dealing with form input.
+	 *
+	 * We clear the page cache by default on an error as well, as we need to make sure the
+	 * data is re-evaluated when the user changes something.
+	 *
+	 * @return string
+	 * @api
+	 */
+	protected function errorAction() {
+		$this->request->setErrors($this->argumentsMappingResults->getErrors());
+		$this->clearCacheOnError();
+
+		$errorFlashMessage = $this->getErrorFlashMessage();
+		if ($errorFlashMessage !== FALSE) {
+			$this->flashMessages->add($errorFlashMessage, '', t3lib_FlashMessage::ERROR);
+		}
+
+		if ($this->request->hasArgument('__referrer')) {
+			$referrer = $this->request->getArgument('__referrer');
+			$this->forward($referrer['actionName'], $referrer['controllerName'], $referrer['extensionName'], $this->request->getArguments());
+		}
+
+		$message = 'An error occurred while trying to call ' . get_class($this) . '->' . $this->actionMethodName . '().' . PHP_EOL;
+		foreach ($this->argumentsMappingResults->getErrors() as $error) {
+			$message .= 'Error:   ' . $error->getMessage() . PHP_EOL;
+		}
+		foreach ($this->argumentsMappingResults->getWarnings() as $warning) {
+			$message .= 'Warning: ' . $warning->getMessage() . PHP_EOL;
+		}
+		return $message;
+	}
+
+	/**
 	 * reflects the realty number search
 	 *
 	 * @param Tx_Justimmo_Domain_Model_Filter $filter
@@ -95,12 +132,6 @@ class Tx_Justimmo_Controller_SearchController extends Tx_Extbase_MVC_Controller_
 			$filter->fromArray($this->realtyRepository->getFilter());
 		}
 		$this->view->assign('filter', $filter);
-	}
-
-	/**
-	 * reflects the direct links search
-	 */
-	public function directAction() {
 	}
 
 	/**
@@ -131,3 +162,4 @@ class Tx_Justimmo_Controller_SearchController extends Tx_Extbase_MVC_Controller_
 		$this->view->assign('regions', $regions);
 	}
 }
+?>

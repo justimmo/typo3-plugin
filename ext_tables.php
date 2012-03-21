@@ -17,12 +17,6 @@ Tx_Extbase_Utility_Extension::registerPlugin(
 
 Tx_Extbase_Utility_Extension::registerPlugin(
 	$_EXTKEY,
-	'DirectSearch',
-	'LLL:EXT:justimmo/Resources/Private/Language/locallang.xml:plugin.name.direct_links'
-);
-
-Tx_Extbase_Utility_Extension::registerPlugin(
-	$_EXTKEY,
 	'DetailSearch',
 	'LLL:EXT:justimmo/Resources/Private/Language/locallang.xml:plugin.name.detail_search'
 );

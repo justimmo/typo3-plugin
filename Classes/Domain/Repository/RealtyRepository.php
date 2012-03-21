@@ -161,6 +161,10 @@ class Tx_Justimmo_Domain_Repository_RealtyRepository implements t3lib_Singleton 
 		$this->max_per_page = $this->defaults['max_per_page'];
 
 		$this->reconstituteListParameters();
+
+		if ($this->repositorySettings['resetFilterOnInit']) {
+			$this->resetFilter();
+		}
 	}
 
 	/**
