@@ -153,6 +153,8 @@ class Tx_Justimmo_Domain_Repository_RealtyRepository implements t3lib_Singleton 
 	public function initializeObject() {
 		$this->defaults = $this->repositorySettings['defaults'];
 
+		$this->max_per_page = $this->defaults['max_per_page'];
+
 		$this->reconstituteListParameters();
 	}
 

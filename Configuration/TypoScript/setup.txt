@@ -26,7 +26,134 @@ plugin.tx_justimmo {
 
 		realtyRepository {
 			defaults {
-				// define your defaults here...
+				// define your filter defaults here...
+				filter {
+				}
+
+				max_per_page = {$plugin.tx_justimmo.settings.realtyRepository.defaults.max_per_page}
+			}
+		}
+
+		directSearch {
+			10 = TEXT
+			10 {
+				value = Alle Immobilien
+				lang.en = All realties
+
+				typolink {
+					parameter = {$plugin.tx_justimmo.settings.searchResultsPid}
+					useCacheHash = 1
+					additionalParams = &tx_justimmo_searchresults[controller]=Realty&tx_justimmo_searchresults[action]=reset
+				}
+			}
+
+			// @note: the following does not work, because of missing __hmac parameter
+			// I'd suggest the following approach:
+			/*
+				1. create a target page for every direct link
+				2. insert an TypoScript extension template record on every of these pages
+				3. setup the default filters in plugin.tx_justimmo.settings.eraltyRepository.defaults.filter
+			*/
+
+			20  = TEXT
+			20 {
+				value = Wohnungen
+				lang.en = Flats
+
+				typolink {
+					parameter = {$plugin.tx_justimmo.settings.searchResultsPid}
+					useCacheHash = 1
+
+					additionalParams = &tx_justimmo_searchresults[controller]=Realty&tx_justimmo_searchresults[action]=list
+					// @note: config.uniqueLinkVars must be set to 0 to make this work
+					additionalParams.append = COA
+					additionalParams.append {
+						10 = TEXT
+						10.value = &tx_justimmo_searchresults[filter][objektartId][]=1
+						20 = TEXT
+						20.value = &tx_justimmo_searchresults[filter][objektartId][]=2
+					}
+				}
+			}
+			30  = TEXT
+			30 {
+				value = Häuser
+				lang.en = Houses
+
+				typolink {
+					parameter = {$plugin.tx_justimmo.settings.searchResultsPid}
+					useCacheHash = 1
+
+					additionalParams = &tx_justimmo_searchresults[controller]=Realty&tx_justimmo_searchresults[action]=list
+					additionalParams.append = COA
+					additionalParams.append {
+						10 = TEXT
+						10.value = &tx_justimmo_searchresults[filter][objektartId][]=3
+					}
+				}
+			}
+			40 = TEXT
+			40 {
+				value = Grundstücke
+				lang.en = real estate property
+
+				typolink {
+					parameter = {$plugin.tx_justimmo.settings.searchResultsPid}
+					useCacheHash = 1
+
+					additionalParams = &tx_justimmo_searchresults[controller]=Realty&tx_justimmo_searchresults[action]=list
+					additionalParams.append = COA
+					additionalParams.append {
+						10 = TEXT
+						10.value = &tx_justimmo_searchresults[filter][objektartId][]=4
+					}
+				}
+			}
+			50 = TEXT
+			50 {
+				value = Gewerbeimmobilien
+				lang.en = Commercial property
+
+				typolink {
+					parameter = {$plugin.tx_justimmo.settings.searchResultsPid}
+					useCacheHash = 1
+
+					additionalParams = &tx_justimmo_searchresults[controller]=Realty&tx_justimmo_searchresults[action]=list
+					additionalParams.append = COA
+					additionalParams.append {
+						10 = TEXT
+						10.value = &tx_justimmo_searchresults[filter][objektartId][]=5
+						20 = TEXT
+						20.value = &tx_justimmo_searchresults[filter][objektartId][]=6
+						30 = TEXT
+						30.value = &tx_justimmo_searchresults[filter][objektartId][]=7
+						40 = TEXT
+						40.value = &tx_justimmo_searchresults[filter][objektartId][]=8
+						50 = TEXT
+						50.value = &tx_justimmo_searchresults[filter][objektartId][]=11
+						60 = TEXT
+						60.value = &tx_justimmo_searchresults[filter][objektartId][]=18
+					}
+				}
+			}
+			60 = TEXT
+			60 {
+				value = Anlageobjekte
+				lang.en = investment property
+
+				typolink {
+					parameter = {$plugin.tx_justimmo.settings.searchResultsPid}
+					useCacheHash = 1
+
+					additionalParams = &tx_justimmo_searchresults[controller]=Realty&tx_justimmo_searchresults[action]=list
+					additionalParams.append = COA
+					additionalParams.append {
+						10 = TEXT
+						10.value = &filter[objektartId]=19
+						20 = TEXT
+						20.value = &filter[objektartId]=12
+					}
+				}
 			}
 		}
 	}
