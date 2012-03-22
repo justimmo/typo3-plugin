@@ -274,10 +274,15 @@ class Tx_Justimmo_Domain_Model_Filter extends Tx_Extbase_DomainObject_AbstractVa
 	/**
 	 * Sets the preisVon
 	 *
-	 * @param float $preisVon
+	 * The input param is of string type because it can be an arbitrary formatted
+	 * string. See self::normalizePriceValue() for further information.
+	 *
+	 * @param string $preisVon
 	 * @return void
 	 */
 	public function setPreisVon($preisVon) {
+		$preisVon = $this->normalizePriceValue($preisVon);
+
 		$this->preisVon = $preisVon;
 	}
 
@@ -293,10 +298,15 @@ class Tx_Justimmo_Domain_Model_Filter extends Tx_Extbase_DomainObject_AbstractVa
 	/**
 	 * Sets the preisBis
 	 *
-	 * @param float $preisBis
+	 * The input param is of string type because it can be an arbitrary formatted
+	 * string. See self::normalizePriceValue() for further information.
+	 * 
+	 * @param string $preisBis
 	 * @return void
 	 */
 	public function setPreisBis($preisBis) {
+		$preisBis = $this->normalizePriceValue($preisBis);
+
 		$this->preisBis = $preisBis;
 	}
 
@@ -601,6 +611,86 @@ class Tx_Justimmo_Domain_Model_Filter extends Tx_Extbase_DomainObject_AbstractVa
 	 */
 	public function setObjektartId($objektartId) {
 		$this->objektartId = $objektartId;
+	}
+
+	/**
+	 * noramlizes price value input data
+	 *
+	 * Performs some normalization for arbitrary formatted (in eaning of i18n/l10n)
+	 * price value input. Therefore, the $priceValue parameter is of mixed type as
+	 * this can be a string or some other scalar value.
+	 * 
+	 * @param mixed $priceValue
+	 * @return float
+	 * @throws Tx_Extbase_MVC_Exception_InvalidArgumentType
+	 */
+	protected function normalizePriceValue($priceValue) {
+		$isBoolean = is_bool($priceValue);
+		$isNull = NULL === $priceValue;
+		$isZero = (TRUE === is_numeric($priceValue) && 0 === (integer) $priceValue);
+
+		if ($isBoolean || $isNull || $isZero) {
+			$priceValue = 0.0;
+		}
+
+		$isInteger = TRUE === is_integer($priceValue);
+
+		if ($isInteger) {
+			$priceValue = (float) $priceValue;
+		}
+
+		if (FALSE === is_scalar($priceValue)) {
+			throw new Tx_Extbase_MVC_Exception_InvalidArgumentType('Expecting a scalar value here, but ' . gettype($priceValue)  . ' was passed.', 1332446296);
+		}
+
+		$foundDelimiter = FALSE;
+		if (FALSE === is_float($priceValue)) {
+			// check if it's a negative value
+			$isNegative = '-' === substr(trim($priceValue), 0, 1) ? TRUE : FALSE;
+			// remove all non-numerical data, but leave possible decimal and thousands separators intact
+			$priceValue = $this->cleanPriceValue($priceValue);
+			// find all delimiters
+			$delimiterList = array();
+			preg_match_all('/[^0-9]/', $priceValue, $delimiterList, PREG_OFFSET_CAPTURE);
+
+			$foundDelimiter = 0 < count($delimiterList[0]);
+
+			// cache separator character [0] and position [1]
+			$decimalSeparatorInfo = array_pop($delimiterList[0]);
+
+			$decimalPrefix = '';
+			if (isset($decimalSeparatorInfo[1])) {
+				$decimalPrefix = substr($priceValue, 0, $decimalSeparatorInfo[1]);
+				$decimalPrefix = $this->cleanPriceValue($decimalPrefix, FALSE);
+				$decimalPrefix .= '.';
+			}
+			$decimalSuffix = substr($priceValue, $decimalSeparatorInfo[1]);
+			$decimalSuffix = $this->cleanPriceValue($decimalSuffix, FALSE);
+
+			// finally, re-build price value & convert to float value
+			$priceValue = $decimalPrefix . $decimalSuffix;
+			$priceValue = $isNegative ? (-1 * (float) $priceValue) : (float) $priceValue;
+		}
+
+		return $priceValue;
+	}
+
+	/**
+	 * cleans a price value
+	 *
+	 * This method cleans up a price value. In it's first form it leaves all
+	 * possible decimal and thousands separators intact. Set $leaveSeparatorsIntact
+	 * to FALSE if you want to strip out all non-numerical characters.
+	 *
+	 * @param mixed $priceValue
+	 * @param boolean $leaveSeparatorsIntact flags if possible decimal and thousands separators should be left intact
+	 * @return mixed
+	 */
+	protected function cleanPriceValue($priceValue, $leaveSeparatorsIntact = TRUE) {
+		// @todo: add arabic thousands separator: U+066C to "if" branch
+		// @todo: add arabic decimal separator: U+066B to "if" branch
+		$pattern = (TRUE === $leaveSeparatorsIntact) ? '/[^0-9,\.\'\'\`]/' : '/[^0-9]/';
+		return preg_replace($pattern, '', $priceValue);
 	}
 
 	/**

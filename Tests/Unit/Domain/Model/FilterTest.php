@@ -42,8 +42,40 @@ class Tx_Justimmo_Domain_Model_FilterTest extends Tx_Extbase_Tests_Unit_BaseTest
 	 */
 	protected $fixture;
 
+	/**
+	 * an array of price values
+	 *
+	 * Second array level, where value at index 0 is input value, index 1 is expected output value
+	 *
+	 * @var array
+	 */
+	protected $validPriceValues;
+
 	public function setUp() {
 		$this->fixture = new Tx_Justimmo_Domain_Model_Filter();
+
+		$this->priceValues = array(
+			array('1.234,56', 1234.56),
+			array('0', (float) 0),
+			array('100.000.123,75', 100000123.75),
+			array('10\'000.2', 10000.2),
+			array(1.23, 1.23),
+			array(1.23456789, 1.23456789),
+			array(+123.45, 123.45),
+			array(-123.45, -123.45),
+			array('+123,45', 123.45),
+			array('-123,4567', -123.4567),
+			array('1230,5 €', 1230.5),
+			array('$ 1,000.23', 1000.23),
+			array(100, (float) 100),
+			array('12345', (float) 12345),
+			array(NULL, (float) 0),
+			array(FALSE, (float) 0),
+			array(TRUE, (float) 0),
+			array('arbitrary string value', (float) 0),
+			array('1234,56-', 1234.56),
+			array('$(%)§?µ', (float) 0)
+		);
 	}
 
 	public function tearDown() {
@@ -159,7 +191,32 @@ class Tx_Justimmo_Domain_Model_FilterTest extends Tx_Extbase_Tests_Unit_BaseTest
 			$this->fixture->getPreisVon()
 		);
 	}
-	
+
+	/**
+	 * @test
+	 */
+	public function setPreisVonValueForValidPriceValueSetsPreisVon() {
+		$i = 0;
+		foreach ($this->priceValues as $priceValue) {
+			$inputValue = $priceValue[0];
+			$outputValue = $priceValue[1];
+			$this->fixture->setPreisVon($inputValue);
+
+			$expectedValue = $this->fixture->getPreisVon();
+			$this->assertSame(
+				$outputValue, 
+				$expectedValue, 
+				sprintf("%s input (%s), %s was expected, but %s was returned",
+					var_export($inputValue, true),
+					$i,
+					var_export($outputValue, true),
+					var_export($expectedValue, true)
+				)
+			);
+			$i++;
+		}
+	}
+
 	/**
 	 * @test
 	 */
