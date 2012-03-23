@@ -141,11 +141,12 @@ class Tx_Justimmo_Service_JustimmoApiService implements t3lib_Singleton {
 	 * @param array $params API endpoint parameters
 	 * @param array $filter API endpoint filter configuration
 	 * @param string $orderby a valid API endpoint ordering key (e.g. "ort", "land" etc.)
+	 * @param string $orderDirection a valid order directrion string, either "asc" or "desc"
 	 * @param integer $offset sets the offset of the list (for paging)
 	 * @param integer $limit limits the return realty objects
 	 * @return SimpleXMLElement
 	 */
-	public function getList($params = array(), $filter = array(), $orderby = NULL, $offset = 0, $limit = 0) {
+	public function getList($params = array(), $filter = array(), $orderby = NULL, $ordertype = 'asc', $offset = 0, $limit = 0) {
 		if (is_array($filter)) {
 			foreach ($filter as $key => $value) {
 				if (is_array($value)) {
@@ -161,6 +162,8 @@ class Tx_Justimmo_Service_JustimmoApiService implements t3lib_Singleton {
 		if ($orderby) {
 			$params[] = 'orderby=' . $orderby;
 		}
+
+		$params[] = 'ordertype=' . $ordertype;
 
         if ($offset) {
 			$params[] = 'offset=' . $offset;

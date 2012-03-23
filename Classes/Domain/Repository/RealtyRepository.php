@@ -87,6 +87,13 @@ class Tx_Justimmo_Domain_Repository_RealtyRepository implements t3lib_Singleton 
 	protected $orderby = '';
 
 	/**
+	 * list filter order direction
+	 *
+	 * @param string
+	 */
+	protected $ordertype = 'asc';
+
+	/**
 	 * repository settings
 	 *
 	 * @var array
@@ -181,6 +188,7 @@ class Tx_Justimmo_Domain_Repository_RealtyRepository implements t3lib_Singleton 
 
 		$this->filter = $list_params['filter'];
 		$this->orderby = $list_params['orderby'];
+		$this->ordertype = $list_params['ordertype'];
 
 		if (isset($list_params['page'])) {
 			$this->page = $list_params['page'];
@@ -201,6 +209,7 @@ class Tx_Justimmo_Domain_Repository_RealtyRepository implements t3lib_Singleton 
 			'filter' => $this->filter,
 			'page' => $this->page,
 			'orderby' => $this->orderby,
+			'ordertype' => $this->ordertype,
 			'total_count' => $this->total_count
 		);
 
@@ -221,6 +230,7 @@ class Tx_Justimmo_Domain_Repository_RealtyRepository implements t3lib_Singleton 
 			array(),
 			$this->filter,
 			$this->orderby,
+			$this->ordertype,
 			$this->max_per_page * ($this->page - 1),
 			$this->max_per_page
 		);
@@ -274,6 +284,7 @@ class Tx_Justimmo_Domain_Repository_RealtyRepository implements t3lib_Singleton 
 			array(),
 			$this->filter,
 			$this->orderby,
+			$this->ordertype,
 			$position - 1,
 			1
 		);
@@ -358,6 +369,15 @@ class Tx_Justimmo_Domain_Repository_RealtyRepository implements t3lib_Singleton 
 	 */
 	public function setOrderBy($orderby) {
 		$this->orderby = $orderby;
+	}
+
+	/**
+	 * sets the order direction
+	 *
+	 * @param string $ordertype either "asc" or "desc"
+	 */
+	public function setOrderType($ordertype) {
+		$this->ordertype = $ordertype;
 	}
 
 	/**
