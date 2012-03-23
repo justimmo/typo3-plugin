@@ -4,16 +4,64 @@
 
 <div class="tx_justimmo_list_sortcontrols">
 	Sortieren nach:
-	<f:link.action controller="Realty" action="order" arguments="{ order: 'ort' }">Ort</f:link.action>
-	<f:image src="EXT:justimmo/Resources/Public/Icons/up_arrow.gif" width="9" height="9" alt="Aufsteigend sortieren nach Ort" /> |
-	<f:link.action controller="Realty" action="order" arguments="{ order: 'kaufpreis' }">Kaufpreis</f:link.action>
-	<f:image src="EXT:justimmo/Resources/Public/Icons/up_arrow.gif" width="9" height="9" alt="Aufsteigend sortieren nach Kaufpreis" /> |
-	<f:link.action controller="Realty" action="order" arguments="{ order: 'gesamtmiete' }">Miete</f:link.action>
-	<f:image src="EXT:justimmo/Resources/Public/Icons/up_arrow.gif" width="9" height="9" alt="Aufsteigend sortieren nach Miete" /> |
-	<f:link.action controller="Realty" action="order" arguments="{ order: 'wohnflaeche' }">Fläche</f:link.action>
-	<f:image src="EXT:justimmo/Resources/Public/Icons/up_arrow.gif" width="9" height="9" alt="Aufsteigend sortieren nach Fläche" /> |
-	<f:link.action controller="Realty" action="order" arguments="{ order: 'zimmer' }">Zimmer</f:link.action>
-	<f:image src="EXT:justimmo/Resources/Public/Icons/up_arrow.gif" width="9" height="9" alt="Aufsteigend sortieren nach Zimmer" /> |
-	<f:link.action controller="Realty" action="order" arguments="{ order: 'plz' }">PLZ</f:link.action>
-	<f:image src="EXT:justimmo/Resources/Public/Icons/up_arrow.gif" width="9" height="9" alt="Aufsteigend sortieren nach PLZ" />
+	<f:if condition="{order.isOrderedByOrt}">
+		<f:then>
+			<f:link.action controller="Realty" action="order" arguments="{ order: { value: 'ort', direction: order.oppositeDirection } }">Ort</f:link.action>
+			<f:image src="EXT:justimmo/Resources/Public/Icons/{order.direction}_arrow.gif" width="9" height="9" alt="Sortieren nach Ort" /> |
+		</f:then>
+		<f:else>
+			<f:link.action controller="Realty" action="order" arguments="{ order: { value: 'ort', direction: 'asc' } }">Ort</f:link.action>
+			<f:image src="EXT:justimmo/Resources/Public/Icons/asc_arrow.gif" width="9" height="9" alt="Sortieren nach Ort" /> |
+		</f:else>
+	</f:if>
+	<f:if condition="{order.isOrderedByKaufpreis}">
+		<f:then>
+			<f:link.action controller="Realty" action="order" arguments="{ order: { value: 'kaufpreis', direction: order.oppositeDirection } }">Kaufpreis</f:link.action>
+			<f:image src="EXT:justimmo/Resources/Public/Icons/{order.direction}_arrow.gif" width="9" height="9" alt="Sortieren nach Kaufpreis" /> |
+		</f:then>
+		<f:else>
+			<f:link.action controller="Realty" action="order" arguments="{ order: { value: 'kaufpreis', direction: 'asc' } }">Kaufpreis</f:link.action>
+			<f:image src="EXT:justimmo/Resources/Public/Icons/asc_arrow.gif" width="9" height="9" alt="Sortieren nach Kaufpreis" /> |
+		</f:else>
+	</f:if>
+	<f:if condition="{order.isOrderedByGesamtmiete}">
+		<f:then>
+			<f:link.action controller="Realty" action="order" arguments="{ order: { value: 'gesamtmiete', direction: order.oppositeDirection } }">Miete</f:link.action>
+			<f:image src="EXT:justimmo/Resources/Public/Icons/{order.direction}_arrow.gif" width="9" height="9" alt="Sortieren nach Miete" /> |
+		</f:then>
+		<f:else>
+			<f:link.action controller="Realty" action="order" arguments="{ order: { value: 'gesamtmiete', direction: 'asc' } }">Miete</f:link.action>
+			<f:image src="EXT:justimmo/Resources/Public/Icons/asc_arrow.gif" width="9" height="9" alt="Sortieren nach Miete" /> |
+		</f:else>
+	</f:if>
+	<f:if condition="{order.isOrderedByWohnflaeche}">
+		<f:then>
+			<f:link.action controller="Realty" action="order" arguments="{ order: { value: 'wohnflaeche', direction: order.oppositeDirection } }">Fläche</f:link.action>
+			<f:image src="EXT:justimmo/Resources/Public/Icons/{order.direction}_arrow.gif" width="9" height="9" alt="Sortieren nach Fläche" /> |
+		</f:then>
+		<f:else>
+			<f:link.action controller="Realty" action="order" arguments="{ order: { value: 'wohnflaeche', direction: 'asc' } }">Fläche</f:link.action>
+			<f:image src="EXT:justimmo/Resources/Public/Icons/asc_arrow.gif" width="9" height="9" alt="Sortieren nach Fläche" /> |
+		</f:else>
+	</f:if>
+	<f:if condition="{order.isOrderedByZimmer}">
+		<f:then>
+			<f:link.action controller="Realty" action="order" arguments="{ order: { value: 'zimmer', direction: order.oppositeDirection } }">Zimmer</f:link.action>
+			<f:image src="EXT:justimmo/Resources/Public/Icons/{order.direction}_arrow.gif" width="9" height="9" alt="Sortieren nach Zimmer" /> |
+		</f:then>
+		<f:else>
+			<f:link.action controller="Realty" action="order" arguments="{ order: { value: 'zimmer', direction: 'asc' } }">Zimmer</f:link.action>
+			<f:image src="EXT:justimmo/Resources/Public/Icons/asc_arrow.gif" width="9" height="9" alt="Sortieren nach Zimmer" /> |
+		</f:else>
+	</f:if>
+	<f:if condition="{order.isOrderedByPlz}">
+		<f:then>
+			<f:link.action controller="Realty" action="order" arguments="{ order: { value: 'plz', direction: order.oppositeDirection } }">PLZ</f:link.action>
+			<f:image src="EXT:justimmo/Resources/Public/Icons/{order.direction}_arrow.gif" width="9" height="9" alt="Sortieren nach PLZ" />
+		</f:then>
+		<f:else>
+			<f:link.action controller="Realty" action="order" arguments="{ order: { value: 'plz', direction: 'asc' } }">PLZ</f:link.action>
+			<f:image src="EXT:justimmo/Resources/Public/Icons/asc_arrow.gif" width="9" height="9" alt="Sortieren nach PLZ" />
+		</f:else>
+	</f:if>
 </div>

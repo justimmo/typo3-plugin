@@ -183,12 +183,19 @@ class Tx_Justimmo_Controller_RealtyController extends Tx_Extbase_MVC_Controller_
 	 * action list
 	 *
 	 * @param Tx_Justimmo_Domain_Model_Filter $filter
+	 * @param Tx_Justimmo_Domain_Model_Order $order
+	 * @dontvalidate $order
 	 * @return void
 	 */
-	public function listAction(Tx_Justimmo_Domain_Model_Filter $filter = NULL) {
+	public function listAction(Tx_Justimmo_Domain_Model_Filter $filter = NULL, Tx_Justimmo_Domain_Model_Order $order = NULL) {
 		if (NULL !== $filter) {
 			$this->realtyRepository->setFilter($filter->toArray());
 		}
+		if (NULL === $order) {
+			$order = $this->objectManager->create('Tx_Justimmo_Domain_Model_Order');
+		}
+
+		$this->realtyRepository->setOrder($order);
 
 		$realties = $this->realtyRepository->findAll();
 
@@ -200,17 +207,9 @@ class Tx_Justimmo_Controller_RealtyController extends Tx_Extbase_MVC_Controller_
 		}
 
 		$this->view->assign('realties', $realties);
+		$this->view->assign('order', $order);
 
-		// pagination variables
-		$this->view->assignMultiple(array(
-			'total_count' => $this->realtyRepository->getTotalCount(),
-			'current_page' => $this->realtyRepository->getPage(),
-			'previous_page' => $this->realtyRepository->getPreviousPage(),
-			'next_page' => $this->realtyRepository->getNextPage(),
-			'last_page' => $this->realtyRepository->getLastPage(),
-			'is_pageable' => $this->realtyRepository->isPageable(),
-			'is_pageable_next_page' => $this->realtyRepository->isPageable(TRUE)
-		));
+		$this->setPaginationVariables();
 	}
 
 	/**
@@ -219,6 +218,8 @@ class Tx_Justimmo_Controller_RealtyController extends Tx_Extbase_MVC_Controller_
 	 * @return void
 	 */
 	public function resetAction() {
+		$order = $this->objectManager->create('Tx_Justimmo_Domain_Model_Order');
+
 		$this->realtyRepository->resetFilter();
 
 		$realties = $this->realtyRepository->findAll();
@@ -226,17 +227,9 @@ class Tx_Justimmo_Controller_RealtyController extends Tx_Extbase_MVC_Controller_
 		$this->realtyRepository->persistListParameters();
 
 		$this->view->assign('realties', $realties);
+		$this->view->assign('order', $order);
 
-		// pagination variables
-		$this->view->assignMultiple(array(
-			'total_count' => $this->realtyRepository->getTotalCount(),
-			'current_page' => $this->realtyRepository->getPage(),
-			'previous_page' => $this->realtyRepository->getPreviousPage(),
-			'next_page' => $this->realtyRepository->getNextPage(),
-			'last_page' => $this->realtyRepository->getLastPage(),
-			'is_pageable' => $this->realtyRepository->isPageable(),
-			'is_pageable_next_page' => $this->realtyRepository->isPageable(TRUE)
-		));
+		$this->setPaginationVariables();
 
 		$templatePathAndFilename = t3lib_div::getFileAbsFileName($this->viewSettings['templateRootPath'] . 'Realty/List.html');
 		$this->view->setTemplatePathAndFilename($templatePathAndFilename);
@@ -249,6 +242,8 @@ class Tx_Justimmo_Controller_RealtyController extends Tx_Extbase_MVC_Controller_
 	 * @return void
 	 */
 	public function paginateAction($page) {
+		$order = $this->objectManager->create('Tx_Justimmo_Domain_Model_Order');
+
 		$this->realtyRepository->setPage($page);
 
 		$realties = $this->realtyRepository->findAll();
@@ -256,17 +251,9 @@ class Tx_Justimmo_Controller_RealtyController extends Tx_Extbase_MVC_Controller_
 		$this->realtyRepository->persistListParameters();
 
 		$this->view->assign('realties', $realties);
+		$this->view->assign('order', $order);
 
-		// pagination variables
-		$this->view->assignMultiple(array(
-			'total_count' => $this->realtyRepository->getTotalCount(),
-			'current_page' => $this->realtyRepository->getPage(),
-			'previous_page' => $this->realtyRepository->getPreviousPage(),
-			'next_page' => $this->realtyRepository->getNextPage(),
-			'last_page' => $this->realtyRepository->getLastPage(),
-			'is_pageable' => $this->realtyRepository->isPageable(),
-			'is_pageable_next_page' => $this->realtyRepository->isPageable(TRUE)
-		));
+		$this->setPaginationVariables();
 
 		$templatePathAndFilename = t3lib_div::getFileAbsFileName($this->viewSettings['templateRootPath'] . 'Realty/List.html');
 		$this->view->setTemplatePathAndFilename($templatePathAndFilename);
@@ -275,17 +262,30 @@ class Tx_Justimmo_Controller_RealtyController extends Tx_Extbase_MVC_Controller_
 	/**
 	 * orders the realty object list
 	 *
-	 * @param string $order
-	 * @param string $direction order direction ("asc" or "desc"), defaults to "desc"
+	 * @param Tx_Justimmo_Domain_Model_Order $order
+	 * @dontverifyrequesthash
 	 * @return void
 	 */
-	public function orderAction($order, $direction = 'desc') {
-		$this->realtyRepository->setOrderBy($order);
+	public function orderAction(Tx_Justimmo_Domain_Model_Order $order) {
+		$this->realtyRepository->setOrder($order);
 
 		$realties = $this->realtyRepository->findAll();
 
 		$this->view->assign('realties', $realties);
+		$this->view->assign('order', $order);
 
+		$this->setPaginationVariables();
+
+		$templatePathAndFilename = t3lib_div::getFileAbsFileName($this->viewSettings['templateRootPath'] . 'Realty/List.html');
+		$this->view->setTemplatePathAndFilename($templatePathAndFilename);
+	}
+
+	/**
+	 * sets the pagination view variables
+	 *
+	 * @return void
+	 */
+	protected function setPaginationVariables() {
 		// pagination variables
 		$this->view->assignMultiple(array(
 			'total_count' => $this->realtyRepository->getTotalCount(),
@@ -296,9 +296,6 @@ class Tx_Justimmo_Controller_RealtyController extends Tx_Extbase_MVC_Controller_
 			'is_pageable' => $this->realtyRepository->isPageable(),
 			'is_pageable_next_page' => $this->realtyRepository->isPageable(TRUE)
 		));
-
-		$templatePathAndFilename = t3lib_div::getFileAbsFileName($this->viewSettings['templateRootPath'] . 'Realty/List.html');
-		$this->view->setTemplatePathAndFilename($templatePathAndFilename);
 	}
 }
 ?>

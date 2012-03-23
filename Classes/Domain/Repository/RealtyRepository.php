@@ -381,6 +381,17 @@ class Tx_Justimmo_Domain_Repository_RealtyRepository implements t3lib_Singleton 
 	}
 
 	/**
+	 * sets orderby & ordertype by passing a domain model Order
+	 *
+	 * @param Tx_Justimmo_Domain_Model_Order $order
+	 * @return void
+	 */
+	public function setOrder(Tx_Justimmo_Domain_Model_Order $order) {
+		$this->setOrderBy($order->getValue());
+		$this->setOrderType($order->getDirection());
+	}
+
+	/**
 	 * returns total_count setting
 	 *
 	 * @return integer

@@ -18,7 +18,7 @@ Otherwise your changes will be overwritten the next time you save the extension 
 		<f:if condition="{total_count} > 0">
 			<f:then>
 				<div class="tx_justimmo_list_meta_controls">
-					<f:render partial="Realty/ListControls" arguments="{ total_count: total_count }" />
+					<f:render partial="Realty/ListControls" arguments="{ total_count: total_count, order: order }" />
 			
 					<f:render partial="Realty/Pager" arguments="{ is_pageable: is_pageable, is_pageable_next_page: is_pageable_next_page, current_page: current_page, next_page: next_page, previous_page: previous_page, last_page: last_page }" />
 				</div>
