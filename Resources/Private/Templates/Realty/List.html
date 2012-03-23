@@ -83,9 +83,9 @@ Otherwise your changes will be overwritten the next time you save the extension 
 											| Nutzfläche: <f:format.number decimalSeparator="," thousandsSeparator=".">{realty.nutzflaeche}</f:format.number> m²
 										</f:then>
 									</f:if>
-									<f:if condition="{realty.zimmer}">
+									<f:if condition="{realty.anzahl_zimmer}">
 										<f:then>
-											| Zimmer: {realty.zimmer}
+											| Zimmer: {realty.anzahl_zimmer}
 										</f:then>
 									</f:if>
 								</p>
