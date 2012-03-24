@@ -202,6 +202,7 @@ class Tx_Justimmo_Controller_RealtyController extends Tx_Extbase_MVC_Controller_
 		}
 
 		$this->realtyRepository->setOrder($order);
+		$this->realtyRepository->setPage(1);
 
 		$realties = $this->realtyRepository->findAll();
 

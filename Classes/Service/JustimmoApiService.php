@@ -102,8 +102,6 @@ class Tx_Justimmo_Service_JustimmoApiService implements t3lib_Singleton {
 	public function loadData($url) {
 		$ch = curl_init();
 
-		//die($this->baseUrl . $url);
-
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($ch, CURLOPT_URL, $this->baseUrl . $url);
 		curl_setopt($ch, CURLOPT_USERPWD, $this->username . ':' . $this->password);
