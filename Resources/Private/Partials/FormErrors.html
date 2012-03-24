@@ -1,6 +1,6 @@
 <f:form.errors>
 	<div class="error">
-		{error.message}
+		<f:translate key="{error.message}">{error.message}</f:translate>
 		<f:if condition="{error.propertyName}">
 			<p>
 				<strong>{error.propertyName}</strong>:

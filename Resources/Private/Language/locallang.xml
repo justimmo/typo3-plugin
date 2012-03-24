@@ -34,6 +34,16 @@
 			<label index="tx_justimmo_domain_model_filter.land_id">Country</label>
 			<label index="tx_justimmo_domain_model_filter.bundesland_id">State</label>
 			<label index="tx_justimmo_domain_model_filter.region">Region</label>
+			<label index="error.Tx_Justimmo_Controller_RealtyController.showAction">An error occured while trying to show a realty object.</label>
+			<label index="error.Tx_Justimmo_Controller_RealtyController.exposeAction">An error occured while trying to download the exposè PDF.</label>
+			<label index="error.Tx_Justimmo_Controller_RealtyController.listAction">An error occured while showing the realty search results.</label>
+			<label index="error.Tx_Justimmo_Controller_RealtyController.resetAction">An error occured while resetting the filter criteria.</label>
+			<label index="error.Tx_Justimmo_Controller_RealtyController.paginateAction">An error occured while showing the realty search results.</label>
+			<label index="error.Tx_Justimmo_Controller_RealtyController.orderAction">An error occured while showing the realty search results.</label>
+			<label index="error.Tx_Justimmo_Controller_SearchController.realtynumberAction">An error occured while displaying the realty number search form.</label>
+			<label index="error.Tx_Justimmo_Controller_SearchController.quickAction">An error occured while displaying the quick search form.</label>
+			<label index="error.Tx_Justimmo_Controller_SearchController.detailAction">An error occured while displaying the detail search form.</label>
+			<label index="Validation errors for argument &quot;filter&quot;">Invalid filter</label>
 		</languageKey>
 		<languageKey index="de" type="array">
 			<label index="tx_justimmo_domain_model_realty">stellt ein Immobilien-Objekt dar</label>
@@ -63,6 +73,16 @@
 			<label index="tx_justimmo_domain_model_filter.land_id">Land</label>
 			<label index="tx_justimmo_domain_model_filter.bundesland_id">Bundesland</label>
 			<label index="tx_justimmo_domain_model_filter.region">Region</label>
+			<label index="error.Tx_Justimmo_Controller_RealtyController.showAction">Beim Anzeigen der Immobilie ist ein Fehler aufgetreten.</label>
+			<label index="error.Tx_Justimmo_Controller_RealtyController.exposeAction">Beim Download des Exposè-Dokuments ist ein Fehler aufgetreten.</label>
+			<label index="error.Tx_Justimmo_Controller_RealtyController.listAction">Beim Anzeigen der Suchergebnisse ist ein Fehler aufgetreten.</label>
+			<label index="error.Tx_Justimmo_Controller_RealtyController.resetAction">Beim Löschen der Filterkriterien ist ein Fehler aufgetreten.</label>
+			<label index="error.Tx_Justimmo_Controller_RealtyController.paginateAction">Beim Anzeigen der Suchergebnisse ist ein Fehler aufgetreten.</label>
+			<label index="error.Tx_Justimmo_Controller_RealtyController.orderAction">Beim Anzeigen der Suchergebnisse ist ein Fehler aufgetreten.</label>
+			<label index="error.Tx_Justimmo_Controller_SearchController.realtynumberAction">Beim Anzeigen des Formulars für die Suche nach Objektnummern ist ein Fehler aufgetreten.</label>
+			<label index="error.Tx_Justimmo_Controller_SearchController.quickAction">Beim Anzeigen des Formulars für die Schnellsuche ist ein Fehler aufgetreten.</label>
+			<label index="error.Tx_Justimmo_Controller_SearchController.detailAction">Beim Anzeigen des Formulars für die Detailsuche ist ein Fehler aufgetreten.</label>
+			<label index="Validation errors for argument &quot;filter&quot;">Ungültiger Filter</label>
 		</languageKey>
 	</data>
 </T3locallang>
