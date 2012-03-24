@@ -195,6 +195,12 @@ class Tx_Justimmo_Controller_RealtyController extends Tx_Extbase_MVC_Controller_
 			$order = $this->objectManager->create('Tx_Justimmo_Domain_Model_Order');
 		}
 
+		try {
+			$order->setValue($this->realtyRepository->getOrderBy());
+			$order->setDirection($this->realtyRepository->getOrderType());
+		} catch (Exception $e) {
+		}
+
 		$this->realtyRepository->setOrder($order);
 
 		$realties = $this->realtyRepository->findAll();
@@ -242,11 +248,18 @@ class Tx_Justimmo_Controller_RealtyController extends Tx_Extbase_MVC_Controller_
 	 * @return void
 	 */
 	public function paginateAction($page) {
+		/* @var $order Tx_Justimmo_Domain_Model_Order */
 		$order = $this->objectManager->create('Tx_Justimmo_Domain_Model_Order');
 
 		$this->realtyRepository->setPage($page);
 
 		$realties = $this->realtyRepository->findAll();
+
+		try {
+			$order->setValue($this->realtyRepository->getOrderBy());
+			$order->setDirection($this->realtyRepository->getOrderType());
+		} catch (Exception $e) {
+		}
 
 		$this->realtyRepository->persistListParameters();
 
@@ -270,6 +283,8 @@ class Tx_Justimmo_Controller_RealtyController extends Tx_Extbase_MVC_Controller_
 		$this->realtyRepository->setOrder($order);
 
 		$realties = $this->realtyRepository->findAll();
+
+		$this->realtyRepository->persistListParameters();
 
 		$this->view->assign('realties', $realties);
 		$this->view->assign('order', $order);

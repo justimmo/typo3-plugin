@@ -33,7 +33,7 @@ plugin.tx_justimmo {
 				max_per_page = {$plugin.tx_justimmo.settings.realtyRepository.defaults.max_per_page}
 			}
 
-			resetFilterOnInit = {$plugin.tx_justimmo.settings.realtyRepository.resetFilter}
+			resetFilterOnInit = {$plugin.tx_justimmo.settings.realtyRepository.resetFilterOnInit}
 		}
 	}
 }

@@ -357,6 +357,7 @@ class Tx_Justimmo_Domain_Repository_RealtyRepository implements t3lib_Singleton 
 	public function resetFilter() {
 		$this->filter = $this->defaults['filter'];
 		$this->orderby = $this->defaults['orderby'];
+		$this->ordertype = $this->defaults['ordertype'];
 		$this->page = 1;
 		$this->total_count = 0;
 	}
@@ -372,12 +373,30 @@ class Tx_Justimmo_Domain_Repository_RealtyRepository implements t3lib_Singleton 
 	}
 
 	/**
+	 * returns the orderby value
+	 *
+	 * @return string
+	 */
+	public function getOrderBy() {
+		return $this->orderby;
+	}
+
+	/**
 	 * sets the order direction
 	 *
 	 * @param string $ordertype either "asc" or "desc"
 	 */
 	public function setOrderType($ordertype) {
 		$this->ordertype = $ordertype;
+	}
+
+	/**
+	 * returns the order direction
+	 * 
+	 * @return string
+	 */
+	public function getOrderType() {
+		return $this->ordertype;
 	}
 
 	/**
