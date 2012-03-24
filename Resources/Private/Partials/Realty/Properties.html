@@ -7,13 +7,13 @@
 
 	<f:if condition="{realty.nbAnhaenge} > 0">
 		<div class="tx_justimmo_detail_image">
-			<img src="{realty.anhaenge.0.daten.pfad}" />
+			<img src="{realty.anhaenge.0.daten.pfad}">
 		</div>
 
 		<div class="tx_justimmo_detail_images_thumbnails">
 			<f:for each="{realty.anhaenge}" as="anhang">
-				<a class="tx_justimmo_detail_image_thumbnail_item" href="{anhang.data.pfad}">
-					<img src="{anhang.daten.small}" alt="" />
+				<a class="tx_justimmo_detail_image_thumbnail_item" href="{anhang.daten.pfad}">
+					<img src="{anhang.daten.small}" alt="">
 				</a>
 			</f:for>
 		</div>
