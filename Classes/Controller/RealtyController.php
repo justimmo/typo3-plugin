@@ -302,15 +302,10 @@ class Tx_Justimmo_Controller_RealtyController extends Tx_Extbase_MVC_Controller_
 	 * @return void
 	 */
 	protected function setPaginationVariables() {
-		// pagination variables
-		$this->view->assignMultiple(array(
-			'total_count' => $this->realtyRepository->getTotalCount(),
-			'current_page' => $this->realtyRepository->getPage(),
-			'previous_page' => $this->realtyRepository->getPreviousPage(),
-			'next_page' => $this->realtyRepository->getNextPage(),
-			'last_page' => $this->realtyRepository->getLastPage(),
-			'is_pageable' => $this->realtyRepository->isPageable(),
-			'is_pageable_next_page' => $this->realtyRepository->isPageable(TRUE)
+		$this->view->assign('pager', array(
+			'total_items' => $this->realtyRepository->getTotalCount(),
+			'items_per_page' => $this->realtyRepository->getMaxPerPage(),
+			'current_page' => $this->realtyRepository->getPage()
 		));
 	}
 }

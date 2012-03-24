@@ -1,27 +1,31 @@
-<f:if condition="{is_pageable}">
-	<f:then>
+{namespace ji = Tx_Justimmo_ViewHelpers}
+<ji:pager pager="{pager}">
+	<f:if condition="{isPageable}">
 		<div class="tx_justimmo_list_pager">
-			<div class="tx_justimmo_list_pager_prev_page">
-				<f:if condition="{current_page} > 1">
-					<f:then>
-						<f:link.action controller="Realty" action="paginate" arguments="{ page: 1 }">Erste Seite</f:link.action>
-						<f:link.action controller="Realty" action="paginate" arguments="{ page: previous_page }">Vorherige Seite</f:link.action>
-					</f:then>
-				</f:if>
-				<!-- --> &nbsp;
-			</div>
-		    <div class="tx_justimmo_list_pager_page">
-		        <span>{current_page}</span>
-		    </div>
-			<div class="tx_justimmo_list_pager_next_page">
-				<f:if condition="{is_pageable_next_page}">
-					<f:then>
-						<f:link.action controller="Realty" action="paginate" arguments="{ page: next_page }">Nächste Seite</f:link.action>
-						<f:link.action controller="Realty" action="paginate" arguments="{ page: last_page }">Letzte Seite</f:link.action>
-					</f:then>
-				</f:if>
-				<!-- --> &nbsp;
-			</div>
+			<f:if condition="{currentPage} > 1">
+				<div class="tx_justimmo_list_pager_prev_page">
+					<f:link.action controller="Realty" action="paginate" arguments="{ page: 1 }">Erste Seite</f:link.action>
+					<f:link.action controller="Realty" action="paginate" arguments="{ page: previousPage }">Vorherige Seite</f:link.action>
+				</div>
+			</f:if>
+			<f:for each="{pages}" as="page">
+			    <div class="tx_justimmo_list_pager_page">
+			    	<f:if condition="{page} > 0">
+			    		<f:then>
+			    			<f:link.action controller="Realty" action="paginate" arguments="{ page: page }">{page}</f:link.action>
+			    		</f:then>
+			    		<f:else>
+			        		<span>{current_page}</span>
+			        	</f:else>
+			        </f:if>
+			    </div>
+			</f:for>
+			<f:if condition="{isPageableNextPage}">
+				<div class="tx_justimmo_list_pager_next_page">
+					<f:link.action controller="Realty" action="paginate" arguments="{ page: nextPage }">Nächste Seite</f:link.action>
+					<f:link.action controller="Realty" action="paginate" arguments="{ page: totalPages }">Letzte Seite</f:link.action>
+				</div>
+			</f:if>
 		</div>
-	</f:then>
-</f:if>
+	</f:if>
+</ji:pager>

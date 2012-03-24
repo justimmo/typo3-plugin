@@ -43,5 +43,12 @@ plugin.tx_justimmo {
 			# cat=plugin.tx_justimmo/settings/realtyRepository; type=boolean; label=Reset filter on init? Useful for direct links pages.
 			resetFilterOnInit = 0
 		}
+
+		pager {
+			# cat=plugin.tx_justimmo/settings/pager; type=int+; label=Pager: display that many pages before the current one
+			maxBefore = 2
+			# cat=plugin.tx_justimmo/settings/pager; type=int+; label=Pager: display that many pages after the current one
+			maxAfter = 2
+		}
 	}
 }

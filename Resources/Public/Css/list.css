@@ -29,19 +29,16 @@
 	margin: 5px auto;
 	overflow: hidden;
 	padding: 5px 0;
-	width: 320px;
+	text-align: center;
 }
 	.tx_justimmo_list_pager_prev_page {
-		float: left;
-		width: 150px;
+		display: inline;
 	}
 	.tx_justimmo_list_pager_page {
-		float: left;
+		display: inline;
+		padding: 2px 5px;
 		text-align: center;
-		width: 20px;
 	}
 	.tx_justimmo_list_pager_next_page {
-		float: left;
-		text-align: right;
-		width: 150px;
+		display: inline;
 	}

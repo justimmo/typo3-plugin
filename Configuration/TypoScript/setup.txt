@@ -35,6 +35,11 @@ plugin.tx_justimmo {
 
 			resetFilterOnInit = {$plugin.tx_justimmo.settings.realtyRepository.resetFilterOnInit}
 		}
+
+		pager {
+			maxBefore = {$plugin.tx_justimmo.settings.pager.maxBefore}
+			maxAfter = {$plugin.tx_justimmo.settings.pager.maxAfter}
+		}
 	}
 }
 

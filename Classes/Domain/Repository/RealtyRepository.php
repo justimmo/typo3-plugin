@@ -418,44 +418,5 @@ class Tx_Justimmo_Domain_Repository_RealtyRepository implements t3lib_Singleton 
 	public function getTotalCount() {
 		return $this->total_count;
 	}
-
-	/**
-	 * returns if the result list is browseable to previous page (default)
-	 *
-	 * @param boolean flags if the check should be performed for "next page" pagination link
-	 * @return boolean
-	 */
-	public function isPageable($nextPage = FALSE) {
-		$page = TRUE === $nextPage ? $this->getPage() : 1;
-
-		return (ceil($this->getTotalCount() / $this->getMaxPerPage()) > $page);
-	}
-
-	/**
-	 * returns the number of the previous page
-	 *
-	 * @return integer
-	 */
-	public function getPreviousPage() {
-		return $this->getPage() - 1;
-	}
-
-	/**
-	 * returns the number of the next page
-	 *
-	 * @return integer
-	 */
-	public function getNextPage() {
-		return $this->getPage() + 1;
-	}
-
-	/**
-	 * returns the number of the last page
-	 *
-	 * @return integer
-	 */
-	public function getLastPage() {
-		return ceil($this->getTotalCount() / $this->getMaxPerPage());
-	}
 }
 ?>
