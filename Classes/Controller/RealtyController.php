@@ -148,6 +148,7 @@ class Tx_Justimmo_Controller_RealtyController extends Tx_Justimmo_MVC_Controller
 	 * @param Tx_Justimmo_Domain_Model_Filter $filter
 	 * @param Tx_Justimmo_Domain_Model_Order $order
 	 * @dontvalidate $order
+	 * @dontverifyrequesthash
 	 * @return void
 	 */
 	public function listAction(Tx_Justimmo_Domain_Model_Filter $filter = NULL, Tx_Justimmo_Domain_Model_Order $order = NULL) {

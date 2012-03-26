@@ -62,4 +62,7 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 		'Realty' => '',
 	)
 );
+
+$realurlAutoconfigurationHook = 'EXT:justimmo/Classes/Utility/RealurlAutoconfiguration.php:Tx_Justimmo_Utility_RealurlAutoconfiguration->addJustimmoConfig';
+$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/realurl/class.tx_realurl_autoconfgen.php']['extensionConfiguration']['justimmo'] = $realurlAutoconfigurationHook;
 ?>

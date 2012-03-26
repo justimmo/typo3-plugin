@@ -84,6 +84,10 @@ class Tx_Justimmo_Domain_Model_Order extends Tx_Extbase_DomainObject_AbstractVal
 	 * @throws InvalidArgumentException if given value is not one of supported order values
 	 */
 	public function setValue($value) {
+		if ('' === $value) {
+			return NULL;
+		}
+
 		if (FALSE === in_array($value, self::$SUPPORTED_ORDER_VALUES)) {
 			throw new InvalidArgumentException('The given value "' . $value . '" is currently not supported.', 1332533041);
 		}
@@ -125,6 +129,10 @@ class Tx_Justimmo_Domain_Model_Order extends Tx_Extbase_DomainObject_AbstractVal
 	 * @throws InvalidArgumentException if given direction is not "asc" nor "desc"
 	 */
 	public function setDirection($direction) {
+		if ('' === $direction) {
+			return NULL;
+		}
+
 		if ('asc' !== $direction && 'desc' !== $direction) {
 			throw new InvalidArgumentException('The given direction "' . $direction . '" is not supported.', 1332533156);
 		}
