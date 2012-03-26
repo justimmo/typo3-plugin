@@ -5,10 +5,10 @@
 				<f:link.action controller="Realty" action="show" arguments="{ position: prev_position }">vorheriges Objekt</f:link.action>
 			</li>
 		</f:if>
-		<li>
-			<f:link.action controller="Realty" action="list" pageUid="{settings.searchResultsPid}">zurück zur Übersicht</f:link.action>
-		</li>
 		<f:if condition="{total_count} > 1">
+			<li>
+				<f:link.action controller="Realty" action="list" pageUid="{settings.searchResultsPid}">zurück zur Übersicht</f:link.action>
+			</li>
 			<f:if condition="{position} < {total_count}">
 				<li class="last-item">
 					<f:link.action controller="Realty" action="show" arguments="{ position: next_position }">nächstes Objekt</f:link.action>
