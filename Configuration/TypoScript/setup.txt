@@ -40,6 +40,12 @@ plugin.tx_justimmo {
 			maxBefore = {$plugin.tx_justimmo.settings.pager.maxBefore}
 			maxAfter = {$plugin.tx_justimmo.settings.pager.maxAfter}
 		}
+
+		pageTitle {
+			enable = {$plugin.tx_justimmo.settings.pageTitle.enable}
+			mode = {$plugin.tx_justimmo.settings.pageTitle.mode}
+			usePageRenderer = {$plugin.tx_justimmo.settings.pageTitle.usePageRenderer}
+		}
 	}
 }
 

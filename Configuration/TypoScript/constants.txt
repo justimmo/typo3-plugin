@@ -50,5 +50,14 @@ plugin.tx_justimmo {
 			# cat=plugin.tx_justimmo/settings/pager; type=int+; label=Pager: display that many pages after the current one
 			maxAfter = 2
 		}
+
+		pageTitle {
+			# cat=plugin.tx_justimmo/settings/pageTitle; type=boolean; label=Display realty object title in title tag of page
+			enable = 1
+			# cat=plugin.tx_justimmo/settings/pageTitle; type=options[Before=before,After=after,Override=override]; label=Page title display mode
+			mode = before
+			# cat=plugin.tx_justimmo/settings/pageTitle; type=boolean; label=DO NOT CHANGE! Use page renderer for page title setting.
+			usePageRenderer = 0
+		}
 	}
 }

@@ -492,6 +492,17 @@ class Tx_Justimmo_Domain_Model_Realty extends Tx_Extbase_DomainObject_AbstractEn
 	}
 
 	/**
+	 * returns the property "objekttitel" from "freitexte" subproperty
+	 *
+	 * Only available in detail view
+	 *
+	 * @return string
+	 */
+	public function getObjekttitel() {
+		return (string) $this->xml->freitexte->objekttitel;
+	}
+
+	/**
 	 * returns a normalized information array about the realty object's state
 	 * 
 	 * Only available in detail view

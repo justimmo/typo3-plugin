@@ -59,7 +59,6 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 	),
 	// non-cacheable actions
 	array(
-		'Realty' => '',
 	)
 );
 

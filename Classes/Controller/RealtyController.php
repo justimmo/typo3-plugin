@@ -127,6 +127,56 @@ class Tx_Justimmo_Controller_RealtyController extends Tx_Justimmo_MVC_Controller
 		$this->view->assign('total_count', $this->realtyRepository->getTotalCount());		
 
 		$this->view->assign('realty', $realty);
+
+		// page title display option
+		if (TRUE === (bool) $this->settings['pageTitle']['enable']) {
+			$pagetitleMode = $this->settings['pageTitle']['mode'];
+			$currentTitle = $this->getPageTitle();
+
+			switch ($pagetitleMode) {
+				case 'before':
+					$this->setPageTitle($realty->getObjekttitel() . $currentTitle);
+				break;
+				case 'after':
+					$this->setPageTitle($currentTitle . $realty->getObjekttitel());
+				break;
+				case 'override':
+				default:
+					$this->setPageTitle($realty->getObjekttitel());
+				break;
+			}
+		}
+	}
+
+	/**
+	 * gets the page title of the current page
+	 *
+	 * The approach how to fetch the title depends on settings.pageTitle.usePageRenderer
+	 *
+	 * @return string
+	 */
+	protected function getPageTitle() {
+		if (TRUE === (bool) $this->settings['pageTitle']['usePageRenderer']) {
+			return $GLOBALS['TSFE']->getPageRenderer()->getTitle();
+		} else {
+			return $GLOBALS['TSFE']->page['title'];
+		}
+	}
+
+	/**
+	 * sets the page title of the current page
+	 *
+	 * The approach how to set the title depends on settings.pageTitle.usePageRenderer
+	 *
+	 * @param string $title
+	 * @return false
+	 */
+	protected function setPageTitle($title) {
+		if (TRUE === (bool) $this->settings['pageTitle']['usePageRenderer']) {
+			$GLOBALS['TSFE']->getPageRenderer()->setTitle($title);
+		} else {
+			$GLOBALS['TSFE']->page['title'] = $title;
+		}
 	}
 
 	/**
