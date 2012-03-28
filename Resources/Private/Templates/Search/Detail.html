@@ -164,7 +164,7 @@
 						<label for="detail_region"><f:translate key="tx_justimmo_domain_model_filter.region" /></label>
 					</div>
 					<div class="span9">
-						<ul class="menu">
+						<ul id="detail_regions" class="menu">
 							<f:for each="{regions}" as="region">
 								<li>
 									<f:form.checkbox property="region" id="detail_region_{region.id}" value="{region.id}" />
@@ -206,4 +206,11 @@
 			<li><f:form.submit name="submit" value="Suchen"><button>Suchen</button></f:form.submit></li>
 		</ul>
 	</f:form>
+	<script type="text/javascript">
+		var
+			geoFilterUpdateUrls = {};
+
+		geoFilterUpdateUrls.subDivisions = '{f:uri.action(action: 'updateSubdivisions', pageType: '1332927983')}';
+		geoFilterUpdateUrls.regions = '{f:uri.action(action: 'updateRegions', pageType: '1332927983')}';
+	</script>
 </f:section>

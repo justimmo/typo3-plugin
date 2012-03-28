@@ -41,6 +41,17 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 
 Tx_Extbase_Utility_Extension::configurePlugin(
 	$_EXTKEY,
+	'GeoFilterUpdateXHR',
+	array(
+		'Search' => 'updateSubdivisions,updateRegions'
+	),
+	array(
+		'Search' => 'updateSubdivisions,updateRegions'
+	)
+);
+
+Tx_Extbase_Utility_Extension::configurePlugin(
+	$_EXTKEY,
 	'SearchResults',
 	array(
 		'Realty' => 'list, reset, paginate, order',

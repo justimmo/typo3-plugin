@@ -124,5 +124,30 @@ class Tx_Justimmo_Controller_SearchController extends Tx_Justimmo_MVC_Controller
 		$this->view->assign('filter', $filter);
 		$this->view->assign('regions', $regions);
 	}
+
+	/**
+	 * returns subdivision for a given countryIdent
+	 *
+	 * @param mixed $countryIdent
+	 * @return string JSON encoded sub divisions list
+	 */
+	public function updateSubdivisionsAction($countryIdent) {
+		$subdivisions = $this->justimmoApiService->getSubDivisions($countryIdent);
+
+		return json_encode($subdivisions);
+	}
+
+	/**
+	 * returns regions for a given countryIdent OR subdivisionIdent
+	 *
+	 * @param mixed $countryIdent
+	 * @param mixed $subdivisionIdent
+	 * @dontvalidate $countryIdent, $subdivisionIdent
+	 */
+	public function updateRegionsAction($countryIdent = NULL, $subdivisionIdent = NULL) {
+		$regions = $this->justimmoApiService->getRegions($countryIdent, $subdivisionIdent);
+
+		return json_encode($regions);
+	}
 }
 ?>

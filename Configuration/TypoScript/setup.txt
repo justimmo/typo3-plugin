@@ -49,16 +49,44 @@ plugin.tx_justimmo {
 	}
 }
 
-// adding plugin styles
+page {
+	// adding plugin styles
+	includeCSS {
+		// for grid purposes...
+		tx_justimmo_bootstrap = EXT:justimmo/Resources/Public/Css/bootstrap.min.css
+	
+		// custom styles
+		tx_justimmo_default = EXT:justimmo/Resources/Public/Css/default.css
+		tx_justimmo_list = EXT:justimmo/Resources/Public/Css/list.css
+		tx_justimmo_detail = EXT:justimmo/Resources/Public/Css/detail.css
+		tx_justimmo_search_quick = EXT:justimmo/Resources/Public/Css/search_quick.css
+		tx_justimmo_search_detail = EXT:justimmo/Resources/Public/Css/search_detail.css
+	}
 
-page.includeCSS {
-	// for grid purposes...
-	tx_justimmo_bootstrap = EXT:justimmo/Resources/Public/Css/bootstrap.min.css
+	// adding plugin javascript
+	includeJSlibs {
+		tx_justimmo_jquery = //ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js
+		tx_justimmo_jquery.external = 1
+	}
 
-	// custom styles
-	tx_justimmo_default = EXT:justimmo/Resources/Public/Css/default.css
-	tx_justimmo_list = EXT:justimmo/Resources/Public/Css/list.css
-	tx_justimmo_detail = EXT:justimmo/Resources/Public/Css/detail.css
-	tx_justimmo_search_quick = EXT:justimmo/Resources/Public/Css/search_quick.css
-	tx_justimmo_search_detail = EXT:justimmo/Resources/Public/Css/search_detail.css
+	includeJS {
+		tx_justimmo_search_detail = EXT:justimmo/Resources/Public/Js/search_detail.js
+	}
+}
+
+// geo filter XHR update PAGE cObject
+
+tx_justimmo_xhr = PAGE
+tx_justimmo_xhr {
+	// timestamp from moment of writing this...
+	typeNum = 1332927983
+
+	config {
+		disableAllHeaderCode = 1
+		additionalHeaders = Content-type:application/json
+		xhtml_cleaning = 0
+		admPanel = 0
+	}
+
+	10 < tt_content.list.20.justimmo_geofilterupdatexhr
 }

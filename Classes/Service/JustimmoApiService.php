@@ -260,19 +260,19 @@ class Tx_Justimmo_Service_JustimmoApiService implements t3lib_Singleton {
 	 * is ignored.
 	 *
 	 * @param mixed $countryIdent either a country ID or a valid ISO2 country code
-	 * @param integer $subdivisionId a subdivision ID
+	 * @param mixed $subdivisionId either a subdivision ID or a valid API sub division string
 	 * @return SimpleXMLElement
 	 * @author Thomas Juhnke <tommy@van-tomas.de>
 	 */
-	public function getRegions($countryIdent = NULL, $subdivisionId = NULL) {
+	public function getRegions($countryIdent = NULL, $subdivisionIdent = NULL) {
 		$params = '';
 
 		if (NULL !== $countryIdent) {
 			$params = '?land=' . $countryIdent;
 		}
 
-		if (NULL !== $subdivisionId) {
-			$params = '?bundesland=' . $subdivisionId;
+		if (NULL !== $subdivisionIdent) {
+			$params = '?bundesland=' . $subdivisionIdent;
 		}
 
 		return $this->getData('/objekt/regionen' . $params);
