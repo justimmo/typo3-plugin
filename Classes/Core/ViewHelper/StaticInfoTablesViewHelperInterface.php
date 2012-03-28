@@ -31,7 +31,7 @@
  * @package justimmo
  * @subpackage Core\ViewHelper
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
- *
+ * @author Thomas Juhnke <tommy@van-tomas.de>
  */
 interface Tx_Justimmo_Core_ViewHelper_StaticInfoTablesViewHelperInterface {
 

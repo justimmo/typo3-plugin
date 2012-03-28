@@ -3,7 +3,7 @@
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2012 Thomas Juhnke <tommy@van-tomas.de>
+ *  (c) 2012 B&G Consulting & Commerce GmbH <office@bgcc.at>
  *  
  *  All rights reserved
  *
@@ -23,7 +23,6 @@
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
-
 
 /**
  * realurl autoconfiguration class

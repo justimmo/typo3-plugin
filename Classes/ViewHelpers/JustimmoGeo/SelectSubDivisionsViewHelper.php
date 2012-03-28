@@ -3,7 +3,7 @@
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2012 Thomas Juhnke <tommy@van-tomas.de>
+ *  (c) 2012 B&G Consulting & Commerce GmbH <office@bgcc.at>
  *  
  *  All rights reserved
  *
@@ -24,13 +24,13 @@
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
-
 /**
  * ViewHelper for retrieving a <select> list of subdivisions from justimmo geo API
  * 
  * @package justimmo
  * @subpackage ViewHelpers\JustimmoGeo
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
+ * @author Thomas Juhnke <tommy@van-tomas.de>
  */
 class Tx_Justimmo_ViewHelpers_JustimmoGeo_SelectSubDivisionsViewHelper extends Tx_Fluid_ViewHelpers_Form_SelectViewHelper implements Tx_Justimmo_Core_ViewHelper_JustimmoGeoViewHelperInterface {
 

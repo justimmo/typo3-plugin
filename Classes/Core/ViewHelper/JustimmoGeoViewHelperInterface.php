@@ -3,7 +3,7 @@
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2012 Thomas Juhnke <tommy@van-tomas.de>
+ *  (c) 2012 B&G Consulting & Commerce GmbH <office@bgcc.at>
  *  
  *  All rights reserved
  *
@@ -24,14 +24,13 @@
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
-
 /**
  * ViewHelper interface for justimmo geo API
  *
  * @package justimmo
  * @subpackage Core\ViewHelper
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
- *
+ * @author Thomas Juhnke <tommy@van-tomas.de>
  */
 interface Tx_Justimmo_Core_ViewHelper_JustimmoGeoViewHelperInterface {
 	

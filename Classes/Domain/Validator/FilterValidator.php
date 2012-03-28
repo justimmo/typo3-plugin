@@ -3,7 +3,7 @@
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2012 Thomas Juhnke <tommy@van-tomas.de>
+ *  (c) 2012 B&G Consulting & Commerce GmbH <office@bgcc.at>
  *  
  *  All rights reserved
  *
@@ -24,14 +24,13 @@
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
-
 /**
  * domain model object validator
  *
  * @package justimmo
  * @subpackage Domain\Validator
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
- *
+ * @author Thomas Juhnke <tommy@van-tomas.de>
  */
 class Tx_Justimmo_Domain_Validator_FilterValidator extends Tx_Extbase_Validation_Validator_AbstractValidator {
 	

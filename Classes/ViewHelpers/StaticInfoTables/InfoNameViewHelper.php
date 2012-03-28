@@ -24,7 +24,6 @@
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
-
 /**
  * ViewHelper for retrieving a <select> list from static_info_tables API
  * 
@@ -33,6 +32,7 @@
  * @package justimmo
  * @subpackage ViewHelpers\StaticInfoTables
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
+ * @author Thomas Juhnke <tommy@van-tomas.de>
  */
 class Tx_Justimmo_ViewHelpers_StaticInfoTables_InfoNameViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper implements Tx_Justimmo_Core_ViewHelper_StaticInfoTablesViewHelperInterface {
 

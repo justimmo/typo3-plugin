@@ -3,7 +3,7 @@
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2012 Thomas Juhnke <tommy@van-tomas.de>
+ *  (c) 2012 B&G Consulting & Commerce GmbH <office@bgcc.at>
  *  
  *  All rights reserved
  *
@@ -33,6 +33,7 @@
  * @package justimmo
  * @subpackage Controller
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
+ * @author Thomas Juhnke <tommy@van-tomas.de>
  */
 class Tx_Justimmo_Controller_SearchController extends Tx_Justimmo_MVC_Controller_ActionController {
 

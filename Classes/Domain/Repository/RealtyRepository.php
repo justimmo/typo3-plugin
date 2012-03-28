@@ -3,7 +3,7 @@
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2012 Thomas Juhnke <tommy@van-tomas.de>
+ *  (c) 2012 B&G Consulting & Commerce GmbH <office@bgcc.at>
  *
  *  All rights reserved
  *
@@ -34,6 +34,7 @@
  * @package justimmo
  * @subpackage Domain\Repository
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
+ * @author Thomas Juhnke <tommy@van-tomas.de>
  */
 class Tx_Justimmo_Domain_Repository_RealtyRepository implements t3lib_Singleton {
 
