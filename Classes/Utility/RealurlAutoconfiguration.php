@@ -53,7 +53,6 @@ class Tx_Justimmo_Utility_RealurlAutoconfiguration implements t3lib_Singleton {
 			 * should arrange the postVarSets strategically.
 			 */
 			'postVarSets' => array(
-				'type' => 'single',
 				'_DEFAULT' => array(
 					'objektnummer' => array(
 						array(
