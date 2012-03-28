@@ -46,6 +46,8 @@ plugin.tx_justimmo {
 			mode = {$plugin.tx_justimmo.settings.pageTitle.mode}
 			usePageRenderer = {$plugin.tx_justimmo.settings.pageTitle.usePageRenderer}
 		}
+
+		xhrUpdateForGeoFilterElements = {$plugin.tx_justimmo.settings.xhrUpdateForGeoFilterElements}
 	}
 }
 

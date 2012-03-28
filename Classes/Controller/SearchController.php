@@ -131,7 +131,7 @@ class Tx_Justimmo_Controller_SearchController extends Tx_Justimmo_MVC_Controller
 	 * @param mixed $countryIdent
 	 * @return string JSON encoded sub divisions list
 	 */
-	public function updateSubdivisionsAction($countryIdent) {
+	public function updateSubDivisionsAction($countryIdent) {
 		$subdivisions = $this->justimmoApiService->getSubDivisions($countryIdent);
 
 		return json_encode($subdivisions);

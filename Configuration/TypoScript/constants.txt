@@ -59,5 +59,8 @@ plugin.tx_justimmo {
 			# cat=plugin.tx_justimmo/settings/pageTitle; type=boolean; label=DO NOT CHANGE! Use page renderer for page title setting.
 			usePageRenderer = 0
 		}
+
+		# cat=plugin.tx_justimmo/settings; type=boolean; label=Enable XHR updates for geo filter elements?
+		xhrUpdateForGeoFilterElements = 1
 	}
 }

@@ -154,7 +154,7 @@
 					<div class="span3">
 						<label for="detail_bundesland_id"><f:translate key="tx_justimmo_domain_model_filter.bundesland_id" /></label>
 					</div>
-					<div class="span9">
+					<div class="span9" id="bundeslandId-container">
 						<ji:justimmoGeo.selectSubDivisions property="bundeslandId" id="detail_bundesland_id" keyField="name" />
 					</div>
 				</fieldset>
@@ -206,11 +206,36 @@
 			<li><f:form.submit name="submit" value="Suchen"><button>Suchen</button></f:form.submit></li>
 		</ul>
 	</f:form>
-	<script type="text/javascript">
-		var
-			geoFilterUpdateUrls = {};
+	<f:if condition="{settings.xhrUpdateForGeoFilterElements}">
+		<script>
+			var
+				geoFilterUpdateUrls = {};
 
-		geoFilterUpdateUrls.subDivisions = '{f:uri.action(action: 'updateSubdivisions', pageType: '1332927983')}';
-		geoFilterUpdateUrls.regions = '{f:uri.action(action: 'updateRegions', pageType: '1332927983')}';
-	</script>
+			geoFilterUpdateUrls.subDivisions = '{f:uri.action(action: 'updateSubDivisions', pageType: '1332927983')}';
+			geoFilterUpdateUrls.regions = '{f:uri.action(action: 'updateRegions', pageType: '1332927983')}';
+
+			$('#detail_land_id').GeoFilterUpdate({
+				actions: [
+					{
+						'url': geoFilterUpdateUrls.subDivisions,
+						'callback': 'updateSubDivisions'
+					},
+					{
+						'url': geoFilterUpdateUrls.regions,
+						'callback': 'updateRegions'
+					}
+				],
+				paramKey: 'countryIdent'
+			});
+			$('#detail_bundesland_id').GeoFilterUpdate({
+				actions: [
+					{
+						'url': geoFilterUpdateUrls.regions,
+						'callback': 'updateRegions'
+					}
+				],
+				paramKey: 'subdivisionIdent'
+			})
+		</script>
+	</f:if>
 </f:section>
