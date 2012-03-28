@@ -227,7 +227,7 @@
 				],
 				paramKey: 'countryIdent'
 			});
-			$('#detail_bundesland_id').GeoFilterUpdate({
+			$('#bundeslandId-container').GeoFilterUpdate({
 				actions: [
 					{
 						'url': geoFilterUpdateUrls.regions,
@@ -235,7 +235,7 @@
 					}
 				],
 				paramKey: 'subdivisionIdent'
-			})
+			}, '#detail_bundesland_id');
 		</script>
 	</f:if>
 </f:section>
