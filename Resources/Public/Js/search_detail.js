@@ -53,12 +53,17 @@
 				if ('undefined' === typeof data.bundesland) {
 					return false;
 				}
-	
+
 				items.push('<option value=""></option>');
-				$.each(data.bundesland, function (key, val) {
-					items.push(methods.buildOptionItem(key, val));
-				});
-	
+
+				if ($.isPlainObject(data.bundesland)) {
+					items.push(methods.buildOptionItem(null, data.bundesland));
+				} else {
+					$.each(data.bundesland, function (key, val) {
+						items.push(methods.buildOptionItem(key, val));
+					});
+				}
+
 				$('#bundeslandId-container').html('<select id="detail_bundesland_id" name="' + settings.filterFieldPrefix + '[filter][bundeslandId]">' + items.join('') + '</select>');
 			},
 	
@@ -75,11 +80,15 @@
 				if ('undefined' === typeof data.region) {
 					return false;
 				}
-	
-				$.each(data.region, function (key, val) {
-					items.push(methods.buildCheckboxItem(key, val));
-				});
-	
+
+				if ($.isPlainObject(data.region)) {
+					items.push(methods.buildCheckboxItem(null, data.region));
+				} else {
+					$.each(data.region, function (key, val) {
+						items.push(methods.buildCheckboxItem(key, val));
+					});
+				}
+
 				$('#detail_regions').html('<li>' + items.join('</li><li>') + '</li>');
 			}
 		};
