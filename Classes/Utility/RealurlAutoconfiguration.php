@@ -130,6 +130,9 @@ class Tx_Justimmo_Utility_RealurlAutoconfiguration implements t3lib_Singleton {
 						),
 						array(
 							'GETvar' => 'tx_justimmo_realtydetail[action]',
+							'valueMap' => array(
+								'expose-download' => 'expose'
+							),
 							'noMatch' => 'bypass'
 						),
 						array(
