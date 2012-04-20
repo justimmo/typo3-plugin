@@ -5,7 +5,7 @@
 
 	<f:render partial="FormErrors" />
 
-	<f:form method="post" object="{filter}" name="filter" controller="Search" action="list" pageUid="{settings.searchResultsPid}" fieldNamePrefix="tx_justimmo_searchresults">
+	<f:form method="post" object="{filter}" name="filter" action="save">
 		<f:form.textbox property="objektnummer" size="20" />
 	</f:form>
 </f:section>

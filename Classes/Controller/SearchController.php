@@ -150,5 +150,39 @@ class Tx_Justimmo_Controller_SearchController extends Tx_Justimmo_MVC_Controller
 
 		return json_encode($regions);
 	}
+
+	/**
+	 * save 
+	 * 
+	 * Stores the filter settings and redirects to the Realty list action.
+	 *
+	 * @param Tx_Justimmo_Domain_Model_Filter $filter
+	 * @dontverifyrequesthash
+	 * @return void
+	 */
+	public function saveAction(Tx_Justimmo_Domain_Model_Filter $filter) {
+		$this->realtyRepository->setFilter($filter->toArray());
+		$this->realtyRepository->persistListParameters();
+
+		$searchResultsPid = $this->settings['searchResultsPid'];
+
+		$this->redirect('list', 'Realty', NULL, NULL, $searchResultsPid);
+	}
+
+	/**
+	 * reset action
+	 *
+	 * resets the filter settings and redirects to the Realty list action.
+	 *
+	 * @return void
+	 */
+	public function resetAction() {
+		$this->realtyRepository->resetFilter();
+		$this->realtyRepository->persistListParameters();
+
+		$searchResultsPid = $this->settings['searchResultsPid'];
+
+		$this->redirect('list', 'Realty', NULL, NULL, $searchResultsPid);
+	}
 }
 ?>

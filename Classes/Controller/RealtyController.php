@@ -196,16 +196,14 @@ class Tx_Justimmo_Controller_RealtyController extends Tx_Justimmo_MVC_Controller
 	/**
 	 * action list
 	 *
-	 * @param Tx_Justimmo_Domain_Model_Filter $filter
 	 * @param Tx_Justimmo_Domain_Model_Order $order
 	 * @dontvalidate $order
 	 * @dontverifyrequesthash
 	 * @return void
 	 */
-	public function listAction(Tx_Justimmo_Domain_Model_Filter $filter = NULL, Tx_Justimmo_Domain_Model_Order $order = NULL) {
-		if (NULL !== $filter) {
-			$this->realtyRepository->setFilter($filter->toArray());
-		}
+	public function listAction(Tx_Justimmo_Domain_Model_Order $order = NULL) {
+		$this->realtyRepository->reconstituteListParameters();
+
 		if (NULL === $order) {
 			$order = $this->objectManager->create('Tx_Justimmo_Domain_Model_Order');
 		}
@@ -232,29 +230,6 @@ class Tx_Justimmo_Controller_RealtyController extends Tx_Justimmo_MVC_Controller
 		$this->view->assign('order', $order);
 
 		$this->setPaginationVariables();
-	}
-
-	/**
-	 * resets API filters
-	 *
-	 * @return void
-	 */
-	public function resetAction() {
-		$order = $this->objectManager->create('Tx_Justimmo_Domain_Model_Order');
-
-		$this->realtyRepository->resetFilter();
-
-		$realties = $this->realtyRepository->findAll();
-
-		$this->realtyRepository->persistListParameters();
-
-		$this->view->assign('realties', $realties);
-		$this->view->assign('order', $order);
-
-		$this->setPaginationVariables();
-
-		$templatePathAndFilename = t3lib_div::getFileAbsFileName($this->viewSettings['templateRootPath'] . 'Realty/List.html');
-		$this->view->setTemplatePathAndFilename($templatePathAndFilename);
 	}
 
 	/**

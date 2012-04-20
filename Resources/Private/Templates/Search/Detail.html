@@ -6,7 +6,7 @@
 
 	<f:render partial="FormErrors" />
 
-	<f:form method="post" object="{filter}" name="filter" controller="Search" action="list" pageUid="{settings.searchResultsPid}" fieldNamePrefix="tx_justimmo_searchresults" additionalAttributes="{ class: 'tx_justimmo_search_detail' }">
+	<f:form method="post" object="{filter}" name="filter" action="save" additionalAttributes="{ class: 'tx_justimmo_search_detail' }">
 		<div class="row-fluid">
 			<div class="span4">
 				<h2>1. Objektart</h2>
@@ -202,7 +202,7 @@
 		</div>
 
 		<ul class="menu menu-horizontal align-right">
-			<li><f:link.action controller="Realty" action="reset" pageUid="{settings.searchResultsPid}">Suchfilter löschen</f:link.action></li>
+			<li><f:link.action action="reset">Suchfilter löschen</f:link.action></li>
 			<li><f:form.submit name="submit" value="Suchen"><button>Suchen</button></f:form.submit></li>
 		</ul>
 	</f:form>

@@ -60,6 +60,10 @@ class Tx_Justimmo_Utility_RealurlAutoconfiguration implements t3lib_Singleton {
 						),
 						array(
 							'GETvar' => 'tx_justimmo_realtynumbersearch[action]',
+							'valueMap' => array(
+								'speichern' => 'save',
+								'filter-loeschen' => 'reset'
+							),
 							'noMatch' => 'bypass'
 						)
 					),
@@ -70,6 +74,10 @@ class Tx_Justimmo_Utility_RealurlAutoconfiguration implements t3lib_Singleton {
 						),
 						array(
 							'GETvar' => 'tx_justimmo_quicksearch[action]',
+							'valueMap' => array(
+								'speichern' => 'save',
+								'filter-loeschen' => 'reset'
+							),
 							'noMatch' => 'bypass'
 						)
 					),
@@ -80,6 +88,10 @@ class Tx_Justimmo_Utility_RealurlAutoconfiguration implements t3lib_Singleton {
 						),
 						array(
 							'GETvar' => 'tx_justimmo_detailsearch[action]',
+							'valueMap' => array(
+								'speichern' => 'save',
+								'filter-loeschen' => 'reset'
+							),
 							'noMatch' => 'bypass'
 						)
 					),
@@ -92,7 +104,6 @@ class Tx_Justimmo_Utility_RealurlAutoconfiguration implements t3lib_Singleton {
 							'GETvar' => 'tx_justimmo_searchresults[action]',
 							'valueMap' => array(
 								'seite' => 'paginate',
-								'alle-immobilien' => 'reset',
 								'uebersicht' => 'list',
 								'sortieren' => 'order'
 							),

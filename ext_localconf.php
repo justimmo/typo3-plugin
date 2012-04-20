@@ -7,11 +7,11 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 	$_EXTKEY,
 	'RealtynumberSearch',
 	array(
-		'Search' => 'realtynumber',
+		'Search' => 'realtynumber, save, reset',
 	),
 	// non-cacheable actions
 	array(
-		'Search' => 'realtynumber',
+		'Search' => 'realtynumber, save, reset',
 	)
 );
 
@@ -19,11 +19,11 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 	$_EXTKEY,
 	'QuickSearch',
 	array(
-		'Search' => 'quick',
+		'Search' => 'quick, save, reset',
 	),
 	// non-cacheable actions
 	array(
-		'Search' => 'quick',
+		'Search' => 'quick, save, reset',
 	)
 );
 
@@ -31,11 +31,11 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 	$_EXTKEY,
 	'DetailSearch',
 	array(
-		'Search' => 'detail',
+		'Search' => 'detail, save, reset',
 	),
 	// non-cacheable actions
 	array(
-		'Search' => 'detail',
+		'Search' => 'detail, save, reset',
 	)
 );
 
@@ -54,11 +54,11 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 	$_EXTKEY,
 	'SearchResults',
 	array(
-		'Realty' => 'list, reset, paginate, order',
+		'Realty' => 'list, paginate, order',
 	),
 	// non-cacheable actions
 	array(
-		'Realty' => 'list, reset, paginate, order',
+		'Realty' => 'list, paginate, order',
 	)
 );
 
