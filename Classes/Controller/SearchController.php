@@ -178,7 +178,6 @@ class Tx_Justimmo_Controller_SearchController extends Tx_Justimmo_MVC_Controller
 	 */
 	public function resetAction() {
 		$this->realtyRepository->resetFilter();
-		$this->realtyRepository->persistListParameters();
 
 		$searchResultsPid = $this->settings['searchResultsPid'];
 

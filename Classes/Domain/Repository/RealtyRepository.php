@@ -361,6 +361,8 @@ class Tx_Justimmo_Domain_Repository_RealtyRepository implements t3lib_Singleton 
 		$this->ordertype = $this->defaults['ordertype'];
 		$this->page = 1;
 		$this->total_count = 0;
+
+		$this->persistListParameters();
 	}
 
 	/**
