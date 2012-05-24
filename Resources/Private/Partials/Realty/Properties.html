@@ -22,6 +22,12 @@
 	<div class="tx_justimmo_detail_description">
 		<f:format.html parseFuncTSPath="lib.parseFunc">{realty.freitexte.objektbeschreibung}</f:format.html>
 	</div>
+
+	<f:if condition="{realty.hasGeokoordinaten}">
+		<div class="tx_justimmo_detail_map">
+			<div id="tx_justimmo_detail_map" data-lat="{realty.breitengrad->f:format.number(decimals: 11, decimalSeparator: '.', thousandsSeparator: '')}" data-lng="{realty.laengengrad->f:format.number(decimals: 11, decimalSeparator: '.', thousandsSeparator: '')}" style="width: 480px; height: 200px;"><!-- --></div>
+		</div>
+	</f:if>
 </div>
 
 <div class="tx_justimmo_detail_sidebar">

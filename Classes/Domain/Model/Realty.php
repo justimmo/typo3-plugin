@@ -547,6 +547,49 @@ class Tx_Justimmo_Domain_Model_Realty extends Tx_Extbase_DomainObject_AbstractEn
 		return (array) $this->xml->verwaltung_techn;
 	}
 
+	/**
+	 * returns a boolean flag which determines if the current detail object has geographical coordinates
+	 *
+	 * @return boolean
+	 */
+	public function getHasGeokoordinaten() {
+		$geo = $this->getGeo();
+		return isset($geo['geokoordinaten']);
+	}
+
+	/**
+	 * returns the latitude
+	 *
+	 * returns 0 if self::getHasGeokoordinaten() returns FALSE
+	 *
+	 * @return float
+	 */
+	public function getBreitengrad() {
+		if (!$this->getHasGeokoordinaten()) {
+			return 0.0;
+		}
+
+		$geo = $this->getGeo();
+
+		return $geo['geokoordinaten']->breitengrad;
+	}
+
+	/**
+	 * returns the longitude
+	 *
+	 * returns 0 if self::getHasGeokoordinaten() returns FALSE
+	 *
+	 * @return flaot
+	 */
+	public function getLaengengrad() {
+		if (!$this->getHasGeokoordinaten()) {
+			return 0.0;
+		}
+
+		$geo = $this->getGeo();
+
+		return $geo['geokoordinaten']->laengengrad;
+	}
 	/* detail information getters - END */
 }
 ?>
