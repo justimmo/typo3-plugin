@@ -3,7 +3,7 @@
 ########################################################################
 # Extension Manager/Repository config file for ext "justimmo".
 #
-# Auto generated 30-05-2012 09:48
+# Auto generated 30-05-2012 09:55
 #
 # Manual updates:
 # Only the data in the array - everything else is removed by next
@@ -27,7 +27,7 @@ $EM_CONF[$_EXTKEY] = array(
 	'modify_tables' => '',
 	'clearCacheOnLoad' => 0,
 	'lockType' => '',
-	'version' => '0.0.0',
+	'version' => '1.0.5',
 	'constraints' => array(
 		'depends' => array(
 			'extbase' => '1.3.0',
