@@ -571,7 +571,7 @@ class Tx_Justimmo_Domain_Model_Realty extends Tx_Extbase_DomainObject_AbstractEn
 
 		$geo = $this->getGeo();
 
-		return $geo['geokoordinaten']->breitengrad;
+		return (float) $geo['geokoordinaten']['breitengrad'];
 	}
 
 	/**
@@ -588,7 +588,7 @@ class Tx_Justimmo_Domain_Model_Realty extends Tx_Extbase_DomainObject_AbstractEn
 
 		$geo = $this->getGeo();
 
-		return $geo['geokoordinaten']->laengengrad;
+		return (float) $geo['geokoordinaten']['laengengrad'];
 	}
 	/* detail information getters - END */
 }
