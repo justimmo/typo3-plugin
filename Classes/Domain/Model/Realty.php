@@ -242,8 +242,8 @@ class Tx_Justimmo_Domain_Model_Realty extends Tx_Extbase_DomainObject_AbstractEn
 	public function getAnhaenge() {
 		$anhaengeInternal = (array) $this->xml->anhaenge;
 
-		//SimpleXML workaround if only one element is in xml
-		if($anhaengeInternal['anhang'] instanceof SimpleXMLElement) {
+		// SimpleXML workaround if only one element is in xml
+		if ($anhaengeInternal['anhang'] instanceof SimpleXMLElement) {
 			$anhaengeInternal['anhang'] = array($anhaengeInternal['anhang']);
 		}
 
@@ -503,7 +503,7 @@ class Tx_Justimmo_Domain_Model_Realty extends Tx_Extbase_DomainObject_AbstractEn
 	 * @return string
 	 */
 	public function getNaehe() {
-		if(isset($this->xml->freitexte)) {
+		if (isset($this->xml->freitexte)) {
 			return (string) $this->xml->freitexte->lage;
 		}
 
