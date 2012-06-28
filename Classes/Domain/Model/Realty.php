@@ -498,6 +498,19 @@ class Tx_Justimmo_Domain_Model_Realty extends Tx_Extbase_DomainObject_AbstractEn
 	}
 
 	/**
+	 * returns the freitexte.lage information in detail view and the naehe information in list view (inconsistency in api)
+	 *
+	 * @return string
+	 */
+	public function getNaehe() {
+		if(isset($this->xml->freitexte)) {
+			return (string) $this->xml->freitexte->lage;
+		}
+
+		return isset($this->xml->naehe) ? (string) $this->xml->naehe : "";
+	}
+
+	/**
 	 * returns the property "objekttitel" from "freitexte" subproperty
 	 *
 	 * Only available in detail view
