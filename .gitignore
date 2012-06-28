@@ -3,3 +3,4 @@
 .settings
 doc/apitest/*
 doc/api/*
+.idea
