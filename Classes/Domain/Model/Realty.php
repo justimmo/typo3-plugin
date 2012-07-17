@@ -206,6 +206,17 @@ class Tx_Justimmo_Domain_Model_Realty extends Tx_Extbase_DomainObject_AbstractEn
 		return (float) $this->xml->nutzflaeche;
 	}
 
+    /**
+     * returns ground space
+     *
+     * Only available in search results view
+     *
+     * @return float
+     */
+    public function getGrundflaeche() {
+        return (float) $this->xml->grundflaeche;
+    }
+
 	/**
 	 * returns the path of the first image
 	 *
