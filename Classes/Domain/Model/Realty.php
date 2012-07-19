@@ -293,26 +293,26 @@ class Tx_Justimmo_Domain_Model_Realty extends Tx_Extbase_DomainObject_AbstractEn
 	 *
 	 * @return array
 	 */
-    public function getDokumente() {
-        $dokumenteInternal = (array) $this->xml->dokumente;
+	public function getDokumente() {
+		$dokumenteInternal = (array)$this->xml->dokumente;
 
-        //SimpleXML workaround if only one element is returned
-        if($dokumenteInternal['dokument'] instanceof SimpleXMLElement) {
-            $dokumenteInternal['dokument'] = array($dokumenteInternal['dokument']);
-        }
+		//SimpleXML workaround if only one element is returned
+		if($dokumenteInternal['dokument'] instanceof SimpleXMLElement) {
+			$dokumenteInternal['dokument'] = array($dokumenteInternal['dokument']);
+		}
 
-        // simple, but sufficient mapping of document data
-        $dokumente = array();
-        foreach ($dokumenteInternal['dokument'] as $dokument) {
-            $dokumente[] = array(
-                'titel'  => (string) $dokument->titel,
-                'pfad'   => (string) $dokument->pfad,
-                'format' => (string) $dokument->format
-            );
-        }
+		// simple, but sufficient mapping of document data
+		$dokumente = array();
+		foreach($dokumenteInternal['dokument'] as $dokument) {
+			$dokumente[] = array(
+				'titel'  => (string)$dokument->titel,
+				'pfad'   => (string)$dokument->pfad,
+				'format' => (string)$dokument->format
+			);
+		}
 
-        return $dokumente;
-    }
+		return $dokumente;
+	}
 
 	/**
 	 * returns the object type in string representation
