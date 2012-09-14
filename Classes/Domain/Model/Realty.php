@@ -447,6 +447,21 @@ class Tx_Justimmo_Domain_Model_Realty extends Tx_Extbase_DomainObject_AbstractEn
 	}
 
 	/**
+	 * return the running costs
+	 *
+	 * @return float|null
+	 */
+	public function getBetriebskosten()	{
+		$returnValue = null;
+
+		if (isset($this->xml->preise->zusatzkosten) && isset($this->xml->preise->zusatzkosten->betriebskosten)) {
+			$returnValue = (array) $this->xml->preise->zusatzkosten->betriebskosten;
+		}
+
+		return $returnValue;
+	}
+
+	/**
 	 * flags if the equipment features property is available
 	 *
 	 * Only available in detail view
