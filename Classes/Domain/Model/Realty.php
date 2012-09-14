@@ -451,7 +451,7 @@ class Tx_Justimmo_Domain_Model_Realty extends Tx_Extbase_DomainObject_AbstractEn
 	 *
 	 * Only available in detail view.
 	 *
-	 * @return float|null
+	 * @return array|null
 	 */
 	public function getBetriebskosten()	{
 		$returnValue = null;
