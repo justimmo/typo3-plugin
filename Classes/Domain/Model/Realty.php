@@ -464,6 +464,23 @@ class Tx_Justimmo_Domain_Model_Realty extends Tx_Extbase_DomainObject_AbstractEn
 	}
 
 	/**
+	 * return the heating costs
+	 *
+	 * Only available in detail view.
+	 *
+	 * @return float|null
+	 */
+	public function getHeizkosten()	{
+		$returnValue = null;
+
+		if (isset($this->xml->preise->zusatzkosten) && isset($this->xml->preise->zusatzkosten->heizkosten)) {
+			$returnValue = (array) $this->xml->preise->zusatzkosten->heizkosten;
+		}
+
+		return $returnValue;
+	}
+
+	/**
 	 * flags if the equipment features property is available
 	 *
 	 * Only available in detail view
