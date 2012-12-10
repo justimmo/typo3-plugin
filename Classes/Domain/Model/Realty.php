@@ -663,5 +663,44 @@ class Tx_Justimmo_Domain_Model_Realty extends Tx_Extbase_DomainObject_AbstractEn
 		return (float) $geo['geokoordinaten']['laengengrad'];
 	}
 	/* detail information getters - END */
+
+    public function getHasEndDate() {
+        return ($this->xml->zustand_angaben->energiepass->gueltig_bis != 0);
+    }
+    public function getEndDate() {
+        return date('d.m.Y', strtotime((string)$this->xml->zustand_angaben->energiepass->gueltig_bis));
+    }
+
+    public function getHasHwb() {
+        $hwbval = $this->xml->xpath('//zustand_angaben/user_defined_simplefield[@feldname="epass_hwbwert"]');
+        if (count($hwbval) == 1) {
+            return true;
+        }
+        return false;
+    }
+    public function getHwbValue() {
+        $hwbval = $this->xml->xpath('//zustand_angaben/user_defined_simplefield[@feldname="epass_hwbwert"]');
+        return $hwbval[0];
+    }
+    public function getHwbClass() {
+        $hwbclass = $this->xml->xpath('//zustand_angaben/user_defined_simplefield[@feldname="epass_hwbklasse"]');
+        return $hwbclass[0];
+    }
+
+    public function getHasFgee() {
+        $fgeeval = $this->xml->xpath('//zustand_angaben/user_defined_simplefield[@feldname="epass_fgeewert"]');
+        if (count($fgeeval) == 1) {
+            return true;
+        }
+        return false;
+    }
+    public function getFgeeValue() {
+        $fgeeval = $this->xml->xpath('//zustand_angaben/user_defined_simplefield[@feldname="epass_fgeewert"]');
+        return $fgeeval[0];
+    }
+    public function getFgeeClass() {
+        $fgeeclass = $this->xml->xpath('//zustand_angaben/user_defined_simplefield[@feldname="epass_fgeeklasse"]');
+        return $fgeeclass[0];
+    }
 }
 ?>
