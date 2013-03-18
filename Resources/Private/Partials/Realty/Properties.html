@@ -148,6 +148,15 @@
 		</div>
 	</f:if>
 
+    <f:if condition="{realty.nbVideos} > 0">
+        <div class="tx_justimmo_detail_documents">
+            <h4>Videos</h4>
+            <f:for each="{realty.videos}" as="anhang">
+                <f:cObject typoscriptObjectPath="lib.justimmoPlayer" data="{anhang.pfad}" />
+            </f:for>
+        </div>
+    </f:if>
+
 	<div class="tx_justimmo_detail_contact">
 		<h2>Ihr Ansprechpartner</h2>
 		<p>

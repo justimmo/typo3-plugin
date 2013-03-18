@@ -314,6 +314,44 @@ class Tx_Justimmo_Domain_Model_Realty extends Tx_Extbase_DomainObject_AbstractEn
 		return $dokumente;
 	}
 
+    /**
+     * returns amount of videos
+     *
+     * Only available in detail view
+     *
+     * @return integer
+     */
+    public function getNbVideos() {
+        return count((array) $this->xml->videos);
+    }
+
+    /**
+     * returns videos a normalized version of video objects
+     *
+     * Only available in detail view
+     *
+     * @return array
+     */
+    public function getVideos() {
+        $videosInternal = (array) $this->xml->videos;
+
+        //SimpleXML workaround if only one element is returned
+        if($videosInternal['video'] instanceof SimpleXMLElement) {
+            $videosInternal['video'] = array($videosInternal['video']);
+        }
+
+        // simple, but sufficient mapping of video data
+        $videos = array();
+        foreach ($videosInternal['video'] as $video) {
+            $videos[] = array(
+                'id'     => (string) $video->id,
+                'pfad'   => (string) $video->pfad,
+            );
+        }
+
+        return $videos;
+    }
+
 	/**
 	 * returns the object type in string representation
 	 *
