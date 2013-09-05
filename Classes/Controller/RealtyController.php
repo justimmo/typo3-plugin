@@ -105,6 +105,18 @@ class Tx_Justimmo_Controller_RealtyController extends Tx_Justimmo_MVC_Controller
 		$this->viewSettings = $this->frameworkSettings['view'];
 	}
 
+	public function initializeOrderAction() {
+		#print_r($this->arguments['order']);
+        $commentConfiguration = $this->arguments['order']->getPropertyMappingConfiguration();
+        $commentConfiguration->allowAllProperties();
+        $commentConfiguration
+                ->setTypeConverterOption(
+                'TYPO3\CMS\Extbase\Property\TypeConverter\PersistentObjectConverter',
+                \TYPO3\CMS\Extbase\Property\TypeConverter\PersistentObjectConverter::CONFIGURATION_CREATION_ALLOWED,
+                TRUE
+        );
+	}
+
 	/**
 	 * action show
 	 *

@@ -207,17 +207,6 @@ class Tx_Justimmo_Domain_Model_Realty extends Tx_Extbase_DomainObject_AbstractEn
 	}
 
 	/**
-	 * returns ground space
-	 *
-	 * Only available in search results view
-	 *
-	 * @return float
-	*/
-	public function getGrundflaeche() {
-		return (float) $this->xml->grundflaeche;
-	}
-
-	/**
 	 * returns the path of the first image
 	 *
 	 * Only available in search results view
@@ -253,13 +242,8 @@ class Tx_Justimmo_Domain_Model_Realty extends Tx_Extbase_DomainObject_AbstractEn
 	public function getAnhaenge() {
 		$anhaengeInternal = (array) $this->xml->anhaenge;
 
-		// SimpleXML workaround if only one element is in xml
-		if ($anhaengeInternal['anhang'] instanceof SimpleXMLElement) {
-			$anhaengeInternal['anhang'] = array($anhaengeInternal['anhang']);
-		}
-
-		$anhaenge = array();
 		// simple but sufficient mapping of attachment data
+		$anhaenge = array();
 		foreach ($anhaengeInternal['anhang'] as $anhang) {
 			$anhaenge[] = array(
 				'daten' => array(
@@ -294,63 +278,16 @@ class Tx_Justimmo_Domain_Model_Realty extends Tx_Extbase_DomainObject_AbstractEn
 	 * @return array
 	 */
 	public function getDokumente() {
-		$dokumenteInternal = (array)$this->xml->dokumente;
-
-		//SimpleXML workaround if only one element is returned
-		if($dokumenteInternal['dokument'] instanceof SimpleXMLElement) {
-			$dokumenteInternal['dokument'] = array($dokumenteInternal['dokument']);
-		}
+		$dokumenteInternal = (array) $this->xml->dokumente;
 
 		// simple, but sufficient mapping of document data
 		$dokumente = array();
-		foreach($dokumenteInternal['dokument'] as $dokument) {
-			$dokumente[] = array(
-				'titel'  => (string)$dokument->titel,
-				'pfad'   => (string)$dokument->pfad,
-				'format' => (string)$dokument->format
-			);
+		foreach ($dokumenteInternal as $dokument) {
+			$dokumente[] = (array) $dokument;
 		}
 
 		return $dokumente;
 	}
-
-    /**
-     * returns amount of videos
-     *
-     * Only available in detail view
-     *
-     * @return integer
-     */
-    public function getNbVideos() {
-        return count((array) $this->xml->videos);
-    }
-
-    /**
-     * returns videos a normalized version of video objects
-     *
-     * Only available in detail view
-     *
-     * @return array
-     */
-    public function getVideos() {
-        $videosInternal = (array) $this->xml->videos;
-
-        //SimpleXML workaround if only one element is returned
-        if($videosInternal['video'] instanceof SimpleXMLElement) {
-            $videosInternal['video'] = array($videosInternal['video']);
-        }
-
-        // simple, but sufficient mapping of video data
-        $videos = array();
-        foreach ($videosInternal['video'] as $video) {
-            $videos[] = array(
-                'id'     => (string) $video->id,
-                'pfad'   => (string) $video->pfad,
-            );
-        }
-
-        return $videos;
-    }
 
 	/**
 	 * returns the object type in string representation
@@ -485,40 +422,6 @@ class Tx_Justimmo_Domain_Model_Realty extends Tx_Extbase_DomainObject_AbstractEn
 	}
 
 	/**
-	 * return the running costs
-	 *
-	 * Only available in detail view.
-	 *
-	 * @return array|null
-	 */
-	public function getBetriebskosten()	{
-		$returnValue = null;
-
-		if (isset($this->xml->preise->zusatzkosten) && isset($this->xml->preise->zusatzkosten->betriebskosten)) {
-			$returnValue = (array) $this->xml->preise->zusatzkosten->betriebskosten;
-		}
-
-		return $returnValue;
-	}
-
-	/**
-	 * return the heating costs
-	 *
-	 * Only available in detail view.
-	 *
-	 * @return float|null
-	 */
-	public function getHeizkosten()	{
-		$returnValue = null;
-
-		if (isset($this->xml->preise->zusatzkosten) && isset($this->xml->preise->zusatzkosten->heizkosten)) {
-			$returnValue = (array) $this->xml->preise->zusatzkosten->heizkosten;
-		}
-
-		return $returnValue;
-	}
-
-	/**
 	 * flags if the equipment features property is available
 	 *
 	 * Only available in detail view
@@ -587,19 +490,6 @@ class Tx_Justimmo_Domain_Model_Realty extends Tx_Extbase_DomainObject_AbstractEn
 	 */
 	public function getFreitexte() {
 		return (array) $this->xml->freitexte;
-	}
-
-	/**
-	 * returns the freitexte.lage information in detail view and the naehe information in list view (inconsistency in api)
-	 *
-	 * @return string
-	 */
-	public function getNaehe() {
-		if (isset($this->xml->freitexte)) {
-			return (string) $this->xml->freitexte->lage;
-		}
-
-		return isset($this->xml->naehe) ? (string) $this->xml->naehe : "";
 	}
 
 	/**
@@ -701,44 +591,5 @@ class Tx_Justimmo_Domain_Model_Realty extends Tx_Extbase_DomainObject_AbstractEn
 		return (float) $geo['geokoordinaten']['laengengrad'];
 	}
 	/* detail information getters - END */
-
-    public function getHasEndDate() {
-        return ($this->xml->zustand_angaben->energiepass->gueltig_bis != 0);
-    }
-    public function getEndDate() {
-        return date('d.m.Y', strtotime((string)$this->xml->zustand_angaben->energiepass->gueltig_bis));
-    }
-
-    public function getHasHwb() {
-        $hwbval = $this->xml->xpath('//zustand_angaben/user_defined_simplefield[@feldname="epass_hwbwert"]');
-        if (count($hwbval) == 1) {
-            return true;
-        }
-        return false;
-    }
-    public function getHwbValue() {
-        $hwbval = $this->xml->xpath('//zustand_angaben/user_defined_simplefield[@feldname="epass_hwbwert"]');
-        return $hwbval[0];
-    }
-    public function getHwbClass() {
-        $hwbclass = $this->xml->xpath('//zustand_angaben/user_defined_simplefield[@feldname="epass_hwbklasse"]');
-        return $hwbclass[0];
-    }
-
-    public function getHasFgee() {
-        $fgeeval = $this->xml->xpath('//zustand_angaben/user_defined_simplefield[@feldname="epass_fgeewert"]');
-        if (count($fgeeval) == 1) {
-            return true;
-        }
-        return false;
-    }
-    public function getFgeeValue() {
-        $fgeeval = $this->xml->xpath('//zustand_angaben/user_defined_simplefield[@feldname="epass_fgeewert"]');
-        return $fgeeval[0];
-    }
-    public function getFgeeClass() {
-        $fgeeclass = $this->xml->xpath('//zustand_angaben/user_defined_simplefield[@feldname="epass_fgeeklasse"]');
-        return $fgeeclass[0];
-    }
 }
 ?>

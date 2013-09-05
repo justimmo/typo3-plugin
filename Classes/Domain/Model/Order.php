@@ -58,7 +58,7 @@ class Tx_Justimmo_Domain_Model_Order extends Tx_Extbase_DomainObject_AbstractVal
 	 * Either empty or a lowercase_underscored API supported order value
 	 * @var string
 	 */
-	protected $value = '';
+	protected $value;
 
 	/**
 	 * holds the order direction
@@ -112,15 +112,7 @@ class Tx_Justimmo_Domain_Model_Order extends Tx_Extbase_DomainObject_AbstractVal
 	 * @api
 	 */
 	public function getOppositeDirection() {
-		switch ($this->direction) {
-			case "asc":
-				return 'desc';
-			break;
-			case "desc":
-			default:
-				return 'asc';
-			break;
-		}
+		$this->direction = $this->direction == 'desc' ? 'asc' : 'desc';
 	}
 
 	/**
@@ -130,7 +122,7 @@ class Tx_Justimmo_Domain_Model_Order extends Tx_Extbase_DomainObject_AbstractVal
 	 * @throws InvalidArgumentException if given direction is not "asc" nor "desc"
 	 */
 	public function setDirection($direction) {
-		if ('' === $direction) {
+		if (empty($direction)) {
 			return NULL;
 		}
 
@@ -153,17 +145,20 @@ class Tx_Justimmo_Domain_Model_Order extends Tx_Extbase_DomainObject_AbstractVal
 	 * @throws BadMethodCallException if magic method isn't implemented
 	 * @api
 	 */
+	/*
 	public function __call($methodName, $arguments) {
 		// allows calls like {order.isOrderedByOrt} in fluid templates or
 		// $order->getIsOrderedByOrt() from controllers or other domain objects
-		if (substr($methodName, 0, 14) === 'getIsOrderedBy' && strlen($methodName) > 14) {
+		if (substr($methodName, 0, 14) === 'getIsOrderedBy' && strlen($methodName) > 14) 
+		{
 			// returns "ort" or "kaufpreis" or "anzahl_zimmer"
 			$valueName = t3lib_div::camelCaseToLowerCaseUnderscored(substr($methodName, 14));
 
-			return $this->value === $valueName;
+			#return $this->value === $valueName;
 		}
 
 		throw new BadMethodCallException('The method "' . $methodName . '" is not supported by the domain object.', 1332532032);
 	}
+	*/
 }
 ?>
