@@ -1,9 +1,9 @@
-== Official TYPO3 CMS PLUGIN ==
+## Official TYPO3 CMS PLUGIN 
 
 This plugin comes with different plugins/widgets to place on your website.
 The '''JUSTIMMO Real Estate Search''' queries the justimmo.at REST API to retrieve its objets.
 
-=== Widgets we offer ===
+## Widgets we offer
 
 * Search Results
 * Quick Search
@@ -11,7 +11,7 @@ The '''JUSTIMMO Real Estate Search''' queries the justimmo.at REST API to retrie
 * Realty Detail
 * Detail Search
 
-== Setup ==
+## Setup
 
 ```
 
@@ -25,8 +25,8 @@ plugin.tx_justimmo.settings.realtyDetailPid = 123
 
 ```
 
-== Appendix - Extbase Insights ==
+## Appendix - Extbase Insights
 
-'''Key'''
+_Key_
 ``ext:justimmo``
 
