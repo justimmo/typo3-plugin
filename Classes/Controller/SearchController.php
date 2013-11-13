@@ -152,12 +152,11 @@ class Tx_Justimmo_Controller_SearchController extends Tx_Justimmo_MVC_Controller
 	}
 
 	/**
-	 * save 
+	 * save action
 	 * 
 	 * Stores the filter settings and redirects to the Realty list action.
 	 *
 	 * @param Tx_Justimmo_Domain_Model_Filter $filter
-	 * @dontverifyrequesthash
 	 * @return void
 	 */
 	public function saveAction(Tx_Justimmo_Domain_Model_Filter $filter) {

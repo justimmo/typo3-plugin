@@ -118,17 +118,6 @@
 			<f:if condition="{realty.flaechen.kellerflaeche}">
 				<li><strong>Keller:</strong> <f:format.number decimalSeparator="," thousandsSeparator=".">{realty.flaechen.kellerflaeche}</f:format.number> m<sup>2</sup></li>
 			</f:if>
-
-            <f:if condition="{realty.hasEndDate}">
-                <li><strong>Energieausweis gültig bis</strong> {realty.enddate}</li>
-            </f:if>
-            <f:if condition="{realty.hasHwb}">
-                <li><strong>Heizwärmebedarf</strong> <strong>{realty.hwbclass}</strong> {realty.hwbvalue} kWh / m<sup>2</sup> &times; a</li>
-            </f:if>
-
-            <f:if condition="{realty.hasFgee}">
-                <li><strong>FGEE</strong> <strong>{realty.fgeeclass}</strong> {realty.fgeevalue}</li>
-            </f:if>
 		</ul>
 	</div>
 
@@ -147,15 +136,6 @@
 			</f:for>
 		</div>
 	</f:if>
-
-    <f:if condition="{realty.nbVideos} > 0">
-        <div class="tx_justimmo_detail_documents">
-            <h4>Videos</h4>
-            <f:for each="{realty.videos}" as="anhang">
-                <f:cObject typoscriptObjectPath="lib.justimmoPlayer" data="{anhang.pfad}" />
-            </f:for>
-        </div>
-    </f:if>
 
 	<div class="tx_justimmo_detail_contact">
 		<h2>Ihr Ansprechpartner</h2>

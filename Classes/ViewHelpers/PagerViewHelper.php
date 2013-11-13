@@ -128,7 +128,7 @@ class Tx_Justimmo_ViewHelpers_PagerViewHelper extends Tx_Fluid_Core_ViewHelper_A
 	 * @throws Tx_Fluid_Exception if some configuration setting in the pager argument are missing
 	 */
 	public function initialize() {
-		$pager = $this->arguments->offsetGet('pager');
+		$pager = $this->arguments['pager'];
 
 		if (FALSE === isset($pager['total_items'])) {
 			throw new Tx_Fluid_Exception('The given pager misses the "total_items" configration.', 1332599565);
