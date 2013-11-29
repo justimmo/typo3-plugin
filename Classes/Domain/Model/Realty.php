@@ -126,7 +126,7 @@ class Tx_Justimmo_Domain_Model_Realty extends Tx_Extbase_DomainObject_AbstractEn
 	 * @return string
 	 */
 	public function getObjektbeschreibung() {
-		return (string) $this->xml->objektbeschreibung;
+		return (string) substr($this->xml->objektbeschreibung, 0, stripos($this->xml->objektbeschreibung, ' ', 400)+1) . '...' ;
 	}
 
 	/**
@@ -217,6 +217,17 @@ class Tx_Justimmo_Domain_Model_Realty extends Tx_Extbase_DomainObject_AbstractEn
 		return (string) $this->xml->erstes_bild;
 	}
 
+	/**
+	 * returns bigger version of image
+	 *
+	 * Only available in search results view
+	 *
+	 * @return string
+	 */
+	public function getPdf_bild() {
+		return (string) str_replace('small', 'pdf', $this->getErstes_bild());
+	}
+
 	/* list information getters - END */
 
 	/* detail information getters - START */
@@ -229,6 +240,7 @@ class Tx_Justimmo_Domain_Model_Realty extends Tx_Extbase_DomainObject_AbstractEn
 	 * @return integer
 	 */
 	public function getNbAnhaenge() {
+		
 		return count((array) $this->xml->anhaenge);
 	}
 
@@ -421,6 +433,75 @@ class Tx_Justimmo_Domain_Model_Realty extends Tx_Extbase_DomainObject_AbstractEn
 		return $returnValue;
 	}
 
+
+	/**
+	 * return the running costs
+	 *
+	 * Only available in detail view.
+	 *
+	 * @return float|null
+	 */
+	public function getBetriebskosten()	{
+		$returnValue = null;
+
+		if (isset($this->xml->preise->zusatzkosten) && isset($this->xml->preise->zusatzkosten->betriebskosten)) {
+			$returnValue = (array) $this->xml->preise->zusatzkosten->betriebskosten;
+		}
+
+		return $returnValue;
+	}
+
+	/**
+	 * return the heating costs
+	 *
+	 * Only available in detail view.
+	 *
+	 * @return float|null
+	 */
+	public function getHeizkosten()	{
+		$returnValue = null;
+
+		if (isset($this->xml->preise->zusatzkosten) && isset($this->xml->preise->zusatzkosten->heizkosten)) {
+			$returnValue = (array) $this->xml->preise->zusatzkosten->heizkosten;
+		}
+
+		return $returnValue;
+	}
+
+	/**
+	 * returns the garage count
+	 *
+	 * Only available in detail view.
+	 *
+	 * @return int
+	 */
+	public function getAnzahl_garagen()	{
+		$returnValue = 0;
+
+		if (isset($this->xml->anzahl_garagen)) {
+			$returnValue = (int) $this->xml->anzahl_garagen;
+		}
+
+		return $returnValue;
+	}
+
+	/**
+	 * returns the storage room count
+	 *
+	 * Only available in detail view.
+	 *
+	 * @return int
+	 */
+	public function getAnzahl_abstellraum()	{
+		$returnValue = 0;
+
+		if (isset($this->xml->anzahl_abstellraum)) {
+			$returnValue = (int) $this->xml->anzahl_abstellraum;
+		}
+
+		return $returnValue;
+	}
+
 	/**
 	 * flags if the equipment features property is available
 	 *
@@ -515,6 +596,17 @@ class Tx_Justimmo_Domain_Model_Realty extends Tx_Extbase_DomainObject_AbstractEn
 	}
 
 	/**
+	 * returns the EnergyData of the realty
+	 * 
+	 * Only available in detail view
+	 *
+	 * @return array
+	 */
+	public function getEnergieausweis() {
+		return (array) $this->xml->zustand_angaben->energiepass;
+	}
+
+	/**
 	 * returns a normalized information array about the realty's areas
 	 *
 	 * Only available in detail view
@@ -590,6 +682,51 @@ class Tx_Justimmo_Domain_Model_Realty extends Tx_Extbase_DomainObject_AbstractEn
 
 		return (float) $geo['geokoordinaten']['laengengrad'];
 	}
+
 	/* detail information getters - END */
+
+	public function getHasEndDate() {
+		return ($this->xml->zustand_angaben->energiepass->gueltig_bis != 0);
+	}
+	
+	public function getEndDate() {
+		return date('d.m.Y', strtotime((string)$this->xml->zustand_angaben->energiepass->gueltig_bis));
+	}
+
+	public function getHasHwb() {
+		$hwbval = $this->xml->xpath('//zustand_angaben/user_defined_simplefield[@feldname="epass_hwbwert"]');
+		if (count($hwbval) == 1) {
+			return true;
+		}
+		return false;
+	}
+
+	public function getHwbValue() {
+		$hwbval = $this->xml->xpath('//zustand_angaben/user_defined_simplefield[@feldname="epass_hwbwert"]');
+		return $hwbval[0];
+	}
+
+	public function getHwbClass() {
+		$hwbclass = $this->xml->xpath('//zustand_angaben/user_defined_simplefield[@feldname="epass_hwbklasse"]');
+		return $hwbclass[0];
+	}
+
+	public function getHasFgee() {
+		$fgeeval = $this->xml->xpath('//zustand_angaben/user_defined_simplefield[@feldname="epass_fgeewert"]');
+		if (count($fgeeval) == 1) {
+			return true;
+		}
+		return false;
+	}
+
+	public function getFgeeValue() {
+		$fgeeval = $this->xml->xpath('//zustand_angaben/user_defined_simplefield[@feldname="epass_fgeewert"]');
+		return $fgeeval[0];
+	}
+
+	public function getFgeeClass() {
+		$fgeeclass = $this->xml->xpath('//zustand_angaben/user_defined_simplefield[@feldname="epass_fgeeklasse"]');
+		return $fgeeclass[0];
+	}
 }
 ?>
