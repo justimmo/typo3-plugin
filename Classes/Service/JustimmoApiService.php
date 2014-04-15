@@ -104,7 +104,7 @@ class Tx_Justimmo_Service_JustimmoApiService implements t3lib_Singleton {
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($ch, CURLOPT_URL, $this->baseUrl . $url);
 		curl_setopt($ch, CURLOPT_USERPWD, $this->username . ':' . $this->password);
-		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+		@curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
 		curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_ANY);
 
 		if ($this->debug) {
