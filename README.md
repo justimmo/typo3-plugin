@@ -1,7 +1,7 @@
-## Official TYPO3 CMS PLUGIN 
+## Official JUSTIMMO TYPO3 CMS PLUGIN 
 
 This plugin comes with different plugins/widgets to place on your website.
-The '''JUSTIMMO Real Estate Search''' queries the justimmo.at REST API to retrieve its objets.
+The '''JUSTIMMO Real Estate Search''' queries the justimmo.at REST API to retrieve its objects.
 
 ## Widgets we offer
 
