@@ -247,29 +247,65 @@ class Tx_Justimmo_Domain_Model_Realty extends Tx_Extbase_DomainObject_AbstractEn
 	/**
 	 * returns a normalized version of the attachment (images) objects
 	 * 
-	 * Only available in detail view
-	 *
 	 * @return array
 	 */
 	public function getAnhaenge() {
-		$anhaengeInternal = (array) $this->xml->anhaenge;
 
-		// simple but sufficient mapping of attachment data
-		$anhaenge = array();
-		foreach ($anhaengeInternal['anhang'] as $anhang) {
-			$anhaenge[] = array(
-				'daten' => array(
-					'pfad' => (string) $anhang->daten->pfad,
-					'small' => (string) $anhang->daten->small,
-					'medium' => (string) $anhang->daten->medium,
-					'big2' => (string) $anhang->daten->big2,
-					'medium2' => (string) $anhang->daten->medium2
-				)
-			);
-		}
+        $anhaenge = array();
+        if (isset($this->xml->anhaenge)) {
+            $anhaengeInternal = (array) $this->xml->anhaenge;
 
-		return $anhaenge;
+            // simple but sufficient mapping of attachment data
+            foreach ($anhaengeInternal['anhang'] as $anhang) {
+                $path       = (string) $anhang->daten->pfad;
+                $anhaenge[] = array(
+                    'daten' => array(
+                        'pfad'             => (string) $anhang->daten->pfad,
+                        'small'            => (string) $anhang->daten->small,
+                        'medium'           => (string) $anhang->daten->medium,
+                        'big2'             => (string) $anhang->daten->big2,
+                        'medium2'          => (string) $anhang->daten->medium2,
+                        'big'              => $this->calculateAttachmentUrl($path, 'big'),
+                        's220x155'         => $this->calculateAttachmentUrl($path, 's220x155'),
+                        's312x208'         => $this->calculateAttachmentUrl($path, 's312x208'),
+                        'medium_unbranded' => $this->calculateAttachmentUrl($path, 'medium_unbranded'),
+                        'big_unbranded'    => $this->calculateAttachmentUrl($path, 'big_unbranded'),
+                        'big2_unbranded'   => $this->calculateAttachmentUrl($path, 'big2_unbranded'),
+                    )
+                );
+            }
+        } elseif (isset($this->xml->erstes_bild)) {
+            $path       = (string) $this->xml->erstes_bild;
+            $anhaenge[] = array(
+                'daten' => array(
+                    'small'            => $this->calculateAttachmentUrl($path, 'small'),
+                    'medium'           => $this->calculateAttachmentUrl($path, 'medium'),
+                    'big2'             => $this->calculateAttachmentUrl($path, 'big2'),
+                    'big'              => $this->calculateAttachmentUrl($path, 'big'),
+                    's220x155'         => $this->calculateAttachmentUrl($path, 's220x155'),
+                    's312x208'         => $this->calculateAttachmentUrl($path, 's312x208'),
+                    'medium_unbranded' => $this->calculateAttachmentUrl($path, 'medium_unbranded'),
+                    'big_unbranded'    => $this->calculateAttachmentUrl($path, 'big_unbranded'),
+                    'big2_unbranded'   => $this->calculateAttachmentUrl($path, 'big2_unbranded'),
+                )
+            );
+        }
+
+        return $anhaenge;
 	}
+
+    /**
+     * calculates an attachment url not sent by api
+     *
+     * @param        $url
+     * @param string $size
+     *
+     * @return mixed
+     */
+    protected function calculateAttachmentUrl($url, $size = 'orig')
+    {
+        return preg_replace("!\/(pic|video)\/(\w+)\/!", "/$1/".$size."/", $url);
+    }
 
 	/**
 	 * returns amount of documents (PDF files etc.)
