@@ -361,12 +361,45 @@ class Tx_Justimmo_Domain_Model_Realty extends Tx_Extbase_DomainObject_AbstractEn
 		$type = '';
 
 		switch ($internalType) {
-			case "haus":
+			case 'zimmer':
+				$type = 'Zimmer';
+				break;
+			case 'haus':
 				$type = 'Haus';
-			break;
+				break;
+			case 'grundstueck':
+				$type = 'Grundstück';
+				break;
+			case 'buero_praxen':
+				$type = 'Büro / Praxis';
+				break;
+			case 'einzelhandel':
+				$type = 'Einzelhandel';
+				break;
+			case 'gastgewerbe':
+				$type = 'Gastgewerbe';
+				break;
+			case 'hallen_lager_prod':
+				$type = 'Industrie / Gewerbe';
+				break;
+			case 'land_und_forstwirtschaft':
+				$type = 'Land und Forstwirtschaft';
+				break;
+			case 'sonstige':
+				$type = 'Sonstige / Sonderobjekte';
+				break;
+			case 'freizeitimmobilie_gewerblich':
+				$type = 'Freizeitimmobilie gewerblich';
+				break;
+			case 'zinshaus_renditeobjekt':
+				$type = 'Zinshaus Renditeobjekt';
+				break;
+			case 'parken':
+				$type = 'Parken';
+				break;
 			default:
 				$type = 'Wohnung';
-			break;
+				break;
 		}
 
 		return $type;
