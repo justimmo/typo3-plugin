@@ -44,6 +44,7 @@ class Tx_Justimmo_Domain_Model_Order extends Tx_Extbase_DomainObject_AbstractVal
 	 * @var array
 	 */
 	protected static $SUPPORTED_ORDER_VALUES = array(
+        'objektnummer',
 		'ort',
 		'kaufpreis',
 		'gesamtmiete',

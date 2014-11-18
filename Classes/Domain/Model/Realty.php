@@ -250,13 +250,10 @@ class Tx_Justimmo_Domain_Model_Realty extends Tx_Extbase_DomainObject_AbstractEn
 	 * @return array
 	 */
 	public function getAnhaenge() {
-
         $anhaenge = array();
         if (isset($this->xml->anhaenge)) {
-            $anhaengeInternal = (array) $this->xml->anhaenge;
-
             // simple but sufficient mapping of attachment data
-            foreach ($anhaengeInternal['anhang'] as $anhang) {
+            foreach ($this->xml->anhaenge->anhang as $anhang) {
                 $path       = (string) $anhang->daten->pfad;
                 $anhaenge[] = array(
                     'daten' => array(
