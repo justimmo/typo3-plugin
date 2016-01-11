@@ -119,18 +119,13 @@ class Tx_Justimmo_Domain_Validator_FilterValidator extends Tx_Extbase_Validation
 			return FALSE;
 		}
 
-		$purchaseTypeOptions = array(
-			'startRange' => 0,
-			'endRange' => 1
-		);
+        if (!is_bool($value->getKauf())) {
+            return FALSE;
+        }
 
-		if (!$this->buildAndProcessValidator($value, 'kauf', 'NumberRangeValidator', $purchaseTypeOptions)) {
-			return FALSE;
-		}
-
-		if (!$this->buildAndProcessValidator($value, 'miete', 'NumberRangeValidator', $purchaseTypeOptions)) {
-			return FALSE;
-		}
+        if (!is_bool($value->getMiete())) {
+            return FALSE;
+        }
 
 		if (!$this->buildAndProcessValidator($value, 'preisVon', 'FloatValidator')) {
 			return FALSE;
