@@ -1,3 +1,8 @@
+# DEPRECATED
+
+This plugin has been deprecated and will not be maintained or supported anymore.
+
+
 ## Official JUSTIMMO TYPO3 CMS PLUGIN 
 
 This plugin comes with different plugins/widgets to place on your website.
